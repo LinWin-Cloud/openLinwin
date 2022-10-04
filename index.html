@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <link href="./img/logo.png" rel="shortcut icon"/> 
+        <link href="./css/index.css" rel="stylesheet" />
+        <script src="./js/index.js"></script>
+        <script src="./js/search.js"></script>
+        <title>LinWin Http Server|适用于国产Http服务系统</title>
+        <script>
+            window.onload = function()
+            {
+                var a = document.getElementById('searchbox');
+                var b = document.getElementById('text1');
+
+                if (window.innerWidth < 460)
+                {
+                    a.style.width = "65%";
+                    b.style.width = "90%";
+                }   
+            }
+        </script>
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    </head>
+    <body>
+        <div align="center">
+            <div class="tops">
+            <div style="width:100%;height: 100px;"></div>
+            <table style="width: 240px;">
+                <td>
+                    <div class="logo"></div>
+                </td>
+                <td>
+                    <h1 style="font-size: 30px;;margin-left: 10px;color: rgb(0, 183, 255);">LinWin
+                        <br />
+                        HttpServer</h1>
+                </td>
+            </table>
+            <br />
+            <div style="width: 100%;height: 50px;"></div>
+            <br />
+            <input placeholder="搜索：帮助、下载、使用等" class="inputbox" id="searchbox" />
+            <button class="searchbtn" id="searchbtn">搜索</button>
+            <br /><br /><br /><br />
+            <button class="link">联系我们</button>
+            <button class="link">更新与支持</button>
+            <button class="link">售后与服务</button>
+            <button class="link">捐助</button>
+            <div style="width: 100%;height: 100px;"></div>
+            <button class="btn">下载</button>
+            <button class="btn" onclick="window.location.href='./document'">文档</button>
+            <button class="btn">帮助</button>
+            <button class="btn">源代码</button>
+            <br />
+            <button class="agreementbtn" onclick="window.location.href='./agreement.html'">LinWin Http Server使用协议</button>
+            <div style="width: 100%;height: 100px;"></div>
+            </div>
+            <div style="width: 100%;height: 100px;"></div>
+
+            <button class="modbox">
+                <img src="./img/ico3.png" style="width: 150px;height: 150px;background-size: cover;"/>
+                <h2>LinWinHttp服务</h2>
+            </button>
+            <button class="modbox">
+                <img src="./img/linux.png" style="width: 150px;height: 150px;background-size: cover;"/>
+                <h2>购买商业版本</h2>
+            </button>
+            <button class="modbox">
+                <img src="./img/chat.png" style="width: 150px;height: 150px;background-size: cover;"/>
+                <h2>与LinWinCloud合作</h2>
+            </button>
+            <br /><br />
+            <button class="download">
+                <table>
+                    <td>
+                        <img src="./img/linux.png" class="imgdownload" />
+                    </td>
+                    <td>
+                        <p style="font-size: 30px;">Linux amd64版本</p>
+                    </td>
+                </table>
+            </button>
+            <button class="download">
+                    <table>
+                        <td>
+                            <img src="./img/deepin.png" style="width: 80px;height: 80px;" class="imgdownload" />
+                        </td>
+                        <td>
+                            <p style="font-size: 30px;">中国国产Linux</p>
+                        </td>
+                    </table>
+            </button>
+            <button class="download">
+                <table>
+                    <td>
+                        <img src="./img/windows.png" class="imgdownload" />
+                    </td>
+                    <td>
+                        <p style="font-size: 30px;">Windows 64位版本</p>
+                    </td>
+                </table>
+            </button>
+            <div style="width: 100%;height: 100px;"></div>
+
+            <div id="text1" class="text">
+                <div class="box_text">
+                    <h2 class="titletext">更快、更稳定的Http服务器处理软件</h2>
+                <br />
+                <p align="left">
+                    LinWin Http Server完全设计用于中小型网站的开发、运维的入门。简单而创造不平凡：
+                    使用者并不需要掌握多少服务器知识和只需要少量linux命令便可以在控制台下完成操作，避
+                    免了需要自己手动修改配置文件的麻烦。
+                    <br /><br />
+                    在对于静态网页的处理上面，LinWin Http Server完全使用热更新机制，即服务器管理员修
+                    改了静态页面，访问者访问该页面的时候不会出现类似于nginx和apache服务器导致的无法刷
+                    新的情况，极大的提高了访问的效率。
+                </p>
+                </div>
+                <br /><br />
+                <div class="box_text">
+                    <h2 class="titletext">更安全、更加可靠的http服务器处理软件</h2>
+                    <br />
+                    <p align="left">
+                        LinWin Http Server设计了用于内置的防DDOS和SQL注入的代码和功能，默认防DDOS，
+                        简单的部署更加方便。防止可能会出现的安全问题，而且全部免费内置。一键开启保护网站
+                        <br /><br />
+                        LinWin Http Server非常稳定，基本上不会出现使得服务器诰机以及停止服务的情况。
+                        LinWin Http Server将在极端情况下可能将管理员权限单独接过，以保证服务器的安全
+                        稳定或者尽可能降低损失。
+                    </p>
+                </div>
+                <br /><br />
+                <div class="box_text">
+                    <h2 class="titletext">更便捷的服务器管理：LinWin Server Console</h2>
+                    <br />
+                    <p align="left">
+                        LinWin Server Console是一个基于internet的服务器控制台。用户可根据远程连接客
+                        户端（windows,Linux）连接LinWin Http Server。连接到LinWin控制台可以操作服
+                        务配置、在目标服务器运行命令行等，整个过程包括管理员都会受到控制台安全限制（执行
+                        敏感操作），在必要情况下可能LinWin Http Server会接过管理权限（不会对服务造成
+                        任何影响）
+                    </p>
+                </div>
+                <Div style="width:100%;height: 100px"></Div>
+            </div>
+        </div>
+        <Div style="width:100%;height: 300px;background-color: rgb(255, 255, 255);" align="center">
+            <br />
+            <h2>感谢以下组织、机构的帮助</h2>
+            <br />
+            <button class="btn2">
+                <img src="./img/ico3.png" class="imgs" />
+                <p>LinWin HttpServer</p>
+            </button>
+            <button class="btn2">
+                <img src="./img/logo.png" class="imgs" />
+                <p>LinWinCloud开源</p>
+            </button>
+            <button class="btn2">
+                <img src="./img/UChat.png" class="imgs" style="width: 100px;" />
+                <p>优信团队</p>
+            </button>
+            <button class="btn2">
+                <img src="./img/fire.jpg" class="imgs" style="width: 100px;" />
+                <p>萤火科技</p>
+            </button>
+            <button class="btn2">
+                <img src="./img/gitee.ico" class="imgs" style="width: 100px;" />
+                <p>Gitee</p>
+            </button>
+            <button class="btn2">
+                <img src="./img/fluidicon.png" class="imgs" style="width: 100px;" />
+                <p>Github</p>   
+            </button>
+            <button class="btn2">
+                <img src="./img/favicon.ico" class="imgs" style="width: 100px;" />
+                <p>OsChina</p>   
+            </button>
+            <button class="btn2">
+                <img src="./img/website_logo.ico" class="imgs" style="width: 100px;" />
+                <p>UOS</p>   
+            </button>
+            <button class="btn2">
+                <img src="./img/deepin.png" class="imgs" style="width: 100px;" />
+                <p>DeepinOS</p>   
+            </button>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div align="center" class="bottomtop">
+                <br />                <br />
+                <br />
+                <button class="bottom_btn" align="left">
+                    <h4>LinWinCloud动态 </h4>
+                    <a class="l" href="">B站动态</a><br />
+                    <br />
+                    <a class="l" href="">抖音动态</a><br />
+                    <br />
+                    <a class="l" href="">开源中国动态</a><br /> 
+                    <br />
+                </button>
+                <button class="bottom_btn">
+                    <h4> 产品</h4>
+                    <a class="l" href="">下载</a><br /><br />
+                    <a class="l" href="">文档</a><br /><br />
+                    <a class="l" href="">反馈</a><br /><br />
+                </button>
+                <button class="bottom_btn">
+                    <h4>服务与协议</h4>
+                    <a class="l" href="">使用协议</a><br /><br />
+                    <a class="l" href="">商用版本服务</a><br /><br />
+                </button>
+                <button class="bottom_btn">
+                    <h4>商用产品源代码</h4>
+                    <a class="l" href="">商用源代码修改许可</a><br /><br />
+                    <a class="l" href="">开元源代码修改许可</a>
+                </button>
+                <button class="bottom_btn">
+                    <h4>私人助手</h4>
+                    <a class="l" href="">萤火私人助手</a><br /><br />
+                </button>
+                <button class="bottom_btn" align="left">
+                    <h4>招贤纳士</h4>
+                    <a class="l" href="">加入萤火科技工作室</a><br />
+                    <br />
+                    <a class="l" href="">加入项目维护</a><br /> 
+                    <br />
+                    <a class="l" href="">宣传LinWin服务项目</a><br /> 
+                    <br />
+                </button>
+                <br />
+                <br />
+                <br />
+                <br />
+            </div>
+        </Div>
+        <div class="Searchpage" id="searchPage"></div>
+    </body>
+</html>

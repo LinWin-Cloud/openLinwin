@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>使用协议|LinWin Http Server</title>
+        <link href="./img/logo.png" rel="icon"/>
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    </head>
+    <body>
+        <style>
+            body{margin: 20px}
+            h2{border-left: 10px solid black;}
+        </style>
+        <br /><br />
+        <script>
+            window.onload = function()
+            {
+                var w = document.getElementById('w');
+                if (window.innerWidth >= 500)
+                {
+                    w.style.width = '40%';
+                }
+            }
+            window.onresize = function()
+            {
+                var w = document.getElementById('w');
+                if (window.innerWidth >= 500)
+                {
+                    w.style.width = '40%';
+                }
+                if (window.innerWidth < 500)
+                {
+                    w.style.width = '90%';
+                }
+            }
+        </script>
+        <div align="center">
+            <div style="width: 90%;" id="w">
+                <h1>LinWin Http Server软件服务协议</h1>
+                <div align="left">
+                    <h2>声明: </h2>
+                    <p>
+                        1. 下列 LinWin Http Server都统称为本软件。
+                        2. 下列称 LinWin Http Server软件服务协议 为本协议
+                    </p>
+                    <h2>用户隐私协议:</h2>
+                    <p>
+                        1. 本软件会主动收集用户计算机来提供网络服务，但是并不会将用户计算机
+                        信息反馈至任何的其他的服务器（除非用户自己使用API调用）。
+                        <br /><br />
+                        2. 本软件非常注重用户的隐私，我们也将需要以下权限来使得软件的服务可
+                        以使用：对用户操作系统信息的获取、对用户计算机 文件/目录 的读取与写
+                        入、对网络的访问、允许其他用户访问本地开放的服务端口、后台运行、开机
+                        启动。
+                        <br /><br />
+                        3. 使用LinWin API可能会收集到http服务的访问者信息，然而LinWin 
+                        API并不主动将这些信息作出任何与http服务无关的处理，除非管理员调整
+                        源代码或者规则。
+                        <br /><br />
+                        4. 因任何误操作等导致的错误，本软件该不提供任何的责任，如果需要反馈
+                        BUG至指定处。
+                        <br /><br />
+                    </p>
+                    <h2>网站与服务</h2>
+                    <p>
+                        1. 本软件提供关于本地网站的托管和服务，其他人可以通过开放的制定端口
+                        、IP进行访问。
+                        <br /><br />
+                        2. http服务如果因为任何管理员的误操作等而导致的任何问题，本软件该不
+                        负责，但是可以反馈BUG及时修复。
+                        <br /><br />
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

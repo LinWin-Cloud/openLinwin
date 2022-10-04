@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <link href="../css/document.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <style>
+            body{
+                margin: 40px;
+                padding: 40px;
+            }
+        </style>
+        <h2>服务器配置文件</h2>
+        <p>
+            LinWin Http Server默认采用一种使用文本记述配置内容的方式，采用热更新机制，
+            能够做到修改完成即可直接生效。
+            <br />
+            内置的配置文件策略包括了服务器目录、服务端口、安全、API等。
+        </p>
+        <h2>网页服务配置</h2>
+        <p>
+            <h4><em>位于 {源代码目录}/config/Server.cfg 文件</em></h4>
+            内部记叙了服务的目录、端口、控制台登录、API接口。以下是默认的服务配置
+            <br />
+            <em>注意：配置内容的 ':'符号必须与配置的参数空开一格，否则无法生效而且会错误。</em>
+        </p>
+        <div class="box">
+            <br />
+            Port: 10143;1<br />
+            ServerDir: /var/www/html;2<br />
+            ConsoleLogon_Port: 8888;3<br />
+            API_Port: 10142;4<br />
+            <br />
+        </div>
+        <h2>管理员用户配置文件</h2>
+        <p>
+            LinWin HttpServer不仅仅提供网络服务，而且可以使用用户来管理配置服务器。一个
+            用户由 <em> 账户 </em> 和 <em> 密码 </em>构成，下面是默认的用户名与密码配置
+            （可修改）
+        </p>
+        <div class="box">
+            <h4>提示：文件位于 {源代码目录}/config/Admin.cfg</h4>
+        </div>
+        <div class="box">
+            <br />
+            User: linwin;Pwd: linwin;<br />
+            User: admin;Pwd: admin;<br />
+            <br />
+        </div>
+        <h2>默认页面配置文件</h2>
+        <p>
+            <h4>文件位于: {源代码目录}/config/defaultPage.cfg</h4>
+            LinWin Http Server支持默认页面的编辑，在默认值当中，index.html/index.htm等
+            将被索引。以下是默认的配置: 
+        </p>
+        <div class="box">
+            <br />
+            index.html<br />
+            index.htm<br />
+            index.php<br />
+            index.jsp<br />
+            <br />
+        </div>
+        <br />
+        <style>
+                        button{
+                border: none;
+                box-shadow: 0px 0px 10px black;
+                width: auto;
+                height: 40px;
+                background-color: white;
+            }
+        </style>
+        <button onclick="window.location.href='4.htm'">下一页文档</button>
+    </body>
+</html>
