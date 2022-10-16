@@ -1,4 +1,0 @@
-#! /bin/bash
-
-cd /usr/LinWinHttp/Sevice 
-java -jar ServerBoot.jar
