@@ -18,9 +18,10 @@ LinWin Http Server，项目最早构建于2021年的1月份，最初使用Python
 ### 2. linux运行环境 & windows运行环境
     LinWin Http Server的源代码可以运行在任何的平台，但是其中部分的命令行
     安装脚本、启动命令行并不支持windows，而是单单为Linux设计；但是同样可以
-    在windows上运行该应用，但是需要预先安装jdk (jdk版本 >= 1.8)，而linux
-    版本内置amd64的jre。
-
+    在windows上运行该应用。
+### 3. jdk >= 1.8
+    本产品默认不内置jdk或者jre，所以必须要在目标计算机安装jdk并且配置好环境才
+    能够使用。
 # LinWin Http Server的安全性
 LinWin Http Server一直把服务器安全放在第一位，不仅仅采用了java这种安全的
 开发语言，而且内置了很多的安全策略以及服务器的安全访问，实现了用户的简单配置
