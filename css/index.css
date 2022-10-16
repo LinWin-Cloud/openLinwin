@@ -1,0 +1,194 @@
+body
+{
+    margin: 0;
+    padding: 0;
+}
+.logo
+{
+    width: 70px;
+    height: 70px;
+    background-image: url(../img/ico3.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.btn
+{
+    width: 150px;
+    height: 65px;
+    border: none;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(0, 183, 255);
+    background-color:rgb(255, 255, 255,0.8);
+    color: rgb(0, 183, 255);
+    outline: none;
+}
+.btn:hover
+{
+    background-color: rgb(0, 183, 255);
+    color: white;
+}
+.inputbox
+{
+    width: 30%;
+    background-color: white;
+    border: 0px;
+    box-shadow: 0px 0px 5px black;
+    outline: none;
+    height: 40px;
+}
+.searchbtn
+{
+    width: 50px;
+    background-color: white;
+    border: none;
+    box-shadow: 0px 0px 5px black;
+    margin-left: 5px;
+    height: 40px;
+}
+.titletext
+{
+    border-left: 10px solid black;
+    width: 100%;
+    border-right: 10px solid black;
+}
+.titletext{
+    width: 100%;
+}
+.text
+{
+    width: 100%;
+}
+.link
+{
+    width: 100px;
+    background-color: rgb(0, 183, 0,0);
+    border: none;
+    height: 30px;
+    font-size: 17px;
+    color: white;
+}
+.link:hover
+{
+    text-shadow: 0px 0px 10px rgb(0, 183, 255);
+    box-shadow: 0px 10px 5px rgb(0, 183, 255);
+}
+.tops
+{
+    width: 100%;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(../img/warty-final-ubuntukylin.jpg);
+}
+.imgs
+{
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+}
+.btn2
+{
+    background-color: rgb(0, 183, 0,0);
+    border: none;
+}
+.btn2:hover
+{
+    box-shadow: 10px 10px 10px black;
+}
+.agreementbtn
+{
+    margin-top: 30px;
+    width: 200px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.767);
+    border: none;
+    color: rgb(0, 183, 255);
+    border-radius: 10px ;
+}
+.agreementbtn:hover
+{
+    background-color: rgb(0, 183, 255);
+    color: white;
+}
+.download
+{
+    width: 65%;
+    height: 100px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px black;
+    text-align: left;
+    margin-top: 30px;
+    font-size: 40px;
+    outline: none;
+}
+.download:hover
+{
+    box-shadow: 10px 10px 10px black;
+    border: 1px solid black;
+}
+.imgdownload
+{
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.box_text
+{
+    width: 350px;
+    height: 400px;
+    box-shadow: 0px 0px 5px black;
+    padding: 30px;
+    background-color: white;
+    border: none;
+    margin: 20px;
+}
+.box_text:hover
+{
+    box-shadow: 0px 0px 10px black;
+}
+.modbox
+{
+    width: 320px;
+    height: 300px;
+    box-shadow: 0px 0px 10px black;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    margin: 20px;
+    border-bottom: 20px solid black;
+    outline: none;
+}
+.modbox:hover
+{
+    box-shadow: 10px 10px 10px black;
+    border-bottom:20px solid rgb(0, 183, 255);
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+.bottomtop
+{
+    width: 100%;
+    height: auto;
+    background-color: rgb(235, 235, 235);
+}
+.bottom_btn
+{
+    width: 170px;
+    height: auto;
+    border: none;
+    background-color: rgb(235, 235, 235);
+    outline: none;
+}
+.l
+{
+    color: black;
+    list-style: none;
+    border-bottom-color: none;
+}
