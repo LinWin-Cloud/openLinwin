@@ -1,0 +1,38 @@
+
+
+LinWin Http Server Software Service Agreement
+
+Statement:
+
+1. The following LinWin Http Server are collectively referred to as the Software.
+2. The LinWin Http Server Software Service Agreement is referred to as this Agreement
+
+User Privacy Agreement:
+ 1. The software actively collects the user's computer to provide network services, but does not transfer the user's computer The information is fed back to any other server (unless the user calls it using the API themselves). 
+ 2. The software attaches great importance to the privacy of users, we will also need the following permissions to make the software serviceable To use: access to user operating system information, read and write to user computer files/directories Access, access to the network, allowing other users to access locally open service ports, background operation, power-on 启动。 
+ 3. Using the LinWin API may collect visitor information to the http service, however LinWin The API does not proactively do any non-http service handling of this information unless the administrator adjusts it Source code or rules. 
+ 4. The software shall not provide any responsibility for errors caused by any misoperation, etc., if feedback is required BUG to the specified place. 
+
+Website & Services
+
+ 1. The software provides hosting and services about local websites, others can make it possible through open ports , IP for access. 
+ 2. If the http service is caused by any administrator's misoperation, etc., the software should not responsible, but can feedback the bug in time to fix. 
+
+
+Modification and use of source code
+
+ 1. The software allows modification of the source code. 
+ 2. Purchase the flagship version and professional version, do not enjoy the right to resell, only modify the source code and yourself Right of use; The commercial version has the right to resell and modify the source code. 
+ 3. To use the source code, the author and source of the source code must be declared in the file.
+
+Feedback, bug fixes
+
+ Please give feedback through the following channels: 
+ Gitee: https://gitee.com/LinWin-Cloud/ Github: https://github.com/LinWin-Cloud/
+
+Agent service policy
+
+ 1. This software provides reverse proxy function, but may be interfered with by other websites, etc Consequences, losses, etc. are not the responsibility of the software and the developer of the software. 
+ 2. The reverse proxy function also requires the user's network authorization to operate on IO files.
+
+The final interpretation is in the hands of the original author
