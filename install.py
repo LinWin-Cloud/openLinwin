@@ -26,7 +26,7 @@ def Install():
             os.system('chmod +x /etc/rc.d/rcX.d/linwinhttp')
             os.system('systemctl enable linwinhttp.service')
             os.system('cp -f /usr/LinWinHttp/Sevice/desktop/linwinhttp.desktop /usr/share/applications')
-            print('[!]Finish Install!')
+            print('[!]Finish Install!Install Path: /usr/LinWinHttp/')
         print('Install ... ...')
         if os.path.exists("/usr/LinWinHttp/") and os.path.isdir("/usr/LinWinHttp/"):
             a()
