@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>404 Not Find</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <style>
+            body{
+                margin: 30px;
+                padding: 20px;
+            }
+        </style>
+        <script>
+            window.onload = function()
+            {
+                var a = document.getElementById("url");
+                a.innerHTML ="当前请求的链接: "+window.location.href;
+            }
+        </script>
+        <h1><li>LinWin Http Server: 404 Not Find</li></h1>
+        <p id="url"></p>
+        <h2>错误原因:</h2>
+        <li><em>1. 资源没有找到</em></li>
+        <li><em>2. 资源已被管理员删除</em></li>
+        <li><em>3. 服务器目录配置错误</em></li>
+        <br />
+        <a href="https://cn.bing.com/search?q=404" target="_blank">从互联网上查找可能导致这个现象的原因</a>
+    </body>
+</html>
