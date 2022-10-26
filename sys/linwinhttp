@@ -1,0 +1,2 @@
+cd /usr/LinWinHttp/sys
+python3 linwinhttp.py $1
