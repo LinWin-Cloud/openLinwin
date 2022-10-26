@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8902d63e-79b0-44e2-84f6-0f9b5d010a15" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FastServer/src/fastserver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/help/fastserver.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/Version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config/Version.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/ServerClientConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,8 +38,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.09587729" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="Template Data Languages" />
   </component>
