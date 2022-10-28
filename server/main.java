@@ -1,4 +1,5 @@
 
+import javax.swing.plaf.FontUIResource;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,6 +13,10 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class main {
     public static void main(String[]args) throws Exception
@@ -21,7 +26,7 @@ public class main {
          * 创建一个 server
          */
         log.write("Start Http Server");
-                //print the verions information
+        //print the verions information
         System.out.println("[LinWin Http Server: "+config.GetNowTime()+"] Version: "+config.ReadLine("../config/Version.txt"));
         ServerSocket serverSocket = new ServerSocket(main.GetServerPort());
         System.out.println("[ Start ] Listen Clients ... ... [Make in China] ");
@@ -43,28 +48,39 @@ public class main {
         });
         thread1.start();
 
-        while (true)
+        int ThreadToDO = 10;
+
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+
+        for (int i = 0 ; i < ThreadToDO ; i++)
         {
-            Socket socket = serverSocket.accept(); //阻塞线程监听
-            /**
-             * 每次收到一个客户端请求就创建一个线程
-             */
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try
                     {
-                        String GetURL = Client.GetURL(socket);
-                        main.ServerRun(socket,GetURL);
-                        socket.close();
-                    }
-                    catch(Exception ex)
+                        try {
+                            while (true)
+                            {
+                                Socket socket = serverSocket.accept(); //阻塞线程监听
+                                Future<Integer> future = executorService.submit(new Callable<Integer>() {
+                                    @Override
+                                    public Integer call() throws Exception {
+                                        String GetURL = Client.GetURL(socket);
+                                        main.ServerRun(socket, GetURL);
+                                        return 0;
+                                    }
+                                });
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } catch(Exception ex)
                     {
                         System.out.println(ex);
                     }
                 }
             });
-	    //System.out.println("[*] 累计被请求:  "+i);
             thread.start();
         }
     }
@@ -132,23 +148,30 @@ public class main {
          * 判断请求页面是否是默认页面
          */
         try {
-            File file = new File("../config/defaultPage.cfg");
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            ExecutorService executorService = Executors.newFixedThreadPool(1);
+            Future<Boolean> future = executorService.submit(new Callable<Boolean>() {
+                @Override
+                public Boolean call() throws Exception {
+                    File file = new File("../config/defaultPage.cfg");
+                    FileReader fileReader = new FileReader(file);
+                    BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-            String tmp;
-            Boolean DePage = false;
-            while ((tmp=bufferedReader.readLine())!=null)
-            {
-                int defaults = tmp.indexOf(Page);
-                if (defaults != -1)
-                {
-                    DePage = true;
+                    String tmp;
+                    Boolean DePage = false;
+                    while ((tmp=bufferedReader.readLine())!=null)
+                    {
+                        int defaults = tmp.indexOf(Page);
+                        if (defaults != -1)
+                        {
+                            DePage = true;
+                        }
+                    }
+                    bufferedReader.close();
+                    //System.out.println(DePage);
+                    return DePage;
                 }
-            }
-            bufferedReader.close();
-            //System.out.println(DePage);
-            return DePage;
+            });
+            return future.get();
         }catch (Exception e){
             return false;
         }
@@ -174,7 +197,6 @@ public class main {
         fis.close();
         socket.shutdownOutput();
         socket.close();
-        //System.out.println("[Method: "+HttpMedth+" "+config.GetNowTime()+" ] Requests Url: "+main.GetServerPath()+HttpURL+" [403] ");
     }
     public static void ServerRun(Socket socket,String GetURL) throws Exception {
         /**
@@ -184,7 +206,6 @@ public class main {
         OutputStream outputStream = socket.getOutputStream();
         PrintWriter printWriter = new PrintWriter(outputStream);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
-        //System.out.println(Client.GetSystem(bufferedReader));
 
 	    if (GetURL == null)
 	    {
@@ -228,8 +249,6 @@ public class main {
                 }
             }
 
-    	    //System.out.println("[*] CLIENT: "+HttpURL+" ;");
-
             WebSafety.SQL_Security(HttpURL,printWriter,outputStream,socket);
 
             if (API.API_Config("API_Start: ").equals("true"))
@@ -265,8 +284,16 @@ public class main {
         }
         if (HttpURL.equals("/"))
         {
-            main.SocketDIR(bufferedReader,outputStream,HttpURL,printWriter,file,socket);
-            return;
+            // resource the config file
+            ExecutorService executorService = Executors.newFixedThreadPool(1);
+            Future<Integer> future = executorService.submit(new Callable<Integer>() {
+                @Override
+                public Integer call() throws Exception {
+                    ServerClientConfig.strict_origin_when_cross_origin(printWriter);
+                    main.SocketDIR(bufferedReader,outputStream,HttpURL,printWriter,file,socket);
+                    return 0;
+                }
+            });
         }
         else if (!TargetFile.exists())
         {
@@ -277,13 +304,23 @@ public class main {
         }
         else if (TargetFile.isDirectory())
         {
+            // resource the config file
+            ServerClientConfig.strict_origin_when_cross_origin(printWriter);
             main.SocketDIR(bufferedReader,outputStream,HttpURL,printWriter,TargetFile,socket);
             return;
         }
         else if (TargetFile.isFile())
         {
-            main.SendPage(bufferedReader,"200",printWriter,HttpURL,outputStream,socket);
-            return;
+            // resource the config file
+            ExecutorService executorService = Executors.newFixedThreadPool(1);
+            Future<Integer> future = executorService.submit(new Callable<Integer>() {
+                @Override
+                public Integer call() throws Exception {
+                    ServerClientConfig.strict_origin_when_cross_origin(printWriter);
+                    main.SendPage(bufferedReader,"200",printWriter,HttpURL,outputStream,socket);
+                    return 0;
+                }
+            });
         }
 	}
     }
@@ -366,30 +403,45 @@ public class main {
                         }
                     }
                     //说明没有索引目录，返回目录下的文件
-                    printWriter.println("<meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\">");
-                    printWriter.println("<h1>Server Dir: "+HttpURL+"</h1>");
-                    printWriter.println("<a href='../'>Return to last dir</a><br /><br />");
-                    printWriter.println("<div style='width=100%;height:2px;background-color: black;'></div><br />");
-                    printWriter.println("<style>.div1{width: 100%;height:auto;background-color:black;border-radius:5px;box-shadow:0px 0px 5px black}</style>");
-                    printWriter.flush();
-                    for (int i = 0; i < ServerRootPath.length; i++) {
-                        if (ServerRootPath[i].isDirectory()) {
-                            //是目录
-                            printWriter.println("<div class='.div1' style='padding:-10px;margin-left:10px;border-left: 10px solid black'><a href='" + ServerRootPath[i].getName() + "/'> 目录: " + ServerRootPath[i].getName() + "</a></div>");
+                    Thread thread = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            printWriter.println("<meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\">");
+                            printWriter.println("<h1>Server Dir: "+HttpURL+"</h1>");
+                            printWriter.println("<a href='../'>Return to last dir</a><br /><br />");
+                            printWriter.println("<div style='width=100%;height:2px;background-color: black;'></div><br />");
+                            printWriter.println("<style>.div1{width: 100%;height:auto;background-color:black;border-radius:5px;box-shadow:0px 0px 5px black}</style>");
                             printWriter.flush();
-                        } else {
-                            printWriter.println("<div class='.div1' style='padding:-10px;margin-left:10px;border-left: 10px solid black'><a href='" + ServerRootPath[i].getName() + "'> 文件: " + ServerRootPath[i].getName() + "</a></div>");
+                            for (int i = 0; i < ServerRootPath.length; i++) {
+                                if (ServerRootPath[i].isDirectory()) {
+                                    //是目录
+                                    printWriter.println("<div class='.div1' style='padding:-10px;margin-left:10px;border-left: 10px solid black'><a href='" + ServerRootPath[i].getName() + "/'> 目录: " + ServerRootPath[i].getName() + "</a></div>");
+                                    printWriter.flush();
+                                } else {
+                                    printWriter.println("<div class='.div1' style='padding:-10px;margin-left:10px;border-left: 10px solid black'><a href='" + ServerRootPath[i].getName() + "'> 文件: " + ServerRootPath[i].getName() + "</a></div>");
+                                    printWriter.flush();
+                                }
+                            }
+                            printWriter.println("<br /><div style='width=100%;height:2px;background-color: black;'></div><br />");
                             printWriter.flush();
+                            try {
+                                socket.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
-                    printWriter.println("<br /><div style='width=100%;height:2px;background-color: black;'></div><br />");
-                    printWriter.flush();
-                    socket.close();
+                    });
+                    thread.start();
                 } else {
                     main.Page404(printWriter,HttpURL,outputStream,socket);
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
+		try{
+			socket.close();
+		}catch(IOException ex) {
+			ex.printStackTrace();
+		}
         }
     }
     public static void Page404(PrintWriter printWriter,String HttpURL,OutputStream outputStream,Socket socket) throws Exception

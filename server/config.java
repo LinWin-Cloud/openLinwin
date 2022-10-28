@@ -6,8 +6,6 @@ import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javafx.scene.shape.Line;
-
 
 public class config {
 
