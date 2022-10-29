@@ -21,7 +21,12 @@ def Install():
             os.system('cp /usr/LinWinHttp/sys/start_linwinhttp /etc/init.d')
             os.system('chmod +x /usr/LinWinHttp/* -R')
             os.system('/usr/LinWinHttp/sys/start_linwinhttp')
+
             os.system('cp /usr/LinWinHttp/sys/linwinhttp /bin/')
+            os.system('cp /usr/LinWinHttp/sys/linwinboot /bin/')
+            os.system('cp /usr/LinWinHttp/sys/linwinreboot /bin/')
+            os.system('chmod +x /bin/linwinboot && chmod +x /bin/linwinreboot/')
+
             os.system('chmod +x /bin/linwinhttp')
             os.system('chmod +x /etc/rc.d/rcX.d/linwinhttp')
             os.system('systemctl enable linwinhttp.service')
