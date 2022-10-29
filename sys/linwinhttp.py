@@ -18,47 +18,8 @@ def main():
             return True
         if cmd[1] == "-server_stop":
             print(" [*] Stop Http Server , Stop Proxy Server")
-            a = open('../config/Server.cfg')
-            b = open("../config/proxy.cfg")
-            c = open('../config/Admin.cfg')
-            while True:
-                line = a.readline()
-                if not line:
-                    break
-                if "Port: " in line:
-                    Port = line[line.index("Port: ")+len("Port: "):line.index(';1')]
-                    import requests as requests
-                    while True:
-                        line1 = c.readline()
-                        if not line1:
-                            break
-                        if "User: " in line1:
-                            User = line1[line1.index("User: ")+len("User: "):line1.index(";")]
-                            Pwd = line1[line1.index(";Pwd: ")+len(";Pwd: "):len(line1)]
-                            
-                            try:
-                                r = requests.get('http://127.0.0.1:'+Port+"/linwin_http_boot_web_1234567890_qwertyuiop="+str(User)+";1234567890>>"+str(Pwd))
-                                
-                                while True:
-                                    line2 = b.readline()
-                                    if not line2:
-                                        break
-                                    if "Port: " in line2:
-                                        Port1 = line2[line2.index("Port: ")+len("Port: "):line2.index(';')]
-                                        try:
-                                            t = requests.get('http://127.0.0.1:'+Port1+"/linwin_http_boot_web_1234567890_qwertyuiop="+str(User)+";1234567890>>"+str(Pwd))
-                                            print(' [*] Proxy Server Message: '+t.text)
-                                        except:
-                                            print(' [*] Proxy Server Not Start')
-                                            return False
-
-                                print(" [*] Http Server Message: "+r.text)
-                            except:
-                                print(' [ERR] Http Server Not Start')
-                                return False
-                            break        
-                    break
-                return True
+            os.system("cd /usr/LinWinHttp/Sevice/ && java -jar Exit_Server.jar")
+            return True
         if cmd[1] == "-log_view":
             c = open('../config/log.cfg')
             c = c.readline()
