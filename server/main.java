@@ -28,7 +28,6 @@ public class main {
         log.write("Start Http Server");
         //print the verions information
         System.out.println("[LinWin Http Server: "+config.GetNowTime()+"] Version: "+config.ReadLine("../config/Version.txt"));
-        ServerSocket serverSocket = new ServerSocket(main.GetServerPort());
         System.out.println("[ Start ] Listen Clients ... ... [Make in China] ");
 
         Thread thread1 = new Thread(new Runnable() {
@@ -47,38 +46,31 @@ public class main {
             }
         });
         thread1.start();
+        //int ThreadToDO = 10;
 
-        int ThreadToDO = 10;
-
-        ExecutorService executorService = Executors.newFixedThreadPool(10);
-
-        for (int i = 0 ; i < ThreadToDO ; i++)
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        ServerSocket serverSocket = new ServerSocket(main.GetServerPort());
+        while (true)
         {
+            Socket socket = serverSocket.accept(); //阻塞线程监听
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    try
-                    {
-                        try {
-                            while (true)
+                    Future<Integer> future = executorService.submit(new Callable<Integer>() {
+                        @Override
+                        public Integer call() throws Exception {
+                            try
                             {
-                                Socket socket = serverSocket.accept(); //阻塞线程监听
-                                Future<Integer> future = executorService.submit(new Callable<Integer>() {
-                                    @Override
-                                    public Integer call() throws Exception {
-                                        String GetURL = Client.GetURL(socket);
-                                        main.ServerRun(socket, GetURL);
-                                        return 0;
-                                    }
-                                });
+                                String GetURL = Client.GetURL(socket);
+                                main.ServerRun(socket, GetURL);
                             }
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                            catch (Exception exception)
+                            {
+                                exception.printStackTrace();
+                            }
+                            return 0;
                         }
-                    } catch(Exception ex)
-                    {
-                        System.out.println(ex);
-                    }
+                    });
                 }
             });
             thread.start();
@@ -285,15 +277,8 @@ public class main {
         if (HttpURL.equals("/"))
         {
             // resource the config file
-            ExecutorService executorService = Executors.newFixedThreadPool(1);
-            Future<Integer> future = executorService.submit(new Callable<Integer>() {
-                @Override
-                public Integer call() throws Exception {
-                    ServerClientConfig.strict_origin_when_cross_origin(printWriter);
-                    main.SocketDIR(bufferedReader,outputStream,HttpURL,printWriter,file,socket);
-                    return 0;
-                }
-            });
+            ServerClientConfig.strict_origin_when_cross_origin(printWriter,HttpURL,socket);
+            main.SocketDIR(bufferedReader,outputStream,HttpURL,printWriter,file,socket);
         }
         else if (!TargetFile.exists())
         {
@@ -305,7 +290,7 @@ public class main {
         else if (TargetFile.isDirectory())
         {
             // resource the config file
-            ServerClientConfig.strict_origin_when_cross_origin(printWriter);
+            ServerClientConfig.strict_origin_when_cross_origin(printWriter,HttpURL,socket);
             main.SocketDIR(bufferedReader,outputStream,HttpURL,printWriter,TargetFile,socket);
             return;
         }
@@ -316,7 +301,7 @@ public class main {
             Future<Integer> future = executorService.submit(new Callable<Integer>() {
                 @Override
                 public Integer call() throws Exception {
-                    ServerClientConfig.strict_origin_when_cross_origin(printWriter);
+                    ServerClientConfig.strict_origin_when_cross_origin(printWriter,HttpURL,socket);
                     main.SendPage(bufferedReader,"200",printWriter,HttpURL,outputStream,socket);
                     return 0;
                 }
@@ -350,9 +335,6 @@ public class main {
         try
         {
             printWriter.println("HTTP/1.1 "+code+" OK");
-            printWriter.println("Content-type:"+Client.GetType(socket,main.GetServerPath() + HttpURL));
-            printWriter.println("Server:LinWin Http Server/1.0");
-            printWriter.println("strict-origin-when-cross-origin: ");
             printWriter.println();
             printWriter.flush();
             //System.out.println("[Method:"+HttpMedth+" "+config.GetNowTime()+"] Requests Url: "+HttpURL+" [200] ");
@@ -369,16 +351,17 @@ public class main {
             socket.close();//return;
         }catch (Exception e)
         {
-            System.out.println(e.getMessage());
+            try{
+                socket.close();
+            }catch (IOException ioException){
+
+            }
         }
     }
         public static void SocketDIR (BufferedReader bufferedReader,OutputStream outputStream,String HttpURL,PrintWriter printWriter, File pathURL, Socket socket) {
             try {
                 if (pathURL.exists()) {
                     File[] ServerRootPath = pathURL.listFiles();
-                    printWriter.println("HTTP/1.1 200 OK");
-                    printWriter.println("Content-type:text/html");
-                    printWriter.println("Server:LinWin Http Server/1.0");
                     printWriter.println();
                     printWriter.println("<meta charset='utf-8'/>");
                     printWriter.flush();
@@ -436,12 +419,14 @@ public class main {
                     main.Page404(printWriter,HttpURL,outputStream,socket);
                 }
             } catch (Exception e) {
-                System.out.println(e.getMessage());
-		try{
-			socket.close();
-		}catch(IOException ex) {
-			ex.printStackTrace();
-		}
+                //printWriter.println("500 Error Error");
+                //printWriter.flush();
+                //System.out.println("Server Error: "+e.getMessage());
+		        try{
+			        socket.close();
+		        }catch(IOException ex) {
+                    ex.printStackTrace();
+		    }
         }
     }
     public static void Page404(PrintWriter printWriter,String HttpURL,OutputStream outputStream,Socket socket) throws Exception
