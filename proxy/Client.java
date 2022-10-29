@@ -11,82 +11,74 @@ public class Client {
         return bufferedReader.readLine();
     }
 
-    public static String GetType(String ExplorerPath) throws Exception {
+    public static String GetType(String ExplorerPath) throws Exception
+    {
+        String tmp = " ";
+        File file = new File(ExplorerPath);
+        ExplorerPath = file.getName();
+        String Lastname="";
+        if (ExplorerPath.indexOf(".")!=-1)
+        {
+            Lastname = ExplorerPath.substring(ExplorerPath.lastIndexOf("."),ExplorerPath.length());
 
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
-        Future<String> future = executorService.submit(new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                String tmp = " ";
-                File file = new File(ExplorerPath);
-                ExplorerPath = file.getName();
-                String Lastname="";
-                if (ExplorerPath.indexOf(".")!=-1)
-                {
-                    Lastname = ExplorerPath.substring(ExplorerPath.lastIndexOf("."),ExplorerPath.length());
-
-                    if (ExplorerPath.equals("/")) {
-                        return "text/html";
-                    }
-                    if (Lastname.equals("/")) {
-                        return "text/html";
-                    }
-                    if (Lastname.equals(".png")) {
-                        //image pn
-                        return "image/png";
-                    }
-                    if (Lastname.equals(".jpeg") || Lastname.equals(".jpg")) {
-                        return "image/jpeg";
-                    }
-                    if (Lastname.equals(".svg") || Lastname.equals(".bmp") || Lastname.equals(".ico")) {
-                        return "image/" + Lastname.replace(".", "");
-                    }
-                    if (Lastname.equals(".gif")) {
-                        return "image/gif";
-                    }
-                    if (Lastname.equals(".xml")) {
-                        return "text/xml";
-                    }
-                    if (Lastname.equals(".txt")) {
-                        return "text/xml";
-                    }
-                    if (Lastname.equals(".js")) {
-                        return "application/javascript";
-                    }
-                    if (Lastname.equals(".css")) {
-                        return "text/css";
-                    }
-                    if (Lastname.equals(".json")) {
-                        return "application/json";
-                    }
-                    if (Lastname.equals(".html") || Lastname.equals(".htm")) {
-                        return "text/html";
-                    }
-                    if (Lastname.equals(".pdf")) {
-                        return "application/pdf";
-                    }
-                    if (Lastname.equals("")) {
-                        return "text/html";
-                    }
-                    if (Lastname.equals(".mp3") || Lastname.equals(".wav")) {
-                        return "audio/" + Lastname.replace(".", "");
-                    }
-                    if (Lastname.equals(".mp4")) {
-                        return "video/mp4";
-                    }
-                    else
-                    {
-                        return "text/html";
-                    }
-                }
-                else
-                {
-                    return "text/html";
-                }
+            if (ExplorerPath.equals("/")) {
+                return "text/html";
             }
-        });
-
-        return future.get();
+            if (Lastname.equals("/")) {
+                return "text/html";
+            }
+            if (Lastname.equals(".png")) {
+                //image pn
+                return "image/png";
+            }
+            if (Lastname.equals(".jpeg") || Lastname.equals(".jpg")) {
+                return "image/jpeg";
+            }
+            if (Lastname.equals(".svg") || Lastname.equals(".bmp") || Lastname.equals(".ico")) {
+                return "image/" + Lastname.replace(".", "");
+            }
+            if (Lastname.equals(".gif")) {
+                return "image/gif";
+            }
+            if (Lastname.equals(".xml")) {
+                return "text/xml";
+            }
+            if (Lastname.equals(".txt")) {
+                return "text/xml";
+            }
+            if (Lastname.equals(".js")) {
+                return "application/javascript";
+            }
+            if (Lastname.equals(".css")) {
+                return "text/css";
+            }
+            if (Lastname.equals(".json")) {
+                return "application/json";
+            }
+            if (Lastname.equals(".html") || Lastname.equals(".htm")) {
+                return "text/html";
+            }
+            if (Lastname.equals(".pdf")) {
+                return "application/pdf";
+            }
+            if (Lastname.equals("")) {
+                return "text/html";
+            }
+            if (Lastname.equals(".mp3") || Lastname.equals(".wav")) {
+                return "audio/" + Lastname.replace(".", "");
+            }
+            if (Lastname.equals(".mp4")) {
+                return "video/mp4";
+            }
+            else
+            {
+                return "text/html";
+            }
+        }
+        else
+        {
+            return "text/html";
+        }
     }
     public static String GetLastName(String ExplorerPath) throws Exception
     {
