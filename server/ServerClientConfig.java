@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class ServerClientConfig  extends Thread {
-    public static void strict_origin_when_cross_origin(PrintWriter printWriter, String HttpURL, Socket socket) throws Exception
+    public static void strict_origin_when_cross_origin(PrintWriter printWriter, String HttpURL, Socket socket,String version) throws Exception
     {
         File file = new File(main.GetServerPath());
         File[] files = file.listFiles();
@@ -26,7 +26,7 @@ public class ServerClientConfig  extends Thread {
                 //System.out.println(line);
                 printWriter.println("HTTP/1.1 200 OK");
                 printWriter.println("strict-origin-when-cross-origin:"+line);
-                printWriter.println("Server:LinWin Http Server/1.0");
+                printWriter.println("Server:LinWin Http Server/"+version);
                 printWriter.println("Content-type:"+Client.GetType(socket,main.GetServerPath() + HttpURL));
                 printWriter.flush();
 

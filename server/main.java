@@ -27,7 +27,8 @@ public class main {
          */
         log.write("Start Http Server");
         //print the verions information
-        System.out.println("[LinWin Http Server: "+config.GetNowTime()+"] Version: "+config.ReadLine("../config/Version.txt"));
+        String Version = config.ReadLine("../config/Version.txt");
+        System.out.println("[LinWin Http Server: "+config.GetNowTime()+"] Version: "+ Version);
         System.out.println("[ Start ] Listen Clients ... ... [Make in China] ");
 
         Thread thread1 = new Thread(new Runnable() {
@@ -50,30 +51,25 @@ public class main {
 
         ExecutorService executorService = Executors.newFixedThreadPool(1);
         ServerSocket serverSocket = new ServerSocket(main.GetServerPort());
-        while (true)
+
+        for (;;)
         {
             Socket socket = serverSocket.accept(); //阻塞线程监听
-            Thread thread = new Thread(new Runnable() {
+            Future<Integer> future = executorService.submit(new Callable<Integer>() {
                 @Override
-                public void run() {
-                    Future<Integer> future = executorService.submit(new Callable<Integer>() {
-                        @Override
-                        public Integer call() throws Exception {
-                            try
-                            {
-                                String GetURL = Client.GetURL(socket);
-                                main.ServerRun(socket, GetURL);
-                            }
-                            catch (Exception exception)
-                            {
-                                exception.printStackTrace();
-                            }
-                            return 0;
-                        }
-                    });
+                public Integer call() throws Exception {
+                    try
+                    {
+                        String GetURL = Client.GetURL(socket);
+                        main.ServerRun(socket, GetURL,Version);
+                    }
+                    catch (Exception exception)
+                    {
+                        exception.printStackTrace();
+                    }
+                    return 0;
                 }
             });
-            thread.start();
         }
     }
     /**
@@ -190,7 +186,7 @@ public class main {
         socket.shutdownOutput();
         socket.close();
     }
-    public static void ServerRun(Socket socket,String GetURL) throws Exception {
+    public static void ServerRun(Socket socket,String GetURL,String version) throws Exception {
         /**
          * 处理流 
          */
@@ -220,7 +216,7 @@ public class main {
                 {
                     printWriter.println("HTTP/1.1 200 OK");
                     printWriter.println("Content-type:text/html");
-                    printWriter.println("Server:LinWin Http Server/1.0");
+                    printWriter.println("Server:LinWin Http Server/"+version);
                     printWriter.println();
                     printWriter.flush();
                     printWriter.println("Successful");
@@ -231,7 +227,7 @@ public class main {
                 }else {
                     printWriter.println("HTTP/1.1 200 OK");
                     printWriter.println("Content-type:text/html");
-                    printWriter.println("Server:LinWin Http Server/1.0");
+                    printWriter.println("Server:LinWin Http Server/"+version);
                     printWriter.println();
                     printWriter.flush();
                     printWriter.println("Error");
@@ -277,7 +273,7 @@ public class main {
         if (HttpURL.equals("/"))
         {
             // resource the config file
-            ServerClientConfig.strict_origin_when_cross_origin(printWriter,HttpURL,socket);
+            ServerClientConfig.strict_origin_when_cross_origin(printWriter,HttpURL,socket,version);
             main.SocketDIR(bufferedReader,outputStream,HttpURL,printWriter,file,socket);
         }
         else if (!TargetFile.exists())
@@ -290,7 +286,7 @@ public class main {
         else if (TargetFile.isDirectory())
         {
             // resource the config file
-            ServerClientConfig.strict_origin_when_cross_origin(printWriter,HttpURL,socket);
+            ServerClientConfig.strict_origin_when_cross_origin(printWriter,HttpURL,socket,version);
             main.SocketDIR(bufferedReader,outputStream,HttpURL,printWriter,TargetFile,socket);
             return;
         }
@@ -301,7 +297,7 @@ public class main {
             Future<Integer> future = executorService.submit(new Callable<Integer>() {
                 @Override
                 public Integer call() throws Exception {
-                    ServerClientConfig.strict_origin_when_cross_origin(printWriter,HttpURL,socket);
+                    ServerClientConfig.strict_origin_when_cross_origin(printWriter,HttpURL,socket,version);
                     main.SendPage(bufferedReader,"200",printWriter,HttpURL,outputStream,socket);
                     return 0;
                 }
@@ -314,7 +310,7 @@ public class main {
         //返回405
         printWriter.println("HTTP/1.1 405 OK");
         printWriter.println("Content-type:text/html");
-        printWriter.println("Server:LinWin Http Server/1.0");
+        printWriter.println("Server:LinWin Http Server");
         printWriter.println();
         printWriter.flush();
         byte[] bytes = new byte[1024];
@@ -436,7 +432,7 @@ public class main {
             //返回404
             printWriter.println("HTTP/1.1 404 OK");
             printWriter.println("Content-type:text/html");
-            printWriter.println("Server:LinWin Http Server/1.0");
+            printWriter.println("Server:LinWin Http Server");
             printWriter.println();
             printWriter.flush();
             byte[] bytes = new byte[1024];
