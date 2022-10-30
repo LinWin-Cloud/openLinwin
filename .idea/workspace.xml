@@ -5,25 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8902d63e-79b0-44e2-84f6-0f9b5d010a15" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Sevice/Exit_Server.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sevice/MANIFEST_EXIT.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/linwin-http-server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/linwin-http-server.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proxy/HttpRequests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/Server.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/config/Server.cfg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/Version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config/Version.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/defaultPage.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/config/defaultPage.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/install.py" beforeDir="false" afterPath="$PROJECT_DIR$/install.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proxy/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/proxy/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/API.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/API.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/server/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/ServerClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/ServerClientConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/URL_Http.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/URL_Http.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/WebSafety.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/WebSafety.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/config.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/log.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/log.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sys/linwinhttp.py" beforeDir="false" afterPath="$PROJECT_DIR$/sys/linwinhttp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
