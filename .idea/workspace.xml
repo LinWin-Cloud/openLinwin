@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8902d63e-79b0-44e2-84f6-0f9b5d010a15" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/proxy/HttpRequests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/src/java/testHTTP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/linwin-http-server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/linwin-http-server.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/Version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config/Version.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/ServerClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/ServerClientConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proxy/HttpRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/proxy/HttpRequests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/URL_Http.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/URL_Http.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/proxy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/server" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Sevice" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/out" />
     </content>
     <orderEntry type="inheritedJdk" />
