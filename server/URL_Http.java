@@ -1,12 +1,6 @@
 
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 import javax.swing.text.html.HTML;
@@ -54,5 +48,24 @@ public class URL_Http {
         {
             e.printStackTrace();
         }
+    }
+    public static void Page500(PrintWriter printWriter,Socket socket,OutputStream outputStream) throws Exception
+    {
+        printWriter.println("HTTP/1.1 500 OK");
+        printWriter.println("Content-type:text/html");
+        printWriter.println("Server:LinWin Http Server");
+        printWriter.println();
+        printWriter.flush();
+        byte[] bytes = new byte[1024];
+        FileInputStream fis = new FileInputStream(config.GetErrorPage() + "/500.html");
+        BufferedOutputStream bos = new BufferedOutputStream(outputStream);
+        int len = 0;
+        while ((len = fis.read(bytes)) != -1) {
+            bos.write(bytes, 0, len);
+        }
+        bos.flush();
+        fis.close();
+        socket.shutdownOutput();
+        socket.close();
     }
 }
