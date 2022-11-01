@@ -5,7 +5,7 @@ import java.net.Socket;
 
 public class WebSafety {
 
-    public static void SQL_Security(String HttpURL, PrintWriter printWriter, OutputStream outputStream, Socket socket)
+    public static void SQL_Security(String HttpURL, PrintWriter printWriter, OutputStream outputStream, Socket socket,String version)
     {
         try
         {
@@ -27,7 +27,7 @@ public class WebSafety {
                 String pattern="SELECT\\s+(\\*|"+ownerenables+"\\s+"+from+")\\s+"+where+"\\s*"; //匹配最终sql的正则表达式
                 if (HttpURL.matches(pattern))
                 {
-                    main.Page405(printWriter,socket,outputStream);
+                    main.Page405(printWriter,socket,outputStream,version);
                     return;
                 }
             }
@@ -36,7 +36,7 @@ public class WebSafety {
             e.printStackTrace();
         }
     }
-    public static void XSS_Security(String HttpURL,PrintWriter printWriter,OutputStream outputStream,Socket socket)
+    public static void XSS_Security(String HttpURL,PrintWriter printWriter,OutputStream outputStream,Socket socket,String version)
             throws Exception
     {
         if (config.getSafe("XSS_Protection: "))
@@ -44,7 +44,7 @@ public class WebSafety {
             HttpURL = HttpURL.replace(" ","");
             if (HttpURL.indexOf("<script")!=-1||HttpURL.indexOf("</")!=-1||HttpURL.indexOf("<link")!=-1||HttpURL.indexOf("/>")!=-1||HttpURL.indexOf("%2")!=-1)
             {
-                main.Page405(printWriter,socket,outputStream);
+                main.Page405(printWriter,socket,outputStream,version);
                 return;
             }
         }
