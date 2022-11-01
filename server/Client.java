@@ -26,7 +26,7 @@ public class Client {
         {
             String Lastname = Client.GetLastName(ExplorerPath);
             //System.out.println(Lastname);
-            if (Lastname.equals(".png")) {
+            if (Lastname.equals(".png")||Lastname.equals(".ico")) {
                 //image pn
                 return "image/png";
             }

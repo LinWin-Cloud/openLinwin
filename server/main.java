@@ -213,9 +213,8 @@ public class main {
 
 	    if (GetURL == null)
 	    {
-
 		    socket.close();
-            return;
+            		return;
 	    }else {
             String HttpMedth = GetURL.substring(0, GetURL.indexOf(" "));
             String HttpURLs = GetURL.substring(GetURL.indexOf(" ") + 1, GetURL.lastIndexOf("HTTP/") - 1);
@@ -255,7 +254,7 @@ public class main {
             Future<Integer> future = executorService.submit(new Callable<Integer>() {
                 @Override
                 public Integer call() throws Exception {
-                    WebSafety.SQL_Security(HttpURL, printWriter, outputStream, socket);
+                    WebSafety.SQL_Security(HttpURL, printWriter, outputStream, socket,version);
                     log.write("[ " + HttpMedth + " " + socket.getInetAddress() + " ] " + HttpURL);
 
                     if (API.API_Config("API_Start: ").equals("true")) {
@@ -276,11 +275,11 @@ public class main {
 
             File TargetFile = new File(main.GetServerPath() + HttpURL);
             if (HttpURL.indexOf("<script") != -1 || HttpURL.indexOf("</") != -1 || HttpURL.indexOf("<link") != -1 || HttpURL.indexOf("/>") != -1 || HttpURL.indexOf("%2") != -1) {
-                WebSafety.XSS_Security(HttpURL, printWriter, outputStream, socket);
+                WebSafety.XSS_Security(HttpURL, printWriter, outputStream, socket,version);
                 return;
             }
-            if (config.isURLOK(HttpURL)) {
-                URL_Http.URL_Return(socket, HttpURL);
+	    if (config.isURLOK(HttpURL)) {
+                URL_Http.URL_Return(socket, HttpURL,version);
                 return;
             }
             //判断是否允许访问链接
@@ -290,31 +289,30 @@ public class main {
             }
             if (HttpURL.equals("/")) {
                 // resource the config file
-                ServerClientConfig.strict_origin_when_cross_origin(printWriter, HttpURL, socket, version);
-                main.SocketDIR(bufferedReader, outputStream, HttpURL, printWriter, file, socket);
+                main.SocketDIR(bufferedReader, outputStream, HttpURL, printWriter, file, socket,version);
             } else if (!TargetFile.exists()) {
                 //文件不存在
                 // 404
-                main.Page404(printWriter, HttpURL, outputStream, socket);
+                main.Page404(printWriter, HttpURL, outputStream, socket,version);
                 return;
             } else if (TargetFile.isDirectory()) {
                 // resource the config file
-                ServerClientConfig.strict_origin_when_cross_origin(printWriter, HttpURL, socket, version);
-                main.SocketDIR(bufferedReader, outputStream, HttpURL, printWriter, TargetFile, socket);
+                main.SocketDIR(bufferedReader, outputStream, HttpURL, printWriter, TargetFile, socket,version);
                 return;
             } else if (TargetFile.isFile()) {
                 // resource the config file
-                ServerClientConfig.strict_origin_when_cross_origin(printWriter, HttpURL, socket, version);
+                
                 main.SendPage(bufferedReader, "200", printWriter, HttpURL, outputStream, socket);
             }
         }
     }
-    public static void Page405(PrintWriter printWriter,Socket socket,OutputStream outputStream) throws Exception
+    public static void Page405(PrintWriter printWriter,Socket socket,OutputStream outputStream,String HttpURL) throws Exception
     {
         //返回405
         printWriter.println("HTTP/1.1 405 OK");
         printWriter.println("Content-type:text/html");
         printWriter.println("Server:LinWin Http Server");
+	printWriter.println("strict-origin-when-cross-origin:"+ServerClientConfig.strict_origin_when_cross_origin(printWriter, HttpURL, socket));
         printWriter.println();
         printWriter.flush();
         byte[] bytes = new byte[1024];
@@ -335,6 +333,8 @@ public class main {
         try
         {
             printWriter.println("HTTP/1.1 "+code+" OK");
+	        printWriter.println("strict-origin-when-cross-origin:"+ServerClientConfig.strict_origin_when_cross_origin(printWriter, HttpURL, socket));
+	        printWriter.println("Content-Type:"+Client.GetType(socket,main.GetServerPath()+HttpURL));
             printWriter.println();
             printWriter.flush();
             //System.out.println("[Method:"+HttpMedth+" "+config.GetNowTime()+"] Requests Url: "+HttpURL+" [200] ");
@@ -359,11 +359,16 @@ public class main {
             }
         }
     }
-        public static void SocketDIR (BufferedReader bufferedReader,OutputStream outputStream,String HttpURL,PrintWriter printWriter, File pathURL, Socket socket) {
+        public static void SocketDIR (BufferedReader bufferedReader,OutputStream outputStream,String HttpURL,PrintWriter printWriter, File pathURL, Socket socket,String version) {
             try {
+		    printWriter.println("HTTP/1.1 200 OK");
+		    printWriter.println("strict-origin-when-cross-origin:"+ServerClientConfig.strict_origin_when_cross_origin(printWriter, HttpURL, socket));
+		    printWriter.println("Content-Type:"+Client.GetType(socket,main.GetServerPath()+HttpURL));
+		    printWriter.println("server:LinWin Http Server/"+version);
                 if (pathURL.exists()) {
                     File[] ServerRootPath = pathURL.listFiles();
                     printWriter.println();
+
                     printWriter.println("<meta charset='utf-8'/>");
                     printWriter.flush();
 
@@ -417,7 +422,7 @@ public class main {
                     });
                     thread.start();
                 } else {
-                    main.Page404(printWriter,HttpURL,outputStream,socket);
+                    main.Page404(printWriter,HttpURL,outputStream,socket,version);
                 }
             } catch (Exception e) {
                 //printWriter.println("500 Error Error");
@@ -431,14 +436,15 @@ public class main {
 		    }
         }
     }
-    public static void Page404(PrintWriter printWriter,String HttpURL,OutputStream outputStream,Socket socket) throws Exception
+    public static void Page404(PrintWriter printWriter,String HttpURL,OutputStream outputStream,Socket socket,String version) throws Exception
     {
         File file = new File(main.GetServerPath() + HttpURL);
         if (!file.exists()) {
             //返回404
             printWriter.println("HTTP/1.1 404 Not Found");
             printWriter.println("Content-type:text/html");
-            printWriter.println("Server:LinWin Http Server");
+            printWriter.println("Server:LinWin Http Server/"+version);
+	    printWriter.println("strict-origin-when-cross-origin:"+ServerClientConfig.strict_origin_when_cross_origin(printWriter, HttpURL, socket));
             printWriter.println();
             printWriter.flush();
             byte[] bytes = new byte[1024];

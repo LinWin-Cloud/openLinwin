@@ -3,10 +3,9 @@
 import java.io.*;
 import java.net.Socket;
 
-import javax.swing.text.html.HTML;
 
 public class URL_Http {
-    public static void URL_Return(Socket socket,String url)
+    public static void URL_Return(Socket socket,String url,String version)
     {
         try
         {
@@ -34,10 +33,10 @@ public class URL_Http {
                     File server = new File(configPath);
                     if (server.exists())
                     {
-                        main.SocketDIR(bufferedReader,outputStream,url,printWriter,server,socket);
+                        main.SocketDIR(bufferedReader,outputStream,url,printWriter,server,socket,version);
                         break;
                     }else{
-                        main.Page404(printWriter, url,outputStream,socket);
+                        main.Page404(printWriter, url,outputStream,socket,version);
                     }
                 }
             }
