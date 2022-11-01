@@ -32,9 +32,9 @@ public class proxy {
         }
         try
         {
+	    ServerSocket serverSocket = new ServerSocket(Integer.valueOf(proxyConfig.ReadConfig("Port: ")));
             while (true)
             {
-                ServerSocket serverSocket = new ServerSocket(Integer.valueOf(proxyConfig.ReadConfig("Port: ")));
                 Socket socket = serverSocket.accept();
                 Thread thread = new Thread(new Runnable() {
                     @Override
@@ -47,7 +47,6 @@ public class proxy {
                     }
                 });
                 thread.start();
-                serverSocket.close();
             }
         }
         catch (Exception e)
@@ -114,11 +113,11 @@ public class proxy {
             File file = new File(httpURL);
             //System.out.println(file.getName());
 
-            System.out.println(httpURL);
+            //System.out.println(httpURL);
 
             printWriter.println("HTTP/1.1 200 OK");
             printWriter.println("Content-type:"+Client.GetType(httpURL));
-            printWriter.println("Server:LinWin Http Server/1.0");
+            printWriter.println("Server:LinWin Http Server");
             printWriter.println("strict-origin-when-cross-origin: *");
             printWriter.println("");
             printWriter.flush();
@@ -129,18 +128,11 @@ public class proxy {
             //获取服务器响应代码
             responsecode = urlConnection.getResponseCode();
 
-            File file1 = new File("../proxy_tmp/"+file.getName());
-            file1.createNewFile();
-            if (file1.exists())
-            {
-                file1.delete();
-            }
-            file1.createNewFile();
             reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
 
             byte[] bytes1 = new byte[1024];
             int length = 0;
-            FileOutputStream fileOutputStream = new FileOutputStream("../proxy_tmp/"+file.getName());
+            FileOutputStream fileOutputStream = new FileOutputStream(proxy.MakeFilesHTTP(HttpURL));
             DataInputStream dataInputStream = new DataInputStream(urlConnection.getInputStream());
 
             while ((length = dataInputStream.read(bytes1,0,bytes1.length)) != -1)
@@ -150,6 +142,7 @@ public class proxy {
             }
             fileOutputStream.flush();
             fileOutputStream.close();
+            dataInputStream.close();
 
             //得到输入流，即获得了网页的内容
 
@@ -211,6 +204,12 @@ public class proxy {
         catch (Exception e)
         {
             System.out.println(e.getMessage());
+            try {
+                socket.close();
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
         }
     }
     public static void SocketDIR (OutputStream outputStream,String HttpURL,PrintWriter printWriter, File pathURL, Socket socket) {
@@ -219,7 +218,7 @@ public class proxy {
                 File[] ServerRootPath = pathURL.listFiles();
 
                 byte[] bytes = new byte[1024];
-                FileInputStream fis = new FileInputStream("../proxy_tmp/"+HttpURL);
+                FileInputStream fis = new FileInputStream(proxy.MakeFilesHTTP(HttpURL));
                 BufferedOutputStream bos = new BufferedOutputStream(outputStream);
                 int len = 0;
                 while ((len = fis.read(bytes)) != -1) {
@@ -234,5 +233,43 @@ public class proxy {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+    public static String MakeFilesHTTP(String HttpURL)
+    {
+        // 鉴于网络上很多引入文件不是通过在根目录下引入的，那么搞一个分文件夹的，符合需代理站点的引入特征
+        String root = "../proxy_tmp/";
+        String returnPath = root+"";
+        String name = "";
+
+        String make[] = HttpURL.split("/");
+
+        int a = make.length;
+        for (int i =0 ; i < make.length ; i++)
+        {
+            String tmp = returnPath;
+            if (make.length == 0)
+            {
+                returnPath = root;
+                break;
+            }
+            if (i == a - 1)
+            {
+                name = make[i];
+            }
+            else
+            {
+                File file = new File(tmp+make[i]);
+                file.mkdir();
+                returnPath = tmp+make[i];
+            }
+            System.out.println(make[i]);
+        }
+        System.out.println(returnPath);
+        if (HttpURL.endsWith("/"))
+        {
+            returnPath = root+" ";
+        }
+
+        return returnPath+"/"+name;
     }
 }
