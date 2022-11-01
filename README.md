@@ -1,5 +1,5 @@
 # 目前最新版本
-V1.3 Community Build 2022.10.29
+V1.4 Community Build 2022.11.1
 
 # LinWin Http Server源代码
 
@@ -16,6 +16,8 @@ LinWin Http Server，项目最早构建于2021年的1月份，最初使用Python
 错的处理能力。
 
 (安装后的操作)
+### 产品网站入口: https://linwin-cloud.github.io/linwin-http-server/
+### 文档入口: https://linwin-cloud.github.io/linwin-http-server/document/
 #### 启动命令 linwinhttp -server_start 或者 linwinboot
 #### 重启命令 linwinreboot
 #### 关闭服务命令 linwinhttp -server_stop
