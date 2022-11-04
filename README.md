@@ -1,5 +1,5 @@
 # 目前最新版本
-V1.4 Community Build 2022.11.1
+V1.5 Community Build 2022.11.4
 
 # LinWin Http Server源代码
 
@@ -21,13 +21,17 @@ LinWin Http Server，项目最早构建于2021年的1月份，最初使用Python
 #### 启动命令 linwinhttp -server_start 或者 linwinboot
 #### 重启命令 linwinreboot
 #### 关闭服务命令 linwinhttp -server_stop
+#### 本地文档命令(中英双语) linwindoc
+#### 本地状态命令 linwinstatus
 
 # 新版本 LinWin Http优势
 1. 更新异步：代替原本资源占用大的线程极限一换一操作。大大降低了服务器响应时间。增加了服务器处理性能
 2. 配置文件跨域：在服务器目录下新建 strict_origin_when_cross_origin.txt 在文件的第一行写入要跨域的网站，服务器便会在提供服务的时候允许跨域。
 3. 废弃Python脚本关闭服务，使用Java多线程关闭服务：使用了专门的Java文件来关闭HTTP和代理服务，基本上不会出现原版本的关闭错误问题。
-4. 更新更多便捷命令：linwinboot 启动命令 ; linwinreboot 重启服务命令
-5. 修复 v1.2 Commutily Build 2022.10.23 重大服务器错误BUG
+4. 更新更多便捷命令：linwinboot 启动命令 ; linwinreboot 重启服务命令、本地文档
+5. 优化日志系统：采用异步IO计入日志
+6. IP黑名单机制，保障服务器安全
+
 
 # 使用LinWin HttpServer必须的依赖项目
 ### 1. python3 
