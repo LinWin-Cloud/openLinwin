@@ -1,0 +1,7 @@
+#! /bin/bash
+
+linwinboot
+
+java -jar /home/kali/桌面/linwin-http-server/Sevice/desktop/alert.jar
+
+#read -p "Boot Successfurl! [启动成功，按任意键退出控制台]:" num

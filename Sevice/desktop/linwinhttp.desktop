@@ -1,13 +1,10 @@
 [Desktop Entry]
-X-Deepin-CreatedBy=com.deepin.dde.daemon.Launcher
-X-Deepin-AppID=com.qq.music
 Categories=Utility;
-Comment=qqmusic application for linux
-Exec=/usr/LinWinHttp/start_linwinhttp %U
+Comment=LinWin Http Server For Linux
+Exec=/home/kali/桌面/linwin-http-server/Sevice/desktop/desktopboot %U
 Icon=/usr/LinWinHttp/out/production/LinWinHttpServer/img/logo.png
 Name=LinWin Http Server
 GenericName=LinWin Http Server
 Name[zh_CN]=LinWin Http Server
 Terminal=false
 Type=Application
-X-Deepin-Vendor=user-custom
