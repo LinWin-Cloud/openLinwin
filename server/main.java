@@ -1,5 +1,4 @@
 
-import javax.swing.plaf.FontUIResource;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,18 +12,44 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.*;
 
 public class main {
+
+    public static String[] IPBLACK = new String[0];
+    public static String line = "";
+
     public static void main(String[]args) throws Exception
     {
 
         /**
-         * 创建一个 server
+         * 创建一个 serversocket, 用于提供HTTP服务
          */
         log.write("Start Http Server");
         //print the verions information
+
+        /*
+         * 读取IP黑名单配置
+         */
+        File file = new File("../rules/IpBlack.txt");
+        FileReader fileReader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String line;
+        List<String> list = new ArrayList<String>();
+        while ((line=bufferedReader.readLine())!=null)
+        {
+            list.add(line);            
+        }
+        String toline = list.toString();
+        toline = toline.replace("[", "");
+        toline = toline.replace("]", "");
+        toline = toline.replace(" ", "");
+        IPBLACK = toline.split(",");
+
+        bufferedReader.close();
+
         String Version = config.ReadLine("../config/Version.txt");
         System.out.println("[LinWin Http Server: "+config.GetNowTime()+"] Version: "+ Version);
         System.out.println("[ Start ] Listen Clients ... ... [Make in China] ");
@@ -66,12 +91,19 @@ public class main {
                 public Integer call() throws Exception {
                     try
                     {
+                        /**
+                         * 判断是否拒绝服务
+                         */
+                        if (WebSafety.BlackIP(socket.getInetAddress().toString().replace("/", ""), IPBLACK))
+                        {
+                            socket.close();
+                        }
                         String GetURL = Client.GetURL(socket);
+                        //log.writeLine(GetURL);
                         main.ServerRun(socket, GetURL,Version);
                     }
                     catch (Exception exception)
                     {
-                        exception.printStackTrace();
                         socket.close();
                     }
                     return 0;
@@ -187,7 +219,7 @@ public class main {
         //返回403
         printWriter.println("HTTP/1.1 403 OK");
         printWriter.println("Content-type:text/html");
-        printWriter.println("Server:LinWin Http Server/1.0");
+        printWriter.println("Server:LinWin Http Server");
         printWriter.println();
         printWriter.flush();
         byte[] bytes = new byte[1024];
@@ -199,7 +231,7 @@ public class main {
         }
         bos.flush();
         fis.close();
-        socket.shutdownOutput();
+        //socket.shutdownOutput();
         socket.close();
     }
     public static void ServerRun(Socket socket,String GetURL,String version) throws Exception {
@@ -220,40 +252,75 @@ public class main {
             String HttpURLs = GetURL.substring(GetURL.indexOf(" ") + 1, GetURL.lastIndexOf("HTTP/") - 1);
             String HttpURL = java.net.URLDecoder.decode(HttpURLs, "UTF-8");
 
-            //exit the http server
-            if (HttpURL.indexOf("linwin_http_boot_web_1234567890_qwertyuiop=") != -1) {
-                int s = HttpURL.indexOf("linwin_http_boot_web_1234567890_qwertyuiop=");
-                int e = HttpURL.indexOf(";1234567890>>");
-                String user = HttpURL.substring(s + "linwin_http_boot_web_1234567890_qwertyuiop=".length(), e);
-                String pwd = HttpURL.substring(e + ";1234567890>>".length(), HttpURL.length());
-                //读取配置
-                if (config.ISUSER(user, pwd)) {
-                    printWriter.println("HTTP/1.1 200 OK");
-                    printWriter.println("Content-type:text/html");
-                    printWriter.println("Server:LinWin Http Server/" + version);
-                    printWriter.println();
-                    printWriter.flush();
-                    printWriter.println("Successful");
-                    printWriter.flush();
-                    socket.close();
-                    System.exit(0);
-                    return;
-                } else {
-                    printWriter.println("HTTP/1.1 200 OK");
-                    printWriter.println("Content-type:text/html");
-                    printWriter.println("Server:LinWin Http Server/" + version);
-                    printWriter.println();
-                    printWriter.flush();
-                    printWriter.println("Error");
-                    printWriter.flush();
-                    socket.close();
-                    return;
-                }
-            }
+                                /**
+                     * 重新载入一些配置文件,这主要是减少IO操作的频次
+                     */
+                    if (HttpURL.lastIndexOf("linwin_http_boot_web_config_reload")!= -1)
+                    {
+                        /*
+                         * 读取IP黑名单配置
+                         */
+                        File file = new File("../rules/IpBlack.txt");
+                        FileReader fileReader = new FileReader(file);
+                        BufferedReader bufferedReader1 = new BufferedReader(fileReader);
+
+                        List<String> list = new ArrayList<String>();
+
+                        while ((line=bufferedReader1.readLine())!=null)
+                        {
+                            list.add(line);            
+                        }     
+                        String toline = list.toString();
+                        toline = toline.replace("[", "");
+                        toline = toline.replace("]", "");
+                        toline = toline.replace(" ", "");
+                        IPBLACK = toline.split(",");
+
+                        printWriter.println("HTTP/1.1 201 OK");
+                        printWriter.println("Content-Type:text/html");
+                        printWriter.println();
+                        printWriter.flush();
+                        printWriter.println("Reload Successful");
+                        printWriter.flush();
+                        socket.close();
+                        bufferedReader1.close();
+                    }
+
+                    //exit the http server
+                    if (HttpURL.indexOf("linwin_http_boot_web_1234567890_qwertyuiop=") != -1)
+                    {
+                        int s = HttpURL.indexOf("linwin_http_boot_web_1234567890_qwertyuiop=");
+                        int e = HttpURL.indexOf(";1234567890>>");
+                        String user = HttpURL.substring(s + "linwin_http_boot_web_1234567890_qwertyuiop=".length(), e);
+                        String pwd = HttpURL.substring(e + ";1234567890>>".length(), HttpURL.length());
+                        //读取配置
+                        if (config.ISUSER(user, pwd)) {
+                            printWriter.println("HTTP/1.1 200 OK");
+                            printWriter.println("Content-type:text/html");
+                            printWriter.println("Server:LinWin Http Server/" + version);
+                            printWriter.println();
+                            printWriter.flush();
+                            printWriter.println("Successful");
+                            printWriter.flush();
+                            socket.close();
+                            System.exit(0);
+                        } else {
+                            printWriter.println("HTTP/1.1 200 OK");
+                            printWriter.println("Content-type:text/html");
+                            printWriter.println("Server:LinWin Http Server/" + version);
+                            printWriter.println();
+                            printWriter.flush();
+                            printWriter.println("Error");
+                            printWriter.flush();
+                            socket.close();
+                        }
+                    }
+
             ExecutorService executorService = Executors.newFixedThreadPool(10000);
             Future<Integer> future = executorService.submit(new Callable<Integer>() {
                 @Override
                 public Integer call() throws Exception {
+
                     WebSafety.SQL_Security(HttpURL, printWriter, outputStream, socket,version);
                     log.write("[ " + HttpMedth + " " + socket.getInetAddress() + " ] " + HttpURL);
 
@@ -324,7 +391,7 @@ public class main {
         }
         bos.flush();
         fis.close();
-        socket.shutdownOutput();
+        //socket.shutdownOutput();
         socket.close();
     }
     public static void SendPage(BufferedReader bufferedReader,String code,PrintWriter printWriter,String HttpURL,OutputStream outputStream,Socket socket)
@@ -416,7 +483,7 @@ public class main {
                             try {
                                 socket.close();
                             } catch (IOException e) {
-                                e.printStackTrace();
+                                
                             }
                         }
                     });
@@ -430,9 +497,9 @@ public class main {
                 //System.out.println("Server Error: "+e.getMessage());
 		        try{
                     URL_Http.Page500(printWriter,socket,outputStream);
-			        socket.close();
+			        //socket.close();
 		        }catch(Exception ex) {
-                    ex.printStackTrace();
+                    //ex.printStackTrace();
 		    }
         }
     }
@@ -456,7 +523,6 @@ public class main {
             }
             bos.flush();
             fis.close();
-            socket.shutdownOutput();
             socket.close();
         }
     }

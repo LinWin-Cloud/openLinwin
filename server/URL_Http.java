@@ -61,10 +61,9 @@ public class URL_Http {
         int len = 0;
         while ((len = fis.read(bytes)) != -1) {
             bos.write(bytes, 0, len);
+            bos.flush();
         }
-        bos.flush();
-        fis.close();
         socket.shutdownOutput();
-        socket.close();
+        fis.close();
     }
 }
