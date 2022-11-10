@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8902d63e-79b0-44e2-84f6-0f9b5d010a15" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/test/src/java/testHTTP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/linwin-http-server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/linwin-http-server.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proxy/HttpRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/proxy/HttpRequests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/URL_Http.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/URL_Http.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FastServer/src/fastserver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sevice/Exit_Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/Sevice/Exit_Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/Version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config/Version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/WebSafety.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/WebSafety.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/log.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/log.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,12 +38,16 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/config/Server.cfg" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/proxy/Client.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/server/config.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/config/Admin.cfg" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/server/ServerClientConfig.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/server/main.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/proxy/Client.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/test/src/java/testHTTP.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ErrorPage/500.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/config/Server.cfg" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/server/config.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/config/defaultPage.cfg" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/config/Admin.cfg" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/proxy/HttpRequests.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sevice/Exit_Server.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -58,7 +64,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../kylin-server" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.09587729" />
     <property name="project.structure.side.proportion" value="0.2" />
