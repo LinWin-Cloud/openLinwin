@@ -8,13 +8,16 @@ def main():
 
     cmd = sys.argv
     try:
+        if cmd[1] == "-reload":
+            os.system('cd /usr/LinWinHttp/sys/java/ && /usr/LinWinHttp/JRE/openJDK8/bin/java -jar Reload_Config.jar')
+            return True
         if cmd[1] == "-version":
             o = open('../config/Version.txt')
             print(o.read())
             return True
         if cmd[1] == "-server_start":
             print(' [*] Boot Server')
-            os.system("cd ../Sevice && ../jre/bin/java -jar ServerBoot.jar")
+            os.system("cd ../Sevice && /usr/LinWinHttp/JRE/openJDK8/bin/java -jar ServerBoot.jar")
             return True
         if cmd[1] == "-server_stop":
             print(" [*] Stop Http Server , Stop Proxy Server")
@@ -26,7 +29,7 @@ def main():
             os.system('cat '+c+"/*.log")
             return True
         if cmd[1] == "-agreement_gui":
-            os.system('cd ../default/agreement/ && ../../jre/bin/java -jar agreement_en.jar')
+            os.system('cd ../default/agreement/ && /usr/LinWinHttp/JRE/openJDK8/bin/java -jar agreement_en.jar')
             return True
         if cmd[1] == "-agreement_cmd":
             os.system('cd ../default/agreement/ && cat agreement.txt')
