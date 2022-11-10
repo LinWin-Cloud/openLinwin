@@ -1,0 +1,31 @@
+>> === IP blacklist mechanism
+
+IP blacklist mechanism is a new security mechanism of LinWin Http
+released since v1.5 and above.This security mechanism is specifically 
+designed to block the IP addresses of malicious attackers that are 
+already known to some server administrators.This keeps the server safe
+from more threats. Is permanently open, does not exist, and can be bits
+through Modified in /usr/LinWinHttp/rules/ipBlack .txt
+
+-1- format
+    Write the IP addresses that need to be denied access directly to the
+    file, with an empty line between each IP
+    For example, the contents of the file ==>
+    101.341.676.456
+    405.334.221.111
+    114.514.233.007
+
+>> === IP黑名单机制
+
+IP黑名单机制是LinWin Http在自v1.5版本以上发布的一个新的安全机制，
+这个安全机制专门用于阻止一些服务器管理员已经知道的恶意攻击者IP地址，
+从而保证服务器免受到更多的威胁。是永久打开的，不存在关闭，可通过位
+于 /usr/LinWinHttp/rules/ipBlack.txt内修改
+
+-1- 格式
+    直接在文件内写入需要拒绝访问的IP，每个IP之间空一行
+    例如的文件内容==>
+    101.341.676.456
+    405.334.221.111
+    114.514.233.007
+
