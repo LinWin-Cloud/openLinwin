@@ -4,6 +4,7 @@ LinWin Http Server:
  -server_start                  Start The LinWin Http Server
  -server_stop                   Stop All The Server On LinWin Http Server
  -log_view                      View All Log File
+ -reload                        Reload All The Server Config
 
 Agreement:
  -agreement_gui                 Start A GUI Agreement Window

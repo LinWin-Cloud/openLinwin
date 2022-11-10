@@ -1,2 +1,5 @@
 Fast Server Content:
- httpserver [Port Name]             Start A Http Port And Visit
+ [Port Name]             Start A Http Port And Visit
+ 
+ Try: 
+    fasthttp 8080       Start the 8080 Port On your computer
