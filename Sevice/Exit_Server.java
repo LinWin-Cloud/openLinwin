@@ -23,6 +23,7 @@ public class Exit_Server {
                     {
                         System.out.println(line);
                     }
+                    socket.close();
 
                 } catch (Exception e) {
                     System.out.println("[!] DO Not Start The Http Server: "+e.getLocalizedMessage());
@@ -47,6 +48,7 @@ public class Exit_Server {
                     {
                         System.out.println(line);
                     }
+                    socket.close();
                 } catch (Exception e) {
                     System.out.println("[!] DO Not Start The Proxy Server: "+e.getLocalizedMessage());
                 }
@@ -68,6 +70,7 @@ public class Exit_Server {
                 pwd = line.substring(line.indexOf(";Pwd: ")+";Pwd: ".length(),line.lastIndexOf(";"));
             }
         }
+        bufferedReader.close();
         return pwd;
     }
     public static String GetUser() throws Exception
@@ -83,6 +86,7 @@ public class Exit_Server {
                 pwd = line.substring(line.indexOf("User: ")+"User: ".length(),line.indexOf(";"));
             }
         }
+        bufferedReader.close();
         return pwd;
     }
     public static int GetServerPort() {

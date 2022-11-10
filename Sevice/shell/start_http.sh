@@ -1,4 +1,4 @@
 #! /bin/bash
 
 cd ../server/
-java -jar LinWinHttp.jar
+/usr/LinWinHttp/JRE/openJDK8/bin/java -jar LinWinHttp.jar

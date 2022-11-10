@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd ../proxy/
-java -jar LinWin_Proxy.jar
+/usr/LinWinHttp/JRE/oracle/bin/java -jar LinWin_Proxy.jar
