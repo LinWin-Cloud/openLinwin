@@ -1,5 +1,4 @@
 
-import javax.swing.plaf.FontUIResource;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,18 +12,46 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.*;
 
 public class main {
+
+    public static String[] IPBLACK = new String[0];
+    public static String line = "";
+    public static String ServerDir = "";
+    public static String ErrorPage = "";
+
     public static void main(String[]args) throws Exception
     {
-
+        load.runLoad();
         /**
-         * 创建一个 server
+         * 创建一个 serversocket, 用于提供HTTP服务
          */
         log.write("Start Http Server");
         //print the verions information
+
+        /*
+         * 读取IP黑名单配置
+         */
+        File file = new File("../rules/IpBlack.txt");
+        FileReader fileReader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String line;
+        List<String> list = new ArrayList<String>();
+        while ((line=bufferedReader.readLine())!=null)
+        {
+            list.add(line);
+        }
+        String toline = list.toString();
+        toline = toline.replace("[", "");
+        toline = toline.replace("]", "");
+        toline = toline.replace(" ", "");
+        IPBLACK = toline.split(",");
+
+        bufferedReader.close();
+
         String Version = config.ReadLine("../config/Version.txt");
         System.out.println("[LinWin Http Server: "+config.GetNowTime()+"] Version: "+ Version);
         System.out.println("[ Start ] Listen Clients ... ... [Make in China] ");
@@ -52,13 +79,13 @@ public class main {
         {
             Socket socket = serverSocket.accept(); //阻塞线程监听
             /**
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                String line;
-                while ((line=bufferedReader.readLine())!=null)
-                {
-                    System.out.println(line);
-                }
-                bufferedReader.close();
+             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+             String line;
+             while ((line=bufferedReader.readLine())!=null)
+             {
+             System.out.println(line);
+             }
+             bufferedReader.close();
              */
             ExecutorService executorService = Executors.newFixedThreadPool(10000);
             Future<Integer> future = executorService.submit(new Callable<Integer>() {
@@ -66,12 +93,19 @@ public class main {
                 public Integer call() throws Exception {
                     try
                     {
+                        /**
+                         * 判断是否拒绝服务
+                         */
+                        if (WebSafety.BlackIP(socket.getInetAddress().toString().replace("/", ""), IPBLACK))
+                        {
+                            socket.close();
+                        }
                         String GetURL = Client.GetURL(socket);
+                        //log.writeLine(GetURL);
                         main.ServerRun(socket, GetURL,Version);
                     }
                     catch (Exception exception)
                     {
-                        exception.printStackTrace();
                         socket.close();
                     }
                     return 0;
@@ -123,7 +157,7 @@ public class main {
          * 获取服务器的网页服务目录
          */
         try{
-		File file = new File("../config/Server.cfg");
+            File file = new File("../config/Server.cfg");
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
@@ -187,11 +221,11 @@ public class main {
         //返回403
         printWriter.println("HTTP/1.1 403 OK");
         printWriter.println("Content-type:text/html");
-        printWriter.println("Server:LinWin Http Server/1.0");
+        printWriter.println("Server:LinWin Http Server");
         printWriter.println();
         printWriter.flush();
         byte[] bytes = new byte[1024];
-        FileInputStream fis = new FileInputStream(config.GetErrorPage() + "/403.html");
+        FileInputStream fis = new FileInputStream(main.ErrorPage + "/403.html");
         BufferedOutputStream bos = new BufferedOutputStream(outputStream);
         int len = 0;
         while ((len = fis.read(bytes)) != -1) {
@@ -199,29 +233,49 @@ public class main {
         }
         bos.flush();
         fis.close();
-        socket.shutdownOutput();
+        //socket.shutdownOutput();
         socket.close();
     }
     public static void ServerRun(Socket socket,String GetURL,String version) throws Exception {
         /**
-         * 处理流 
+         * 处理流
          */
         InputStream inputStream = socket.getInputStream();
         OutputStream outputStream = socket.getOutputStream();
         PrintWriter printWriter = new PrintWriter(outputStream);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
 
-	    if (GetURL == null)
-	    {
-		    socket.close();
-            		return;
-	    }else {
+        if (GetURL == null)
+        {
+            socket.close();
+            return;
+        }else {
             String HttpMedth = GetURL.substring(0, GetURL.indexOf(" "));
             String HttpURLs = GetURL.substring(GetURL.indexOf(" ") + 1, GetURL.lastIndexOf("HTTP/") - 1);
             String HttpURL = java.net.URLDecoder.decode(HttpURLs, "UTF-8");
 
+            /**
+             * 重新载入一些配置文件,这主要是减少IO操作的频次
+             */
+            if (HttpURL.lastIndexOf("linwin_http_boot_web_config_reload")!= -1)
+            {
+                /**
+                 * 这个API是LinWin Http Server服务器在v1.6社区版本中内置的
+                 * 用于载入配置文件，就是重新从配置文件内读取数据
+                 * 在v1.6之前的版本中服务器每次处理一个请求就需要读取3~5次的IO操作
+                 */
+                load.runLoad();
+                printWriter.println("HTTP/1.1 201 OK");
+                printWriter.println("");
+                
+                printWriter.println("Successful");
+                printWriter.flush();
+                socket.close();
+            }
+
             //exit the http server
-            if (HttpURL.indexOf("linwin_http_boot_web_1234567890_qwertyuiop=") != -1) {
+            if (HttpURL.indexOf("linwin_http_boot_web_1234567890_qwertyuiop=") != -1)
+            {
                 int s = HttpURL.indexOf("linwin_http_boot_web_1234567890_qwertyuiop=");
                 int e = HttpURL.indexOf(";1234567890>>");
                 String user = HttpURL.substring(s + "linwin_http_boot_web_1234567890_qwertyuiop=".length(), e);
@@ -237,7 +291,6 @@ public class main {
                     printWriter.flush();
                     socket.close();
                     System.exit(0);
-                    return;
                 } else {
                     printWriter.println("HTTP/1.1 200 OK");
                     printWriter.println("Content-type:text/html");
@@ -247,13 +300,14 @@ public class main {
                     printWriter.println("Error");
                     printWriter.flush();
                     socket.close();
-                    return;
                 }
             }
+
             ExecutorService executorService = Executors.newFixedThreadPool(10000);
             Future<Integer> future = executorService.submit(new Callable<Integer>() {
                 @Override
                 public Integer call() throws Exception {
+
                     WebSafety.SQL_Security(HttpURL, printWriter, outputStream, socket,version);
                     log.write("[ " + HttpMedth + " " + socket.getInetAddress() + " ] " + HttpURL);
 
@@ -270,15 +324,15 @@ public class main {
             executorService.shutdown();
 
             //判断索引页面，然后返回
-            File file = new File(main.GetServerPath());
+            File file = new File(main.ServerDir);
             //File[] ServerRootPath = file.listFiles();
 
-            File TargetFile = new File(main.GetServerPath() + HttpURL);
+            File TargetFile = new File(main.ServerDir + HttpURL);
             if (HttpURL.indexOf("<script") != -1 || HttpURL.indexOf("</") != -1 || HttpURL.indexOf("<link") != -1 || HttpURL.indexOf("/>") != -1 || HttpURL.indexOf("%2") != -1) {
                 WebSafety.XSS_Security(HttpURL, printWriter, outputStream, socket,version);
                 return;
             }
-	    if (config.isURLOK(HttpURL)) {
+            if (config.isURLOK(HttpURL)) {
                 URL_Http.URL_Return(socket, HttpURL,version);
                 return;
             }
@@ -301,7 +355,7 @@ public class main {
                 return;
             } else if (TargetFile.isFile()) {
                 // resource the config file
-                
+
                 main.SendPage(bufferedReader, "200", printWriter, HttpURL, outputStream, socket);
             }
         }
@@ -312,11 +366,11 @@ public class main {
         printWriter.println("HTTP/1.1 405 OK");
         printWriter.println("Content-type:text/html");
         printWriter.println("Server:LinWin Http Server");
-	printWriter.println("strict-origin-when-cross-origin:"+ServerClientConfig.strict_origin_when_cross_origin(printWriter, HttpURL, socket));
+        printWriter.println("strict-origin-when-cross-origin:"+ServerClientConfig.strict_origin_when_cross_origin(printWriter, HttpURL, socket));
         printWriter.println();
         printWriter.flush();
         byte[] bytes = new byte[1024];
-        FileInputStream fis = new FileInputStream(config.GetErrorPage() + "/405.html");
+        FileInputStream fis = new FileInputStream(main.ErrorPage + "/405.html");
         BufferedOutputStream bos = new BufferedOutputStream(outputStream);
         int len = 0;
         while ((len = fis.read(bytes)) != -1) {
@@ -324,7 +378,7 @@ public class main {
         }
         bos.flush();
         fis.close();
-        socket.shutdownOutput();
+        //socket.shutdownOutput();
         socket.close();
     }
     public static void SendPage(BufferedReader bufferedReader,String code,PrintWriter printWriter,String HttpURL,OutputStream outputStream,Socket socket)
@@ -333,13 +387,13 @@ public class main {
         try
         {
             printWriter.println("HTTP/1.1 "+code+" OK");
-	        printWriter.println("strict-origin-when-cross-origin:"+ServerClientConfig.strict_origin_when_cross_origin(printWriter, HttpURL, socket));
-	        printWriter.println("Content-Type:"+Client.GetType(socket,main.GetServerPath()+HttpURL));
+            printWriter.println("strict-origin-when-cross-origin:"+ServerClientConfig.strict_origin_when_cross_origin(printWriter, HttpURL, socket));
+            printWriter.println("Content-Type:"+Client.GetType(socket,main.ServerDir+HttpURL));
             printWriter.println();
             printWriter.flush();
             //System.out.println("[Method:"+HttpMedth+" "+config.GetNowTime()+"] Requests Url: "+HttpURL+" [200] ");
             byte[] bytes = new byte[30];
-            FileInputStream fis = new FileInputStream(main.GetServerPath() +"/"+ HttpURL);
+            FileInputStream fis = new FileInputStream(main.ServerDir +"/"+ HttpURL);
             BufferedOutputStream bos = new BufferedOutputStream(outputStream);
             int len = 0;
             while ((len = fis.read(bytes)) != -1) {
@@ -359,96 +413,96 @@ public class main {
             }
         }
     }
-        public static void SocketDIR (BufferedReader bufferedReader,OutputStream outputStream,String HttpURL,PrintWriter printWriter, File pathURL, Socket socket,String version) {
-            try {
-		    printWriter.println("HTTP/1.1 200 OK");
-		    printWriter.println("strict-origin-when-cross-origin:"+ServerClientConfig.strict_origin_when_cross_origin(printWriter, HttpURL, socket));
-		    printWriter.println("Content-Type:"+Client.GetType(socket,main.GetServerPath()+HttpURL));
-		    printWriter.println("server:LinWin Http Server/"+version);
-                if (pathURL.exists()) {
-                    File[] ServerRootPath = pathURL.listFiles();
-                    printWriter.println();
+    public static void SocketDIR (BufferedReader bufferedReader,OutputStream outputStream,String HttpURL,PrintWriter printWriter, File pathURL, Socket socket,String version) {
+        try {
+            printWriter.println("HTTP/1.1 200 OK");
+            printWriter.println("strict-origin-when-cross-origin:"+ServerClientConfig.strict_origin_when_cross_origin(printWriter, HttpURL, socket));
+            printWriter.println("Content-Type:"+Client.GetType(socket,main.ServerDir+HttpURL));
+            printWriter.println("server:LinWin Http Server/"+version);
+            if (pathURL.exists()) {
+                File[] ServerRootPath = pathURL.listFiles();
+                printWriter.println();
 
-                    printWriter.println("<meta charset='utf-8'/>");
-                    printWriter.flush();
+                printWriter.println("<meta charset='utf-8'/>");
+                printWriter.flush();
 
-                    for (int i = 0; i < ServerRootPath.length; i++)
-                    {
-                        //检测是否索引页面
-                        if (main.IsDefaultPage(ServerRootPath[i].getName())&&ServerRootPath[i].isFile()) {
-                            byte[] bytes = new byte[1024];
-                            FileInputStream fis = new FileInputStream(main.GetServerPath() +HttpURL + "/" + ServerRootPath[i].getName());
-                            BufferedOutputStream bos = new BufferedOutputStream(outputStream);
-                            int len = 0;
-                            while ((len = fis.read(bytes)) != -1) {
-                                bos.write(bytes, 0, len);
+                for (int i = 0; i < ServerRootPath.length; i++)
+                {
+                    //检测是否索引页面
+                    if (main.IsDefaultPage(ServerRootPath[i].getName())&&ServerRootPath[i].isFile()) {
+                        byte[] bytes = new byte[1024];
+                        FileInputStream fis = new FileInputStream(main.ServerDir +HttpURL + "/" + ServerRootPath[i].getName());
+                        BufferedOutputStream bos = new BufferedOutputStream(outputStream);
+                        int len = 0;
+                        while ((len = fis.read(bytes)) != -1) {
+                            bos.write(bytes, 0, len);
+                        }
+                        printWriter.flush();
+                        bos.flush();
+                        bos.close();
+                        fis.close();
+                        socket.close();
+                        break;
+                    }
+                }
+                //说明没有索引目录，返回目录下的文件
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        printWriter.println("<meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\">");
+                        printWriter.println("<h1>Server Dir: "+HttpURL+"</h1>");
+                        printWriter.println("<a href='../'>Return to last dir</a><br /><br />");
+                        printWriter.println("<div style='width=100%;height:2px;background-color: black;'></div><br />");
+                        printWriter.println("<style>.div1{width: 100%;height:auto;background-color:black;border-radius:5px;box-shadow:0px 0px 5px black}</style>");
+                        printWriter.flush();
+                        for (int i = 0; i < ServerRootPath.length; i++) {
+                            if (ServerRootPath[i].isDirectory()) {
+                                //是目录
+                                printWriter.println("<div class='.div1' style='padding:-10px;margin-left:10px;border-left: 10px solid black'><a href='" + ServerRootPath[i].getName() + "/'> 目录: " + ServerRootPath[i].getName() + "</a></div>");
+                                printWriter.flush();
+                            } else {
+                                printWriter.println("<div class='.div1' style='padding:-10px;margin-left:10px;border-left: 10px solid black'><a href='" + ServerRootPath[i].getName() + "'> 文件: " + ServerRootPath[i].getName() + "</a></div>");
+                                printWriter.flush();
                             }
-                            printWriter.flush();
-                            bos.flush();
-                            bos.close();
-                            fis.close();
+                        }
+                        printWriter.println("<br /><div style='width=100%;height:2px;background-color: black;'></div><br />");
+                        printWriter.flush();
+                        try {
                             socket.close();
-                            break;
+                        } catch (IOException e) {
+
                         }
                     }
-                    //说明没有索引目录，返回目录下的文件
-                    Thread thread = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            printWriter.println("<meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\">");
-                            printWriter.println("<h1>Server Dir: "+HttpURL+"</h1>");
-                            printWriter.println("<a href='../'>Return to last dir</a><br /><br />");
-                            printWriter.println("<div style='width=100%;height:2px;background-color: black;'></div><br />");
-                            printWriter.println("<style>.div1{width: 100%;height:auto;background-color:black;border-radius:5px;box-shadow:0px 0px 5px black}</style>");
-                            printWriter.flush();
-                            for (int i = 0; i < ServerRootPath.length; i++) {
-                                if (ServerRootPath[i].isDirectory()) {
-                                    //是目录
-                                    printWriter.println("<div class='.div1' style='padding:-10px;margin-left:10px;border-left: 10px solid black'><a href='" + ServerRootPath[i].getName() + "/'> 目录: " + ServerRootPath[i].getName() + "</a></div>");
-                                    printWriter.flush();
-                                } else {
-                                    printWriter.println("<div class='.div1' style='padding:-10px;margin-left:10px;border-left: 10px solid black'><a href='" + ServerRootPath[i].getName() + "'> 文件: " + ServerRootPath[i].getName() + "</a></div>");
-                                    printWriter.flush();
-                                }
-                            }
-                            printWriter.println("<br /><div style='width=100%;height:2px;background-color: black;'></div><br />");
-                            printWriter.flush();
-                            try {
-                                socket.close();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                    thread.start();
-                } else {
-                    main.Page404(printWriter,HttpURL,outputStream,socket,version);
-                }
-            } catch (Exception e) {
-                //printWriter.println("500 Error Error");
-                //printWriter.flush();
-                //System.out.println("Server Error: "+e.getMessage());
-		        try{
-                    URL_Http.Page500(printWriter,socket,outputStream);
-			        socket.close();
-		        }catch(Exception ex) {
-                    ex.printStackTrace();
-		    }
+                });
+                thread.start();
+            } else {
+                main.Page404(printWriter,HttpURL,outputStream,socket,version);
+            }
+        } catch (Exception e) {
+            //printWriter.println("500 Error Error");
+            //printWriter.flush();
+            //System.out.println("Server Error: "+e.getMessage());
+            try{
+                URL_Http.Page500(printWriter,socket,outputStream);
+                //socket.close();
+            }catch(Exception ex) {
+                //ex.printStackTrace();
+            }
         }
     }
     public static void Page404(PrintWriter printWriter,String HttpURL,OutputStream outputStream,Socket socket,String version) throws Exception
     {
-        File file = new File(main.GetServerPath() + HttpURL);
+        File file = new File(main.ServerDir + HttpURL);
         if (!file.exists()) {
             //返回404
             printWriter.println("HTTP/1.1 404 Not Found");
             printWriter.println("Content-type:text/html");
             printWriter.println("Server:LinWin Http Server/"+version);
-	    printWriter.println("strict-origin-when-cross-origin:"+ServerClientConfig.strict_origin_when_cross_origin(printWriter, HttpURL, socket));
+            printWriter.println("strict-origin-when-cross-origin:"+ServerClientConfig.strict_origin_when_cross_origin(printWriter, HttpURL, socket));
             printWriter.println();
             printWriter.flush();
             byte[] bytes = new byte[1024];
-            FileInputStream fis = new FileInputStream(config.GetErrorPage() + "/404.html");
+            FileInputStream fis = new FileInputStream(main.ErrorPage + "/404.html");
             BufferedOutputStream bos = new BufferedOutputStream(outputStream);
             int len = 0;
             while ((len = fis.read(bytes)) != -1) {
@@ -456,7 +510,6 @@ public class main {
             }
             bos.flush();
             fis.close();
-            socket.shutdownOutput();
             socket.close();
         }
     }

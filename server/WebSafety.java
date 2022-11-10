@@ -49,4 +49,19 @@ public class WebSafety {
             }
         }
     }
+    public static Boolean BlackIP(String IPAdress,String[] IPBlack)
+    {
+        /**
+         * IP地址黑名单机制：如果是IP位于黑名单内，则该IP访问直接拒绝访问
+         */
+        Boolean bool = false;
+        for (int i = 0; i < IPBlack.length ; i++)
+        {
+            if (IPAdress.equals(IPBlack[i]))
+            {
+                bool = true;
+            }
+        }
+        return bool;
+    }
 }
