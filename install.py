@@ -31,7 +31,23 @@ def Install():
             os.system('chmod +x /etc/rc.d/rcX.d/linwinhttp')
             os.system('systemctl enable linwinhttp.service')
             os.system('cp -f /usr/LinWinHttp/Sevice/desktop/linwinhttp.desktop /usr/share/applications')
-            print('[!]Finish Install!Install Path: /usr/LinWinHttp/')
+
+            os.system('cp /usr/LinWinHttp/sys/linwindoc /bin/')
+            os.system('chmod +x /bin/linwindoc')
+
+            os.system('cp /usr/LinWinHttp/sys/status/linwinstatus /bin/')
+            os.system('chmod +x /bin/linwinstatus')
+
+            os.system('cp /usr/LinWinHttp/sys/fastserver/fastserver /bin/ && chmod +x /bin/fastserver')
+            os.system('cp /usr/LinWinHttp/sys/linwinreload /bin/ && chmod +x /bin/linwinreload')
+
+            os.system('cp /usr/LinWinHttp/sys/linwindoc /bin/ && chmod +x /bin/linwindoc')
+            os.system('chmod 777 /usr/LinWinHttp/* -R')
+
+            os.system('linwinboot')
+
+            print('[!] Finish Install!Install Path: /usr/LinWinHttp/')
+            print('[!] Your can Visit the HTTP Port on: http://localhost:8080')
         print('Install ... ...')
         if os.path.exists("/usr/LinWinHttp/") and os.path.isdir("/usr/LinWinHttp/"):
             a()
@@ -49,26 +65,29 @@ def main():
     if user != "root":
         print('[ERR]Must Be RUn As Root')
         exit()
-    os.system("clear")
-    print("""
-     _     _    __        ___       ___
-    | |   (_)_ _\ \      / (_)_ __  |__|
-    | |   | | '_ \ \ /\ / /| | '_ \  |__|
-    | |___| | | | \ V  V / | | | | |  |__|
-    |_____|_|_| |_|\_/\_/  |_|_| |_|   |__|
-     _   _ _   _        ____                           
-    | | | | |_| |_ _ __/ ___|  ___ _ ____   _____ _ __ 
-    | |_| | __| __| '_ \___ \ / _ \ '__\ \ / / _ \ '__|
-    |  _  | |_| |_| |_) |__) |  __/ |   \ V /  __/ |   
-    |_| |_|\__|\__| .__/____/ \___|_|    \_/ \___|_|   
-                  |_|                                
-    [*] LinWinCloud Teams,UChat Teams,Yinghuo Teams.
+    os.system("clear")                        
+    print("""                                            
+                                                         ___
+                                                   _____  \ \  
+     _     _    __        ___       ___           /   __\  \ \   
+    | |   (_)_ _\ \      / (_)_ __  |__|         /_/\ \     \ \  
+    | |   | | '_ \ \ /\ / /| | '_ \  |__|      __    \ \    / /  
+    | |___| | | | \ V  V / | | | | |  |__|    /\ \    \ \  / /   
+    |_____|_|_| |_|\_/\_/  |_|_| |_|   |__|  / /\ \____\ \/ /    
+     _   _ _   _        ____                /_/  \______\ \/     
+    | | | | |_| |_ _ __/ ___|  ___ _ ____   _____ _ __   \_\ 
+    | |_| | __| __| '_ \___ \ / _ \ '__\ \ / / _ \ '__|   
+    |  _  | |_| |_| |_) |__) |  __/ |   \ V /  __/ |      
+    |_| |_|\__|\__| .__/____/ \___|_|    \_/ \___|_|      
+                  |_|                                     
+    [*] LinWinCloud Teams,UChat Teams,Yinghuo Teams.      
     [*] For Linux 2023
     """)
 
     print(" 1. Install LinWin Http Server (input '1')")
     print(" 2. Read Agreement Before Install LinWin Http Server (input '2')")
-    print(" 3. Exit installer (input 'exit')")
+    print(" 3. View This Version")
+    print(" 4. Exit installer (input 'exit')")
     print("")
 
     def console():
@@ -81,6 +100,10 @@ def main():
             os.system('cat ./default/agreement/agreement.txt')
             console()
             return True
+        if options == "3":
+            os.system("cat ./config/Version.txt")
+            console()
+            return True 
         if options == "exit":
             print('Bye!')
             exit()
