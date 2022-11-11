@@ -1,0 +1,4 @@
+#! /bin/bash
+
+cd /usr/LinWinHttp/sys/java 
+/usr/LinWinHttp/JRE/openJDK8/bin/java -jar Reload_Config.jar

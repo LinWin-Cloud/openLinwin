@@ -1,0 +1,4 @@
+#! /bin/bash
+
+cd /usr/LinWinHttp/sys
+./start_linwinhttp

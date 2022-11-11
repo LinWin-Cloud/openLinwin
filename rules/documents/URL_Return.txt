@@ -1,0 +1,15 @@
+
+>> === 指定URL返回机制
+
+指定URL返回机制体现了LinWin Http的灵活特点，在服务器的配置
+目录上，配置：当Web前端用户请求指定URL的时候，直接返回一个特定
+的Web页面，这个页面可以不部署在网页服务目录，而在服务器上的指定
+文件路径。
+
+配置: 在 /usr/LinWinHttp/rules/URL_Return.cfg 中，
+文件配置如下:
+    URL: (当用户访问的指定URL);Return: (返回的指定页面在服务器上的路径);
+
+例如:
+    URL: /?ok;Return: /www/wwwroot/index.html;
+    URL: /logon;Return: /;
