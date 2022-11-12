@@ -3,16 +3,20 @@ import getpass
 
 def Install():
     print('\n[*] LinWin Http Server Dir: /usr/www/html\n')
+    print('[!] LinWin Http Installer Will Overwrite writes to /usr/LinWinHttp.So you need save the important file in others')
     a = input('\n[?] LinWin Http Server Will Install In: /usr/LinWinHttp/ : [Y/N]')
     if a == "n" or a == "N":
         exit()
     else:
         def a():
+            os.system('rm -fr /usr/LinWinHttp')
+            os.system('mkdir /usr/LinWinHttp')
             os.system('mkdir /usr/www')
             os.system('mkdir /usr/www/html')
             os.system('cp -rf * /usr/LinWinHttp/')
             os.system('chmod +x /usr/LinWinHttp/Sevice/shell/*.sh')
-            os.system('cp /usr/LinWinHttp/default/page/linwinhttp-index.html /usr/www/html')        
+            os.system('cp /usr/LinWinHttp/default/page/linwinhttp-index.html /usr/www/html') 
+            os.system('cd /usr/LinWinHttp/nodeJS && unzip linux.zip')
             # os.system('cd /usr/LinWinHttp/Sevice/ && ../jre/bin/java -jar ServerBoot.jar')
             os.system('chmod 777 /usr/www/html')
             os.system('cp -f Sevice/systemd/linwinhttp.service /etc/systemd/system/')
