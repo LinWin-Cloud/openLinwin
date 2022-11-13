@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Reload_Config">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/sys/java/Reload_Config.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="LinWinHttp">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/server/LinWinHttp.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
