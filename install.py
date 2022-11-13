@@ -24,6 +24,7 @@ def Install():
             os.system('systemctl linwinhttp start')
             os.system('cp /usr/LinWinHttp/sys/start_linwinhttp /etc/init.d')
             os.system('chmod +x /usr/LinWinHttp/* -R')
+            os.system('cd /usr/LinWinHttp/JRE && unzip openJDK8.zip')
             os.system('/usr/LinWinHttp/sys/start_linwinhttp')
 
             os.system('cp /usr/LinWinHttp/sys/linwinhttp /bin/')
