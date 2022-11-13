@@ -1,5 +1,5 @@
 # 目前最新版本
-V1.6 Community Build 2022.11.9
+V1.7 Community Build 2022.11.11
 
 # LinWin Http Server源代码
 
@@ -33,6 +33,7 @@ LinWin Http Server，项目最早构建于2021年的1月份，最初使用Python
 6. FastServer快速网站测试功能: FastServer可以快速开放文件夹和目录,只需要在终端内输入: fastserver 端口号   即可
 7. 本地文档: 通过提供的中文文档实时了解如何操作服务器.
 8. IP黑名单机制: 管理员可配置指定的IP地址用于拦截他们的访问.
+9. 更少的bug: 经过了多个版本的迭代，BUG更加少.
 
 # 使用LinWin HttpServer必须的依赖项目
 ### 1. python3 
