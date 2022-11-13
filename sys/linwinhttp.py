@@ -21,7 +21,7 @@ def main():
             return True
         if cmd[1] == "-server_stop":
             print(" [*] Stop Http Server , Stop Proxy Server")
-            os.system("cd /usr/LinWinHttp/Sevice/ && java -jar Exit_Server.jar")
+            os.system("cd /usr/LinWinHttp/Sevice/ && /usr/LinWinHttp/JRE/openJDK8/bin/java -jar Exit_Server.jar")
             return True
         if cmd[1] == "-log_view":
             c = open('../config/log.cfg')
