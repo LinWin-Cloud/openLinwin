@@ -1,7 +1,8 @@
-# 目前最新版本
-V1.7 Community Build 2022.11.11
+# 好好学习，而不是利用大量定语博外行人眼球。
 
 # LinWin Http Server源代码
+
+[![State-of-the-art Shitcode](https://img.shields.io/static/v1?label=State-of-the-art&message=Shitcode&color=7B5804)](https://github.com/trekhleb/state-of-the-art-shitcode)
 
 LinWin Http Server，项目最早构建于2021年的1月份，最初使用Python开发，
 <br />

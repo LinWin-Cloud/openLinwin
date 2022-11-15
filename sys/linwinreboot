@@ -1,5 +1,0 @@
-#! /bin/bash
-
-cd /usr/LinWinHttp/Sevice/
-/usr/LinWinHttp/JRE/openJDK8/bin/java -jar Exit_Server.jar
-/usr/LinWinHttp/JRE/openJDK8/bin/java -jar ServerBoot.jar

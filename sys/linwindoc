@@ -1,4 +1,0 @@
-#! /bin/bash
-
-cd /usr/LinWinHttp/sys/
-python3 linwindoc.py
