@@ -1,3 +1,0 @@
-#！ /bin/bash
-
-/usr/LinWinHttp/JRE/openJDK8/bin/java -jar /usr/LinWinHttp/FastServer/jar/FastServer.jar $1
