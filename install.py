@@ -1,5 +1,6 @@
 import os
 import getpass
+import time
 
 def Install():
     print('\n[*] LinWin Http Server Dir: /usr/www/html\n')
@@ -48,11 +49,9 @@ def Install():
 
             os.system('cp /usr/LinWinHttp/sys/linwindoc /bin/ && chmod +x /bin/linwindoc')
             os.system('chmod 777 /usr/LinWinHttp/* -R')
-
-            os.system('linwinboot')
-
+            
             print('[!] Finish Install!Install Path: /usr/LinWinHttp/')
-            print('[!] Your can Visit the HTTP Port on: http://localhost:8080')
+            print('[!] Input: \"linwinboot\" in the terminal,then start the HTTP Server.Default Port Is 8080')
         print('Install ... ...')
         if os.path.exists("/usr/LinWinHttp/") and os.path.isdir("/usr/LinWinHttp/"):
             a()
