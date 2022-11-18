@@ -1,4 +1,4 @@
 {
-    "Server-Type" : "nodeServer",
-    "Server-Path" : "/usr/LinWinHttp/default/nodeServer/"
+    "Default" : "/usr/LinWinHttp/default/nodeServer/",
+    "Index" : "/usr/www/html"
 }
