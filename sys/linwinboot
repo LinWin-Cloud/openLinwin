@@ -1,4 +1,5 @@
 #! /bin/bash
 
+echo "[Info] Boot LinWin Http"
 cd /usr/LinWinHttp/sys
 ./start_linwinhttp
