@@ -1,5 +1,4 @@
 
-import org.omg.PortableInterceptor.ServerRequestInfo;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -14,8 +13,6 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.*;
 
 public class main {
@@ -255,6 +252,7 @@ public class main {
                 
                 printWriter.println("Successful");
                 printWriter.flush();
+                load.runLoad();
                 socket.close();
             }
 
