@@ -27,6 +27,7 @@ public class init {
             MultiServer.urlOK = init.urlOK();
             MultiServer.defaultPage = init.defaultPage();
             MultiServer.strict_origin_when_cross_origin = WebClient.strict_origin_when_cross_origin();
+            //VirtualVisist.ServerFile_Web();
 
         }catch(Exception exception) {
             exception.printStackTrace();

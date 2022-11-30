@@ -1,10 +1,7 @@
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 
 public class WebServer {
@@ -51,8 +48,7 @@ public class WebServer {
 
                 HTTPURL = java.net.URLDecoder.decode(HTTPURL,"UTF-8");
                 String DoWithURL = HTTPURL.substring(HTTPURL.indexOf(" ")+1,HTTPURL.lastIndexOf("HTTP/")-1);
-
-                            //exit the http server
+                //exit the http server
             if (HttpURL.indexOf("linwin_http_boot_web_1234567890_qwertyuiop=") != -1)
             {
                 try {
@@ -101,35 +97,16 @@ public class WebServer {
          * send the file to the web client.
          */
         
-        if (file.isFile()&&file.exists())
-        {
-            try
-            {
-                /*
-                ExecutorService executorService = Executors.newFixedThreadPool(1);
-                Future<Integer> future = executorService.submit(new Callable<Integer>() {
-                    @Override
-                    public Integer call() throws Exception {
-
-                        return 0;
-                    }
-                });
-                executorService.shutdown();
-                future.get();
-                */
+        if (HTTPURL.equals("linwin_BG/backgrounds.jpeg")){
+            try {
                 pWriter.println("HTTP/1.1 200 OK");
-                pWriter.println("Content-Type:"+HTTPClientType.GetType(socket, MultiServer.ServerDir+HTTPURL));
-                pWriter.println("Server: LinWinHttp Server/"+MultiServer.Version);
-                pWriter.println("strict-origin-when-cross-origin: "+MultiServer.strict_origin_when_cross_origin);
-                pWriter.println("Date: "+WebClient.GetNowTime());
-                pWriter.println("Accept-Encoding: gzip");
+                pWriter.println("Content-Type:image/jpeg");
                 pWriter.println();
                 pWriter.flush();
-                // send the page to the web client.
 
-                FileInputStream fileInputStream = new FileInputStream(MultiServer.ServerDir + "/" + HTTPURL);
+                FileInputStream fileInputStream = new FileInputStream("/usr/LinWinHttp/default/page/linwin_BG/backgrounds.jpeg");
                 byte[] bytes = new byte[1024];
-                
+    
                 BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
                 //GZIPOutputStream gzipOutputStream = new GZIPOutputStream(outputStream);
                 int length = 0;
@@ -140,10 +117,66 @@ public class WebServer {
                     bufferedOutputStream.flush();
                 }
                 //gzipOutputStream.flush();
-                bufferedOutputStream.flush();
+                //bufferedOutputStream.flush();
                 bufferedOutputStream.close();
                 fileInputStream.close();
                 socket.close();
+            }catch(Exception exception){
+                exception.printStackTrace();
+            }
+        }
+        if (file.isFile()&&file.exists())
+        {
+            try
+            {
+                ExecutorService executorService = Executors.newFixedThreadPool(1);
+                Future<Integer> future = executorService.submit(new Callable<Integer>() {
+                    @Override
+                    public Integer call() throws Exception {
+                        pWriter.println("HTTP/1.1 200 OK");
+                        pWriter.println("Content-Type:"+HTTPClientType.GetType(socket, MultiServer.ServerDir+HTTPURL));
+                        pWriter.println("Server: LinWinHttp Server/"+MultiServer.Version);
+                        pWriter.println("strict-origin-when-cross-origin: "+MultiServer.strict_origin_when_cross_origin);
+                        pWriter.println("Date: "+WebClient.GetNowTime());
+                        pWriter.println();
+                        pWriter.flush();
+                        // send the page to the web client.
+
+                        /*
+                        for (int i=0;i<VirtualVisist.filePath.length;i++) {
+                            String name = VirtualVisist.filePath[i];
+                            if (name.equals(MultiServer.ServerDir+HTTPURL)) {
+                                System.out.println("Yes");
+                                pWriter.println(VirtualVisist.fileContent[i]);
+                                pWriter.flush();
+                                socket.close();
+                            }
+                        }
+                        */
+
+                        FileInputStream fileInputStream = new FileInputStream(MultiServer.ServerDir + "/" + HTTPURL);
+                        byte[] bytes = new byte[1024];
+
+                        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
+                        //GZIPOutputStream gzipOutputStream = new GZIPOutputStream(outputStream);
+                        int length = 0;
+                        while((length = fileInputStream.read(bytes)) != -1)
+                        {
+                            //gzipOutputStream.write(bytes,0,length);
+                            bufferedOutputStream.write(bytes,0,length);
+                            bufferedOutputStream.flush();
+                        }
+                        //gzipOutputStream.flush();
+                        //bufferedOutputStream.flush();
+                        bufferedOutputStream.close();
+                        fileInputStream.close();
+                        socket.close();
+                        return 0;
+                    }
+                });
+                future.get();
+                executorService.shutdown();
+
             }
             catch (Exception exception)
             {
@@ -179,30 +212,33 @@ public class WebServer {
 
                 for (int i =0;i < files.length ;i++)
                 {
-                    if (files[i].isFile())
-                    {
-                        for (int a=0;a< MultiServer.defaultPage.length;a++)
-                        {
-                            if (files[i].getName().equals(MultiServer.defaultPage[a]))
-                            {
+                    int tmpI = i;
+                    if (files[i].isFile()) {
+                        ExecutorService executorService = Executors.newFixedThreadPool(1);
+                        Future<Integer> future = executorService.submit(new Callable<Integer>() {
+                            @Override
+                            public Integer call() throws Exception {
+                                for (int a = 0; a < MultiServer.defaultPage.length; a++) {
+                                    if (files[tmpI].getName().equals(MultiServer.defaultPage[a])) {
                                         byte[] bytes = new byte[1024];
-                                        FileInputStream fileInputStream = new FileInputStream(MultiServer.ServerDir + "/" + HTTPURL+"/"+files[i].getName());
+                                        FileInputStream fileInputStream = new FileInputStream(MultiServer.ServerDir + "/" + HTTPURL + "/" + files[tmpI].getName());
                                         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
                                         int length = 0;
-        
-                                        while((length = fileInputStream.read(bytes)) != -1)
-                                        {
-                                            bufferedOutputStream.write(bytes,0,length);
+                                        while ((length = fileInputStream.read(bytes)) != -1) {
+                                            bufferedOutputStream.write(bytes, 0, length);
                                             bufferedOutputStream.flush();
                                         }
-        
-                                        bufferedOutputStream.flush();
+                                        //bufferedOutputStream.flush();
                                         bufferedOutputStream.close();
                                         fileInputStream.close();
                                         socket.close();
-                                break;
+                                    }
+                                }
+                                return 0;
                             }
-                        }
+                        });
+                        future.get();
+                        executorService.shutdown();
                     }
                 }
                 /**
