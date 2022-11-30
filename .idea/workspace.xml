@@ -5,31 +5,44 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99cb365b-2267-4b3b-b92d-05164d86f100" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/MultiServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/FastServer.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/LinWinHttp.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/LinWin_Proxy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Reload_Config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Sevice.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/limited.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/linux.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/unlimited.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/linwin-http-server.iml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/VirtualVisist.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/untitled/untitled.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinhttp.package/src/ServerClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinhttp.package/src/ServerClientConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinhttp.package/src/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinhttp.package/src/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/Version.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config/Version.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/BootMultiServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/BootMultiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/BootMultiServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/GZIPModule.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/init.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/init.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/init.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/init.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/Multi-Server/serversDefault.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/Multi-Server/serversDefault.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/Server.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/config/Server.cfg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -49,6 +62,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2HRBwfPfknXvK6OEQms1Pq12T0t" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -61,9 +77,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Editor++" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -89,5 +106,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
