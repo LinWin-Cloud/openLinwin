@@ -1,4 +1,4 @@
 {
-    "Default" : "/usr/LinWinHttp/default/nodeServer/",
+    "Server-Port" : "8080",
     "Index" : "/usr/www/html"
 }
