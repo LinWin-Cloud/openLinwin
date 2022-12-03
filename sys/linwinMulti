@@ -1,0 +1,5 @@
+#! /bin/bash
+
+cd /usr/LinWinHttp/com.linwinMultiServer.package/release/
+
+/usr/LinWinHttp/JRE/openJDK8/bin/java -jar BootMultiServer.jar
