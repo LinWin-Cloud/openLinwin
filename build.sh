@@ -11,10 +11,12 @@ javac -d ./bin/proxy/ ./com.linwinproxy.package/src/*.java
 echo '[Info] Build: Exit And Boot File.'
 javac -d ./bin/Sevice/ ./Sevice/*.java
 #编译快速网站部署模块
-echo '[Info] Build: Fast WebSite Server Modle'
+echo '[Info] Build: Fast WebSite Server Module'
 javac -d ./bin/FastServer/ ./com.linwinFastServer.package/src/*.java
 echo '[OK] Build All The Java File To Class ... ...'
-echo '[Info] Make And Build Jar File ... ...'
+# 编译多服务器模块
+echo '[Info] Build: Multi Http Server Module'
+javac -d ./bin/multiServer/ ./com.linwinMultiServer.package/src/*.java
 
 #将所有class文件编译jar包
 echo '[Info] Build Server Module'
@@ -30,4 +32,10 @@ jar -cvfm ../../Sevice/ServerBoot.jar ../../Sevice/MANIFEST.MF ServerBoot*.class
 cd ../FastServer/
 echo '[Info] Build Fast WebSite Server Module'
 jar -cvfm ../../FastServer/jar/FastServer.jar ../../FastServer/jar/MANIFEST.MF *.class
+echo '[Info] Build Multi Server Module Jar File.'
+cd ../multiServer/
+jar -cvfm ../../com.linwinMultiServer.package/release/com.linwinMultiServer.package.jar ../../com.linwinMultiServer.package/release/MANIFEST.MF *.class
+echo '[Info] Build Boot Multi Module'
+jar -cvfm ../../com.linwinMultiServer.package/release/BootMultiServer.jar ../../com.linwinMultiServer.package/release/Boot.MF *.class
+
 echo '\n[Info] Finish Building!'
