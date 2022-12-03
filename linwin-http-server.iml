@@ -8,7 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/UDPServer/src/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/proxy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/server" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/com.MultiServer.package" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/com.MultiServer.package" isTestSource="true" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
