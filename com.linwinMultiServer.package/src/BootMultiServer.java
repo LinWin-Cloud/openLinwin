@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +16,24 @@ public class BootMultiServer {
 					if (fileLastName.equals(".json")) {
 						//is json file. read it.
 						try {
-							String getServerPort = BootMultiServer.readJson(files[i].getAbsolutePath(),"Server-Port");
-							String getServerDir = BootMultiServer.readJson(files[i].getAbsolutePath(),"Index");
-							System.out.println(getServerDir);
+							int I = i;
+							Thread thread = new Thread(new Runnable() {
+								@Override
+								public void run() {
+									String getServerPort = BootMultiServer.readJson(files[I].getAbsolutePath(),"Server-Port");
+									String getServerDir = BootMultiServer.readJson(files[I].getAbsolutePath(),"Index");
+									//System.out.println(getServerDir+" "+getServerPort);
+									try {
+										//using system command to start the multi server.
+										Process process = Runtime.getRuntime().exec("/usr/LinWinHttp/sys/BootMultiServerVM.sh "+getServerDir+" "+getServerPort);
+									} catch (IOException e) {
+										e.printStackTrace();
+									}
+								}
+							});
+							thread.start();
+							System.out.println("[!] Boot Server: "+thread.getName());
+
 						}catch (Exception exception){
 							exception.printStackTrace();
 						}
@@ -42,13 +55,60 @@ public class BootMultiServer {
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			String line;
 			String jsonContent = "";
-			
+
+			List<String> list = new ArrayList<>();
 			while ((line=bufferedReader.readLine())!=null) {
-				jsonContent = jsonContent + line;
+				list.add(line);
 			}
+			String[] listJSON = list.toArray(new String[list.size()]);
+			for (int i=0;i < listJSON.length;i++) {
+				String dealCode = BootMultiServer.replaceSpace(listJSON[i]);
+				if (dealCode != null) {
+					//System.out.println(dealCode);
+					String defaultValue = dealCode.substring(0,dealCode.indexOf("\""));
+					//System.out.println(defaultValue);
+					if (defaultValue.equals(value)) {
+						//return the config json files content and deal .
+						//boot the Http server.
+						String getContent = BootMultiServer.getValueContent(listJSON[i]);
+						if (getContent != null) {
+							jsonContent = getContent;
+							break;
+						}
+					}
+				}
+			}
+			return jsonContent;
+
 		}catch (Exception exception) {
 			exception.printStackTrace();
 			return null;
 		}
+	}
+	public static String replaceSpace(String code) {
+		String space = "";
+		for (int i=0; i < code.length();i++) {
+			if (code.indexOf("\"") != -1) {
+				space = code.substring(code.indexOf("\"")+1,code.length());
+				break;
+			}
+			else {
+				space = null;
+			}
+		}
+		return space;
+	}
+	public static String getValueContent(String code) {
+		String content = "";
+		for (int i = 0; i< code.length();i++) {
+			if (code.indexOf(":") != -1) {
+				String tmpCode = code.substring(code.indexOf(":")+1,code.length());
+				content = tmpCode.substring(tmpCode.indexOf("\"")+1,tmpCode.lastIndexOf("\""));
+				break;
+			}else {
+				content = null;
+			}
+		}
+		return content;
 	}
 }

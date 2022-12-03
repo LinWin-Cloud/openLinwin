@@ -5,6 +5,7 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,12 +22,12 @@ public class MultiServer {
     public static String configRoot = "../../config/";
     public static String rulesRoot = "../../rules/";
     public static String Version = "";
-    public static String[] IPBlack = {""};
+    public static HashMap<String,String> IPBlack = new HashMap<>();
     public static String errorPage = "";
     public static String[] doNotVisit = {""};
     public static String[] urlOK = {""};
     public static String DebugDir = "../";
-    public static String[] defaultPage = {""};
+    public static HashMap<String,String> defaultPage = new HashMap<>();
     public static String strict_origin_when_cross_origin = "";
 
     public static void main(String[] args) {
@@ -34,7 +35,7 @@ public class MultiServer {
         try {
             //using executorService Function to load run the init code
             //init all the value of the server.
-            ExecutorService executorService = Executors.newFixedThreadPool(10000);
+            ExecutorService executorService = Executors.newFixedThreadPool(1);
             Future<Integer> future = executorService.submit(new Callable<Integer>() {
                 @Override
                 public Integer call() throws Exception {
@@ -64,9 +65,6 @@ public class MultiServer {
             });
             lookUpInitValueThread.start();
             //the main server software
-            for (int i = 0;i < MultiServer.defaultPage.length ;i++) {
-                //System.out.println(MultiServer.defaultPage[i]);
-            }   
             WebServer.mainWebServer();
 
         }catch(Exception exception) {

@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -71,7 +72,7 @@ public class init {
             return false;
         }
     }
-    public static String[] IPBLACK() {
+    public static HashMap<String,String> IPBLACK() {
         /*
          * 读取IP黑名单配置
          */
@@ -81,18 +82,12 @@ public class init {
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
-            List<String> list = new ArrayList<String>();
-            while ((line=bufferedReader.readLine())!=null)
-            {
-                list.add(line);
+            HashMap<String,String> hashMap = new HashMap<>();
+            while ((line=bufferedReader.readLine())!=null) {
+                hashMap.put(line,"true");
             }
-            String toline = list.toString();
-            toline = toline.replace("[", "");
-            toline = toline.replace("]", "");
-            toline = toline.replace(" ", "");
+            return hashMap;
 
-            bufferedReader.close();
-            return list.toString().replace("[", "").replace("]", "").split(",");
         }catch (Exception exception) {
             exception.printStackTrace();
             return null;
@@ -190,7 +185,7 @@ public class init {
             return null;
         }
     }
-    public static String[] defaultPage()
+    public static HashMap<String,String> defaultPage()
     {
         /**
          * 判断请求页面是否是默认页面
@@ -201,14 +196,12 @@ public class init {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String tmp;
-            List<String> list = new ArrayList<String>();
+            HashMap<String,String> hashMap = new HashMap<>();
             while ((tmp=bufferedReader.readLine())!=null)
             {
-                list.add(tmp);
+                hashMap.put(tmp,"true");
             }
-            bufferedReader.close();
-            fileReader.close();
-            return list.toString().replace("[", "").replace("]", "").split(",");
+            return hashMap;
         }catch (Exception e){
             return null;
         }
