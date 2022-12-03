@@ -1,2 +1,7 @@
-# com.linwinhttp.package 说明
-这个Java项目包是专门用于提供主要的HTTP服务的，根据各位网友的反馈，优化了该项目的目录结构和源代码结构。源代码专门放到了一个目录，而编译的文件放到了一个目录，谢谢支持与肯定.
+# Http Server Module
+Package Name: com.linwinhttp.package
+Build Time: 2022.12.3
+
+### Worry: We don't advice you use this module to HTTP Server.
+This moudule is too old. We advice you use the Multi Server Module
+In LinWinHttp Server(Version >= 2.0).
