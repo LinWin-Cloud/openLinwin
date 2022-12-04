@@ -1,0 +1,4 @@
+#! /bin/bash
+
+cd /usr/LinWinHttp/com.WsAttacker.package/release/
+/usr/LinWinHttp/JRE/openJDK8/bin/java -jar com.WSAttacker.package.jar
