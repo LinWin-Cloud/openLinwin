@@ -17,6 +17,9 @@ echo '[OK] Build All The Java File To Class ... ...'
 # 编译多服务器模块
 echo '[Info] Build: Multi Http Server Module'
 javac -d ./bin/multiServer/ ./com.linwinMultiServer.package/src/*.java
+echo '[Info] Build: WsAttacker Module'
+javac -d ./bin/wsAttacker/ ./com.WsAttacker.package/src/*.java
+
 
 #将所有class文件编译jar包
 echo '[Info] Build Server Module'
@@ -37,5 +40,8 @@ cd ../multiServer/
 jar -cvfm ../../com.linwinMultiServer.package/release/com.linwinMultiServer.package.jar ../../com.linwinMultiServer.package/release/MANIFEST.MF *.class
 echo '[Info] Build Boot Multi Module'
 jar -cvfm ../../com.linwinMultiServer.package/release/BootMultiServer.jar ../../com.linwinMultiServer.package/release/Boot.MF *.class
+echo '[Info] Build WsAttacker Module'
+cd ../wsAttacker
+jar -cvfm ../../com.WsAttacker.package/release/com.WSAttacker.package.jar ../../com.WsAttacker.package/release/MANIFEST.MF *.class
 
-echo '\n[Info] Finish Building!'
+echo '[Info] Finish Building!'
