@@ -1,5 +1,4 @@
 
 [*] All options of the Ws-Attack:
 1. Website Test                         Enter: use payload web_test
-2. Website Attack                       Enter: use payload web_attack
-3. Get Information of the Website       Enter: use payload web_info
+
