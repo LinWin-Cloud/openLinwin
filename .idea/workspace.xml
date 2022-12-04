@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99cb365b-2267-4b3b-b92d-05164d86f100" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/com.WsAttacker.package/config/Version.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/com.WsAttacker.package/config/options.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/com.WsAttacker.package/src/webSiteTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.WsAttacker.package/src/wsAttacker.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.WsAttacker.package/src/wsAttacker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LinWinHttpServer/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LinWinHttpServer/img/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LinWinHttpServer/mes/about.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.WsAttacker.package/src/webSiteTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.WsAttacker.package/src/webSiteTest$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.WsAttacker.package/src/webSiteTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.WsAttacker.package/src/webSiteTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.WsAttacker.package/src/webSiteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.WsAttacker.package/src/webSiteTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
