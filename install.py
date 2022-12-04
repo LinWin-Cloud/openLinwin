@@ -18,17 +18,12 @@ def Install():
             time.sleep(0.1)
             os.system('chmod +x /usr/LinWinHttp/Sevice/shell/*')
             os.system('cp /usr/LinWinHttp/default/page/linwinhttp-index.html /usr/www/html') 
-            # os.system('cd /usr/LinWinHttp/nodeJS && unzip linux.zip')
-            # os.system('cd /usr/LinWinHttp/Sevice/ && ../jre/bin/java -jar ServerBoot.jar')
             os.system('chmod 777 /usr/www/html')
             os.system('cp -f Sevice/systemd/linwinhttp.service /etc/systemd/system/')
-            os.system('systemctl daemon-reload')
-            os.system('systemctl linwinhttp start')
-            # os.system('cp /usr/LinWinHttp/sys/start_linwinhttp /etc/init.d')
             os.system('chmod +x /usr/LinWinHttp/* -R')
             os.system('cd /usr/LinWinHttp/JRE && tar -xvf  openJDK8.tar.xz')
             os.system('chmod +x /usr/LinWinHttp/sys/start_linwinhttp')
-            os.system('/usr/LinWinHttp/sys/start_linwinhttp')
+            #os.system('/usr/LinWinHttp/sys/start_linwinhttp')
 
             os.system('cp /usr/LinWinHttp/sys/linwinhttp /bin/')
             os.system('cp /usr/LinWinHttp/sys/linwinboot /bin/')
@@ -36,8 +31,6 @@ def Install():
             os.system('chmod +x /bin/linwinboot && chmod +x /bin/linwinreboot/')
 
             os.system('chmod +x /bin/linwinhttp')
-            os.system('chmod +x /etc/rc.d/rcX.d/linwinhttp')
-            os.system('systemctl enable linwinhttp.service')
             os.system('cp -f /usr/LinWinHttp/Sevice/desktop/linwinhttp.desktop /usr/share/applications')
  
             os.system('cp /usr/LinWinHttp/sys/linwindoc /bin/')
@@ -54,8 +47,11 @@ def Install():
 
             os.system("cp /usr/LinWinHttp/sys/linwinMulti /bin/")
             os.system("chmod +x /bin/linwinMulti")
+
+            os.system('cp /usr/LinWinHttp/sys/wsattacker /bin/ && chmod +x /bin/wsattacker')
             
             print('[!] Finish Install!Install Path: /usr/LinWinHttp/')
+            time.sleep(0.1)
             os.system("linwinMulti")
         print('Install ... ...')
         if os.path.exists("/usr/LinWinHttp/") and os.path.isdir("/usr/LinWinHttp/"):
