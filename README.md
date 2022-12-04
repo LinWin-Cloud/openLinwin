@@ -1,5 +1,5 @@
 # 目前最新版本
-V1.9 Community Build 2022.11.18
+V2.0 Community Build 2022.12.4
 
 # LinWin Http Server源代码
 
