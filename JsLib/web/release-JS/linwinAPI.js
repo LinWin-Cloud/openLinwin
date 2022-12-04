@@ -36,3 +36,6 @@ function getServerVersion() {
         return false;
     }
 }
+function sendApiKey(apiKey) {
+}
+println("hello world");
