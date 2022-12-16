@@ -5,6 +5,10 @@
     <content url="file://$MODULE_DIR$/../com.linwinMultiServer.package">
       <sourceFolder url="file://$MODULE_DIR$/../com.linwinMultiServer.package/src" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/../com.linwinproxy.package">
+      <sourceFolder url="file://$MODULE_DIR$/../com.linwinproxy.package/src" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../com.openProxy.Service" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
