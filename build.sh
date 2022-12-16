@@ -50,4 +50,6 @@ jar -cvfm ../../com.WsAttacker.package/release/com.WSAttacker.package.jar ../../
 cd ../MultiProxy
 jar -cvfm ../../com.openProxy.Service/release/com.openProxy.service.jar ../../com.openProxy.Service/release/MANIFEST.MF *.class
 
+jar -cvfm ../../com.openProxy.Service/release/boot.jar ../../com.openProxy.Service/release/Boot.MF bootOpenProxy*.class
+
 echo '[Info] Finish Building!'
