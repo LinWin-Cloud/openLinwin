@@ -9,7 +9,7 @@ public class WebServer {
     {
             ServerSocket serverSocket = new ServerSocket(MultiServer.ServerPort);
 
-            for (int i=0;i<15;i++) {
+            for (int i=0;i<30;i++) {
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -19,6 +19,14 @@ public class WebServer {
                                 socket = serverSocket.accept();
                                 WebServer.ServerHTTP(socket);
                             } catch (IOException e) {
+                                try
+                                {
+                                    socket.close();
+                                }
+                                catch (Exception exception)
+                                {
+                                    exception.printStackTrace();
+                                }
                                 e.printStackTrace();
                             }
                         }
@@ -47,24 +55,24 @@ public class WebServer {
                 HTTPURL = java.net.URLDecoder.decode(HTTPURL,"UTF-8");
                 String DoWithURL = HTTPURL.substring(HTTPURL.indexOf(" ")+1,HTTPURL.lastIndexOf("HTTP/")-1);
                 //exit the http server
-            if (HttpURL.indexOf("linwin_http_boot_web_1234567890_qwertyuiop=") != -1)
-            {
-                try {
-                    int s = HttpURL.indexOf("linwin_http_boot_web_1234567890_qwertyuiop=");
-                    int e = HttpURL.indexOf(";1234567890>>");
-                    String user = HttpURL.substring(s + "linwin_http_boot_web_1234567890_qwertyuiop=".length(), e);
-                    String pwd = HttpURL.substring(e + ";1234567890>>".length(), HttpURL.length());
-                    //读取配置
-                    if (init.ISUSER(user, pwd)) {
-                        MultiServer.sendAPI(printWriter, socket, "Successful");
-                        System.exit(0);
-                     } else {
-                        MultiServer.sendAPI(printWriter, socket, "Error");
+                if (HttpURL.indexOf("linwin_http_boot_web_1234567890_qwertyuiop=") != -1)
+                {
+                    try {
+                        int s = HttpURL.indexOf("linwin_http_boot_web_1234567890_qwertyuiop=");
+                        int e = HttpURL.indexOf(";1234567890>>");
+                        String user = HttpURL.substring(s + "linwin_http_boot_web_1234567890_qwertyuiop=".length(), e);
+                        String pwd = HttpURL.substring(e + ";1234567890>>".length(), HttpURL.length());
+                        //读取配置
+                        if (init.ISUSER(user, pwd)) {
+                            MultiServer.sendAPI(printWriter, socket, "Successful");
+                            System.exit(0);
+                        } else {
+                            MultiServer.sendAPI(printWriter, socket, "Error");
+                        }
+                    }catch(Exception exception) {
+                        WebServer.sendErrorPage(400, printWriter, socket, outputStream);
                     }
-                }catch(Exception exception) {
-                    WebServer.sendErrorPage(400, printWriter, socket, outputStream);
                 }
-            }
 
                 PrintWriter pWriter = new PrintWriter(outputStream);
                 WebSafety.SQL_Security(DoWithURL, pWriter, outputStream, socket, MultiServer.Version);
@@ -80,10 +88,7 @@ public class WebServer {
             bufferedReader.close();
             inputStream.close();
         }
-        catch (Exception exception)
-        {
-            
-        }
+        catch (Exception exception) {}
     }
     public static void Send_Dir_And_File_To_Client(PrintWriter pWriter,Socket socket,String HTTPURL,OutputStream outputStream,InputStream inputStream)
     {
@@ -99,7 +104,7 @@ public class WebServer {
         {
             try
             {
-                pWriter.println("HTTP/1.1 200 OK");
+                pWriter.println(MultiServer.httpVersion+" 200 OK");
                 pWriter.println("Content-Type:"+HTTPClientType.GetType(socket, MultiServer.ServerDir+HTTPURL));
                 pWriter.println("Server: LinWinHttp Server/"+MultiServer.Version);
                 pWriter.println("strict-origin-when-cross-origin: "+MultiServer.strict_origin_when_cross_origin);
@@ -157,7 +162,7 @@ public class WebServer {
         {
             try
             {
-                pWriter.println("HTTP/1.1 200 OK");
+                pWriter.println(MultiServer.httpVersion+" 200 OK");
                 pWriter.println("Content-Type:"+HTTPClientType.GetType(socket, MultiServer.ServerDir + "/" + HTTPURL));
                 pWriter.println("Server: LinWinHttp Server/"+MultiServer.Version);
                 pWriter.println("strict-origin-when-cross-origin: "+MultiServer.strict_origin_when_cross_origin);
@@ -246,7 +251,7 @@ public class WebServer {
         }
     }
     public static void sendErrorPage(int statusCode,PrintWriter pWriter,Socket socket,OutputStream outputStream) {
-        pWriter.println("HTTP/1.1 "+statusCode+" OK");
+        pWriter.println(MultiServer.httpVersion+" "+statusCode+" OK");
         pWriter.println("Content-Type:text/html");
         pWriter.println("Server: LinWin Http/"+MultiServer.Version);
         pWriter.println("strict-origin-when-cross-origin: "+MultiServer.strict_origin_when_cross_origin);

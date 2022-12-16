@@ -29,6 +29,7 @@ public class MultiServer {
     public static String DebugDir = "../";
     public static HashMap<String,String> defaultPage = new HashMap<>();
     public static String strict_origin_when_cross_origin = "";
+    public static String httpVersion = "HTTP/1.1";
 
     public static void main(String[] args) {
 
@@ -72,7 +73,7 @@ public class MultiServer {
         }
     }
     public static void sendAPI(PrintWriter pWriter,Socket socket,String message) {
-        pWriter.println("HTTP/1.1 200 OK");
+        pWriter.println(MultiServer.httpVersion+" 200 OK");
         pWriter.println("Content-Type:text/html");
         pWriter.println();
         pWriter.println(message);

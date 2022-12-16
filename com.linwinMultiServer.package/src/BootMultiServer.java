@@ -22,10 +22,11 @@ public class BootMultiServer {
 								public void run() {
 									String getServerPort = BootMultiServer.readJson(files[I].getAbsolutePath(),"Server-Port");
 									String getServerDir = BootMultiServer.readJson(files[I].getAbsolutePath(),"Index");
+									String getHttpVersion = BootMultiServer.readJson(files[I].getAbsolutePath(),"HttpVersion");
 									//System.out.println(getServerDir+" "+getServerPort);
 									try {
 										//using system command to start the multi server.
-										Process process = Runtime.getRuntime().exec("/usr/LinWinHttp/sys/BootMultiServerVM.sh "+getServerDir+" "+getServerPort);
+										Process process = Runtime.getRuntime().exec("/usr/LinWinHttp/sys/BootMultiServerVM.sh "+getServerDir+" "+getServerPort+" "+getHttpVersion);
 									} catch (IOException e) {
 										e.printStackTrace();
 									}
