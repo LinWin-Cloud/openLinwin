@@ -8,7 +8,7 @@ import java.util.List;
 public class bootOpenProxy {
     public static void main(String[] args) {
         try {
-            File file = new File("../../config/Multi-Proxy/");
+            File file = new File("/usr/LinWinHttp/config/Multi-Proxy/");
             if (file.isDirectory()&&file.exists()) {
                 //read all the json file of the multi open proxy config.
                 File[] files = file.listFiles();
@@ -24,7 +24,7 @@ public class bootOpenProxy {
                                 @Override
                                 public void run() {
                                     String getServerPort = bootOpenProxy.readJson(files[I].getAbsolutePath(),"Server-Port");
-                                    String getServerDir = bootOpenProxy.readJson(files[I].getAbsolutePath(),"Index");
+                                    String getServerDir = bootOpenProxy.readJson(files[I].getAbsolutePath(),"ProxyUrl");
                                     //System.out.println(getServerDir+" "+getServerPort);
                                     try {
                                         //using system command to start the multi server.
