@@ -1,2 +1,8 @@
 
-openLinwin
+openLinwin:
+
+1. Enter: linwinmutli start                 Start the linwin Mutli Server
+2. Enter: linwinmutli proxy_start           Start the linwin Multi Proxy Service
+3. Enter: linwinmulti help                  Get the help
+4. Enter: linwinmulti version               view the version information
+
