@@ -20,6 +20,9 @@ javac -d ./bin/multiServer/ ./com.linwinMultiServer.package/src/*.java
 echo '[Info] Build: WsAttacker Module'
 javac -d ./bin/wsAttacker/ ./com.WsAttacker.package/src/*.java
 
+echo '[Info] Build: Multi Proxy Service Module'
+javac -d ./bin/MultiProxy/ ./com.openProxy.Service/src/*.java
+
 
 #将所有class文件编译jar包
 echo '[Info] Build Server Module'
@@ -43,5 +46,8 @@ jar -cvfm ../../com.linwinMultiServer.package/release/BootMultiServer.jar ../../
 echo '[Info] Build WsAttacker Module'
 cd ../wsAttacker
 jar -cvfm ../../com.WsAttacker.package/release/com.WSAttacker.package.jar ../../com.WsAttacker.package/release/MANIFEST.MF *.class
+
+cd ../MultiProxy
+jar -cvfm ../../com.openProxy.Service/release/com.openProxy.service.jar ../../com.openProxy.Service/release/MANIFEST.MF *.class
 
 echo '[Info] Finish Building!'
