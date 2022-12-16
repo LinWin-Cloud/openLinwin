@@ -48,6 +48,9 @@ def Install():
             os.system("cp /usr/LinWinHttp/sys/linwinMulti /bin/")
             os.system("chmod +x /bin/linwinMulti")
 
+            os.system("cp /usr/LinWinHttp/sys/linwinmulti /bin/")
+            os.system("chmod +x /bin/linwinmulti")
+
             os.system('cp /usr/LinWinHttp/sys/wsattacker /bin/ && chmod +x /bin/wsattacker')
             
             print('[!] Finish Install!Install Path: /usr/LinWinHttp/')
@@ -71,20 +74,14 @@ def main():
         print('[ERR]Must Be RUn As Root')
         exit()
     os.system("clear")                        
-    print("""                                            
-                                                         ___
-                                                   _____  \ \  
-     _     _    __        ___       ___           /   __\  \ \   
-    | |   (_)_ _\ \      / (_)_ __  |__|         /_/\ \     \ \  
-    | |   | | '_ \ \ /\ / /| | '_ \  |__|      __    \ \    / /  
-    | |___| | | | \ V  V / | | | | |  |__|    /\ \    \ \  / /   
-    |_____|_|_| |_|\_/\_/  |_|_| |_|   |__|  / /\ \____\ \/ /    
-     _   _ _   _        ____                /_/  \______\ \/     
-    | | | | |_| |_ _ __/ ___|  ___ _ ____   _____ _ __   \_\ 
-    | |_| | __| __| '_ \___ \ / _ \ '__\ \ / / _ \ '__|   
-    |  _  | |_| |_| |_) |__) |  __/ |   \ V /  __/ |      
-    |_| |_|\__|\__| .__/____/ \___|_|    \_/ \___|_|      
-                  |_|                                     
+    print("""                                                 _
+                             _     _               _         | |
+       ___  _ __   ___ _ __ | |   (_)_ ____      _(_)_ __    | |
+      / _ \| '_ \ / _ \ '_ \| |   | | '_ \ \ /\ / / | '_ \   | |
+     | (_) | |_) |  __/ | | | |___| | | | \ V  V /| | | | |  | |
+      \___/| .__/ \___|_| |_|_____|_|_| |_|\_/\_/ |_|_| |_|  |_|
+           |_|
+
     [*] LinWinCloud Teams,UChat Teams,Yinghuo Teams.      
     [*] For Linux 2023
     """)
