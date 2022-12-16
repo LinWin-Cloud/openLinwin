@@ -1,4 +1,5 @@
 {
     "Server-Port" : "8080",
-    "Index" : "/usr/www/html"
+    "Index" : "/usr/www/html",
+    "HttpVersion" : "1.1"
 }
