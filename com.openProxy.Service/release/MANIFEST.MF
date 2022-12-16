@@ -1,0 +1,2 @@
+Main-Class: bootOpenProxy
+Manifest-Version: 1.0
