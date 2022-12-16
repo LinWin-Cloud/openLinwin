@@ -1,4 +1,6 @@
-# 本次的 LinWin Web Server 更新内容:
+# LinWin Web Server 更新内容:
+
+### Version 2.0:
 
 1. 新增 多服务器 模块 : 可在一台服务器上创建多个网站.
 2. 新增 网站攻击和测试模块 : 用于对网站的压力测试.
@@ -12,4 +14,14 @@
 10. 修改安装程序
 11. 加强了模块化的运用
 
-[] 如果有Bug以及建议等等请转至: https://gitee.com/LinWin-Cloud/linwin-http-server/
+### Version: 2.1:
+
+1. 新增多代理服务器模块
+2. 精简和优化了臃肿的目录结构
+3. 新增Http2和Http1.1的切换功能
+4. 修复了端口错误的Bug
+5. 优化服务器性能
+6. 完成 openLinwinAPI模块的编写
+7. 优化代码
+
+[] 如果有Bug以及建议等等请转至: https://gitee.com/LinWin-Cloud/openLinwin/
