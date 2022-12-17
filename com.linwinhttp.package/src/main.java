@@ -25,8 +25,8 @@ public class main {
     public static String httpVersion = "HTTP/1.1";
 
 
-    public static Boolean bootServerSocket()
-    {
+    public static Boolean bootServerSocket() throws ExecutionException, InterruptedException {
+        System.out.println("[Info] Start the serverSocket: "+main.GetServerPort());
         ServerSocket serverSocket = null;
         while (true)
         {
@@ -78,10 +78,6 @@ public class main {
                         API.APIServer();
                     }
                 }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
                 catch (Exception e)
                 {
                     e.printStackTrace();
@@ -94,7 +90,7 @@ public class main {
         {
             ServerSocket serverSocket = new ServerSocket(main.GetServerPort());
 
-            for (int i=0; i < 30;i++) {
+            for (int i=0; i < 15;i++) {
                 Thread httpServerThread = new Thread(new Runnable()
                 {
                     @Override
@@ -140,6 +136,7 @@ public class main {
                         }
                     }
                 });
+                httpServerThread.start();
             }
         }
     }
