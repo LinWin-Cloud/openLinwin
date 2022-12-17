@@ -1,26 +1,23 @@
 # 目前最新版本
-V2.0 Community Build 2022.12.4
+V2.1 Community Build 2022.12.4
 
-# LinWin Http Server源代码
-
-LinWin Http Server，项目最早构建于2021年的1月份，最初使用Python开发，
-<br />
-然而在中途中开发失败。过了1年半后，LinWin Http Server重新进入了开发的
-<br />
-范畴，并改用Java作为默认的开发语言。其独特的设计、简单的配置、贴合中
-<br />
-国人的使用体验，成就不非凡。
-
-使用Java开发，而且性能进过了很大程度的优化，对静态和动态的数据都有不
-<br />
-错的处理能力。
+# LinWin Http Server
 
 (安装后的操作)
 ### 产品网站入口: https://linwin-cloud.github.io/linwin-http-server/
 ### 文档入口: https://linwin-cloud.github.io/linwin-http-server/document/
-#### 最新的启动命令: linwinMulti  //这个命令是用来启动多服务器的，推荐这个
-#### 如何关闭多服务器: ps -ef | grep linwinMulti   //用来查找运行的linwin服务器进程，使用kill命令结束，极端情况下使用 killall -9 java
-#### 网站攻击测试模块: wsattacker
+
+# 多服务器模块命令
+多服务器模块已经代替了原本的代理服务器和主服务器模块，新的多服务器模块是设计更加优秀的而且效率更高速度更快
+
+1. Enter: linwinmutli start                 Start the linwin Mutli Server
+2. Enter: linwinmutli proxy_start           Start the linwin Multi Proxy Service
+3. Enter: linwinmulti help                  Get the help
+4. Enter: linwinmulti version               view the version information
+
+## 更新与模块信息
+1. <a href='./moudule.md'>模块信息</a>
+2. <a href='./update.md'>版本更新信息</a>
 
 ## 如何配置多个网站在服务器上
 在 /usr/LinWinHttp/config/Multi-Server/ 目录下,你可以随意命名一个新的配
@@ -29,7 +26,22 @@ LinWin Http Server，项目最早构建于2021年的1月份，最初使用Python
 	{
     		"Server-Port" : "8080", //Server-Port选项必须要,后面的这个8080是默认的服务端口，可以改称其他的.
     		"Index" : "/usr/www/html" //Index选项也必须要，用于配置服务目录.
+		"HttpVersion" : "1.1" //Http协议版本，推荐1.1或者2.0
 	}
+## 如何配置多个代理网站在服务器上
+代理服务器指的是在客户端与真实服务器之间一个代理的中继服务器，多用于
+隐藏真实服务器IP，提高访问效率和真实服务器安全以及隐私浏览等作用，对
+用户和服务器都很隐私安全
+
+在 /usr/LinWinHttp/config/Multi-Proxy/ 目录下,你可以随意命名一个新的配
+<br />
+置文件，但是拓展名必须是 '.json',文件内容如下:
+        {
+                "Server-Port" : "8080", //Server-Port选项必须要,后面的这个8080是默认的服务
+端口，可以改称其他的.
+                "ProxyUrl" : "http://127.0.0.1:80/" //ProxyUrl选项用于设置代理网址
+        }
+
 
 # 新版本 LinWin Http 优势
 1. 多服务器，多线程并行运算和服务，效率更高，效果更好，服务更加便捷
@@ -40,6 +52,8 @@ LinWin Http Server，项目最早构建于2021年的1月份，最初使用Python
 3. 加入网站攻击和测试模块: 在命令行内使用 wsattacker 命令便可以策划一次命令行下的攻击和测试.
 4. 优化了编译结构和脚本
 5. 对各个服务器的兼容非常好: 源代码一份，各个平台的Linux都支持(除了android). 
+6. 更新多代理服务器模块，比旧版本的更加稳定高效，速度非常快，可同时部署多个代理网站
+7. 优化了目录结构，使得代码和工作目录更加简洁和完善
 
 # 使用LinWin HttpServer必须的依赖项目
 ### 1. python3 
