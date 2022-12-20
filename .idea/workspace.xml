@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99cb365b-2267-4b3b-b92d-05164d86f100" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/server/main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/main$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/server/main$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/main$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/server/main$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/main$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/server/main$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/main$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/server/main$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/main$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/server/main$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/main$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/server/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/release/BootMultiServer.jar" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/release/BootMultiServer.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/release/com.linwinMultiServer.package.jar" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/release/com.linwinMultiServer.package.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinhttp.package/src/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinhttp.package/src/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.openProxy.Service/release/boot.jar" beforeDir="false" afterPath="$PROJECT_DIR$/com.openProxy.Service/release/boot.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.openProxy.Service/release/com.openProxy.service.jar" beforeDir="false" afterPath="$PROJECT_DIR$/com.openProxy.Service/release/com.openProxy.service.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/ErrorPage.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/config/ErrorPage.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/log.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/config/log.cfg" afterDir="false" />
-    </list>
+    <list default="true" id="99cb365b-2267-4b3b-b92d-05164d86f100" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
