@@ -4,6 +4,8 @@
  * https://github.com/LinWin-Cloud/
  */
 var apiVersion = "1.0";
+
+
 function println(out) {
     console.log(out);
     return true;
@@ -26,8 +28,7 @@ function getServerVersion() {
     var sendURL = remoteIP + "/?API=Version";
     try {
         var xhr = new XMLHttpRequest();
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.open("POST", sendURL, true);
+        xhr.open("GET", sendURL, false);
         xhr.send("apiKey=Version"); //send the api content.
         return true;
     }
@@ -37,5 +38,8 @@ function getServerVersion() {
     }
 }
 function sendApiKey(apiKey) {
+
 }
-println("hello world");
+function listDir(dirUrl) {
+
+}
