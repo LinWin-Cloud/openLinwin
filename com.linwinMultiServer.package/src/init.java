@@ -1,3 +1,5 @@
+
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -29,6 +31,7 @@ public class init {
             MultiServer.defaultPage = init.defaultPage();
             MultiServer.strict_origin_when_cross_origin = WebClient.strict_origin_when_cross_origin();
             //VirtualVisist.ServerFile_Web();
+            MultiServer.defaultPage_str = init.defaultPage_str();
 
         }catch(Exception exception) {
             exception.printStackTrace();
@@ -202,6 +205,28 @@ public class init {
                 hashMap.put(tmp,"true");
             }
             return hashMap;
+        }catch (Exception e){
+            return null;
+        }
+    }
+    public static String[] defaultPage_str()
+    {
+        /**
+         * 判断请求页面是否是默认页面
+         */
+        try {
+            File file = new File(MultiServer.configRoot+"defaultPage.cfg");
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String tmp;
+            List<String> list = new ArrayList<>();
+            while ((tmp=bufferedReader.readLine())!=null)
+            {
+                list.add(tmp);
+            }
+            String[] strings = list.toArray(new String[list.size()]);
+            return strings;
         }catch (Exception e){
             return null;
         }

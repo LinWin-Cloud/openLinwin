@@ -28,6 +28,7 @@ public class MultiServer {
     public static String[] urlOK = {""};
     public static String DebugDir = "../";
     public static HashMap<String,String> defaultPage = new HashMap<>();
+    public static String[] defaultPage_str = new String[0];
     public static String strict_origin_when_cross_origin = "";
     public static String httpVersion = "HTTP/1.1";
 
