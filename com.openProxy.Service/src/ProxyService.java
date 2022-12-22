@@ -92,7 +92,6 @@ public class ProxyService {
              * get the Really string text of the url , and deal with the Http Proxy
              */
             String requests = bufferedReader.readLine();
-            requests = java.net.URLDecoder.decode(requests,"UTF-8");
 
             String getHttpMethod = requests.substring(0,requests.indexOf(" "));
             String getUrl = requests.substring(requests.indexOf(" ")+1,requests.lastIndexOf("HTTP/")-1);
