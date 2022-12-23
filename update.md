@@ -24,4 +24,11 @@
 6. 完成 openLinwinAPI模块的编写
 7. 优化代码
 
+### Version 2.2:
+
+1. 优化部分代码 
+2. 精简目录结构
+3. 修改多服务器算法，索引效率更高
+4. 修改部分的配置文件
+
 [] 如果有Bug以及建议等等请转至: https://gitee.com/LinWin-Cloud/openLinwin/
