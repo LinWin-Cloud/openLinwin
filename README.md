@@ -1,11 +1,11 @@
 # 目前最新版本
-V2.1 Community Build 2022.12.4
+V2.2 Community Build 2022.12.4
 
 # LinWin Http Server
 
 (安装后的操作)
 ### 产品网站入口: https://linwin-cloud.github.io/linwin-http-server/
-### 文档入口: https://linwin-cloud.github.io/linwin-http-server/document/
+### 文档入口: https://gitee.com//LinWin-Cloud/openLinwin/wiki/
 
 # 多服务器模块命令
 多服务器模块已经代替了原本的代理服务器和主服务器模块，新的多服务器模块是设计更加优秀的而且效率更高速度更快
