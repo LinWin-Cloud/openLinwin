@@ -114,7 +114,7 @@ public class main {
                                 /**
                                  * 判断是否拒绝服务
                                  */
-                                if (WebSafety.BlackIP(socket.getInetAddress().toString().replace("/", ""), IPBLACK))
+                                if (WebSafety.BlackIP(socket.getInetAddress().toString().replace("/", ""),main.IPBLACK))
                                 {
                                     socket.close();
                                 }
