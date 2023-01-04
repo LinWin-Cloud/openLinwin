@@ -1,6 +1,5 @@
 {
     "Server-Port" : "8080",
     "Index" : "/usr/www/html",
-    "HttpVersion" : "HTTP1/1.1",
-    "Bind" : "localhost"
+    "HttpVersion" : "HTTP1/1.1"
 }
