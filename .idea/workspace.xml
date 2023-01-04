@@ -5,9 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99cb365b-2267-4b3b-b92d-05164d86f100" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/HttpService$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/HttpService$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/HttpService.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/HttpService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/MultiServer$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/MultiServer$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/MultiServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/MultiServer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/MultiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/MultiServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/VirtualVisist$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/VirtualVisist$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/VirtualVisist$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/VirtualVisist$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/VirtualVisist.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/VirtualVisist.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/VirtualVisist.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/VirtualVisist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebSafety.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebSafety.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinhttp.package/src/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinhttp.package/src/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/default/ErrorPage/400.html" beforeDir="false" afterPath="$PROJECT_DIR$/default/ErrorPage/400.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/default/ErrorPage/403.html" beforeDir="false" afterPath="$PROJECT_DIR$/default/ErrorPage/403.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/default/ErrorPage/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/default/ErrorPage/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/default/ErrorPage/405.html" beforeDir="false" afterPath="$PROJECT_DIR$/default/ErrorPage/405.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/default/ErrorPage/500.html" beforeDir="false" afterPath="$PROJECT_DIR$/default/ErrorPage/500.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled/untitled.iml" beforeDir="false" afterPath="$PROJECT_DIR$/untitled/untitled.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,16 +78,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/ubuntu-linux/openLinwin/config&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/home/ubuntu-linux/openLinwin/default",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
   <component name="ReaderModeSettings">
     <option name="showLigatures" value="false" />
   </component>
