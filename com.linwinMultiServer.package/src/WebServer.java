@@ -139,7 +139,7 @@ class HttpService {
            sendErrorPage(403,printWriter,socket,outputStream);
            return;
         }
- 
+
         String httpUrl = bufferedReader.readLine();
         httpUrl = java.net.URLDecoder.decode(httpUrl,"UTF-8");
 
