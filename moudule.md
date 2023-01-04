@@ -9,5 +9,6 @@ Number		Module Name			Module Add Version
 6. 		Multi Server				2.0
 7. 		Web API					2.1
 8. 		Multi Porxy Service			2.1
+9. 		服务器API自定义模块(Python)
 
 ===================================================================
