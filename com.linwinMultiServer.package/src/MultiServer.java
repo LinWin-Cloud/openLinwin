@@ -73,6 +73,13 @@ public class MultiServer {
                     }
                 }
             });
+            Thread Load_Index = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    
+                }
+            });
+            Load_Index.start();
             Load_All.start();
 
             //if finish the options then run the server.

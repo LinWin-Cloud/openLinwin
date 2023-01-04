@@ -101,7 +101,20 @@ public class VirtualVisist {
                         File Index = new File(path+"/"+MultiServer.defaultPage_str[a]);
                         if (Index.exists() && Index.isFile())
                         {
-                            
+                            FileReader fileReader = new FileReader(Index);
+                            BufferedReader bufferedReader = new BufferedReader(fileReader);
+                            String line;
+                            String tmpRead = "";
+                            while (( line = bufferedReader.readLine()) != null)
+                            {
+                                tmpRead = tmpRead + line;
+                            }
+                            VirtualVisist.VirtualList_IndexHTML.put(Index.getAbsolutePath(),tmpRead);
+                            fileReader.close();
+                            bufferedReader.close();
+                            break;
+                        }else {
+                            continue;
                         }
                     }
 

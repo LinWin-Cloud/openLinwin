@@ -44,6 +44,15 @@ class HttpService {
         {
             File file = new File(path);
 
+            /**
+             * Index the Index.html or other Index HTML files in the config file.
+             * Author : openLinwin
+             * v2.3 Version Using the HashMap And Virtual Visit to read the Index File and do not
+             * Read the disk.
+             */
+
+            String Index = VirtualVisist.VirtualList_IndexHTML.get(path);
+
             for (int i = 0 ; i < MultiServer.defaultPage_str.length ; i++)
             {
                 File file1 = new File(path+"/"+MultiServer.defaultPage_str[i]);
