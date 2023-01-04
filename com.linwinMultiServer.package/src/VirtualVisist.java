@@ -8,6 +8,7 @@ import java.util.concurrent.*;
 public class VirtualVisist {
     public static HashMap<String,String> VirtualList = new HashMap<>();
     public static HashMap<String,byte[]> VirtualList_Byte = new HashMap<>();
+    public static HashMap<String,String> VirtualList_IndexHTML = new HashMap<>();
 
     public static void load_Service_Dir(String Service) {
         File file = new File(Service);
@@ -82,5 +83,32 @@ public class VirtualVisist {
             e.printStackTrace();
         }
         return isText;
+    }
+    public static void Index(String path)
+    {
+        File file = new File(path);
+        File[] files = file.listFiles();
+        for (int i = 0 ; i < files.length ; i++)
+        {
+            if (files[i].isDirectory()) {
+                VirtualVisist.load_Service_Dir(path+"/"+files[i].getName());
+                continue;
+            }
+            else {
+                try {
+                    for (int a = 0 ; i < MultiServer.defaultPage_str.length ; a++)
+                    {
+                        File Index = new File(path+"/"+MultiServer.defaultPage_str[a]);
+                        if (Index.exists() && Index.isFile())
+                        {
+                            
+                        }
+                    }
+
+                }catch (Exception exception){
+                    exception.printStackTrace();
+                }
+            }
+        }
     }
 }
