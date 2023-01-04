@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99cb365b-2267-4b3b-b92d-05164d86f100" name="Changes" comment="" />
+    <list default="true" id="99cb365b-2267-4b3b-b92d-05164d86f100" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/openAPI/python/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/Multi-Server/serversDefault.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/Multi-Server/serversDefault.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled/untitled.iml" beforeDir="false" afterPath="$PROJECT_DIR$/untitled/untitled.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,10 +65,10 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/ubuntu-linux/openLinwin/default",
+    "last_opened_file_path": "/home/ubuntu-linux/openLinwin/openAPI",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
   <component name="ReaderModeSettings">
@@ -81,6 +86,7 @@
     <servers />
   </component>
   <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.py" />
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.cfg" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
