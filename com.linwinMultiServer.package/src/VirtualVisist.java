@@ -98,7 +98,9 @@ public class VirtualVisist {
                 try {
                     for (int a = 0 ; i < MultiServer.defaultPage_str.length ; a++)
                     {
-                        File Index = new File(path+"/"+MultiServer.defaultPage_str[a]);
+                        String strPath = path+"/"+MultiServer.defaultPage_str[a];
+                        strPath = strPath.replace("//","/");
+                        File Index = new File(strPath);
                         if (Index.exists() && Index.isFile())
                         {
                             FileReader fileReader = new FileReader(Index);
@@ -109,7 +111,8 @@ public class VirtualVisist {
                             {
                                 tmpRead = tmpRead + line;
                             }
-                            VirtualVisist.VirtualList_IndexHTML.put(Index.getAbsolutePath(),tmpRead);
+                            System.out.println(path);
+                            VirtualVisist.VirtualList_IndexHTML.put(path,tmpRead);
                             fileReader.close();
                             bufferedReader.close();
                             break;

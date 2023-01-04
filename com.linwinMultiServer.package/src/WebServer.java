@@ -51,7 +51,21 @@ class HttpService {
              * Read the disk.
              */
 
-            String Index = VirtualVisist.VirtualList_IndexHTML.get(path);
+            String Index = VirtualVisist.VirtualList_IndexHTML.get(file.getAbsolutePath().replace("//","/")+"/");
+            //System.out.println(file.getAbsolutePath().replace("//","/")+"/");
+            if (Index != null)
+            {
+                printWriter.println(MultiServer.httpVersion+" "+code+" OK");
+                printWriter.println("Content-Type: "+HTTPClientType.GetType(socket,path));
+                printWriter.println("Server: openLinwin/"+ MultiServer.Version);
+                printWriter.println("Length: "+new File(path).length());
+                printWriter.println();
+                printWriter.flush();
+
+                printWriter.println(Index);
+                printWriter.flush();
+                socket.close();
+            }
 
             for (int i = 0 ; i < MultiServer.defaultPage_str.length ; i++)
             {
@@ -77,7 +91,7 @@ class HttpService {
             printWriter.flush();
 
             printWriter.println("<h3>IndexOF: "+path.substring(path.indexOf(MultiServer.ServerDir)+MultiServer.ServerDir.length())+"</h3>");
-            printWriter.println("<a href='../'>Back</a><br />");
+            printWriter.println("<a href='../'>Back</a><br /><br />");
             for (int i = 0 ; i < ListFiles.length ; i ++)
             {
                 if (ListFiles[i].isDirectory()) {
@@ -94,6 +108,10 @@ class HttpService {
                     printWriter.flush();
                 }
             }
+            printWriter.println("<div style='width:90%;height:3px;background-color:black></div>'");
+            printWriter.println("OpenLinwin/"+MultiServer.Version);
+            printWriter.flush();
+            printWriter.flush();
             printWriter.close();
             socket.close();
 
@@ -117,6 +135,11 @@ class HttpService {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"UTF-8"));
         PrintWriter printWriter = new PrintWriter(outputStream);
 
+        if (WebSafety.BlackIP(socket.getInetAddress().toString())) {
+           sendErrorPage(403,printWriter,socket,outputStream);
+           return;
+        }
+
         String httpUrl = bufferedReader.readLine();
         httpUrl = java.net.URLDecoder.decode(httpUrl,"UTF-8");
 
@@ -128,6 +151,9 @@ class HttpService {
         try
         {
             String Http = httpUrl;
+
+            WebSafety.XSS_Security(Http,printWriter,outputStream,socket,MultiServer.Version);
+            WebSafety.SQL_Security(Http,printWriter,outputStream,socket,MultiServer.Version);
 
             if (Http == null) {
                 socket.close();
@@ -160,6 +186,8 @@ public class WebServer {
     {
         WebServer.getServerSocket(MultiServer.ServerPort);
         ServerSocket serverSocket = new ServerSocket(MultiServer.ServerPort);
+        serverSocket.setPerformancePreferences(1,5,10);
+        serverSocket.setReceiveBufferSize(64 * 1024 * 1024);
         HttpService httpService = new HttpService();
         for (int i = 0 ; i < 16 ; i++) {
             Thread thread = new Thread(new Runnable() {
@@ -169,6 +197,10 @@ public class WebServer {
                     {
                         try {
                             Socket socket = serverSocket.accept();
+                            socket.setTcpNoDelay(false);
+                            socket.setSoTimeout(500);
+                            socket.setTrafficClass(0x08 | 0x10);
+
                             WebServer.FutureEXE(httpService, socket);
                         }
                         catch (Exception exception) {

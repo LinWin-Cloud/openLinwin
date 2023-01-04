@@ -76,7 +76,7 @@ public class MultiServer {
             Thread Load_Index = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    
+                    VirtualVisist.Index(MultiServer.ServerDir);
                 }
             });
             Load_Index.start();
