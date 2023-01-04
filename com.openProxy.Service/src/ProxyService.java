@@ -22,7 +22,7 @@ public class ProxyService {
             if (proxyService.bootServerSocket())
             {
                 ServerSocket serverSocket = new ServerSocket(ProxyService.ProxyPort);
-                for (int i=0 ;i<30 ;i++)
+                for (int i=0 ;i<16 ;i++)
                 {
                     Thread thread = new Thread(new Runnable()
                     {
