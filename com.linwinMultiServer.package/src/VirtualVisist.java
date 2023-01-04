@@ -1,71 +1,86 @@
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.util.HashMap;
+import java.util.concurrent.*;
 
 public class VirtualVisist {
-    public static String[] fileContent = new String[0];
-    public static String[] filePath = new String[0];
+    public static HashMap<String,String> VirtualList = new HashMap<>();
+    public static HashMap<String,byte[]> VirtualList_Byte = new HashMap<>();
 
-    public static String getPageContent_Web(String name) throws Exception {
-        File file = new File(name);
-        FileReader fileReader = new FileReader(file);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String line = "";
-        String tmpLine = "";
-        while ((line=bufferedReader.readLine())!=null) {
-            tmpLine = tmpLine + line;
-        }
-        return tmpLine;
-    }
-    public static void ServerFile_Web() throws Exception {
+    public static void load_Service_Dir(String Service) {
+        File file = new File(Service);
+        File[] files = file.listFiles();
+        for (int i = 0 ; i < files.length ; i++)
+        {
+            if (files[i].isDirectory()) {
+                VirtualVisist.load_Service_Dir(Service+"/"+files[i].getName());
+                continue;
+            }
+            else {
+                String path = files[i].getAbsolutePath().replace("//","/");
+                try {
+                    if (VirtualVisist.isText(new File(path))) {
 
-        String serverPath = MultiServer.ServerDir;
-        VirtualVisist.getDirContent(serverPath);
-    }
-    public static void getDirContent(String file) throws Exception {
-        File file1 = new File(file);
-        File[] files = file1.listFiles();
-        for (int i=0;i<files.length;i++) {
-            if (files[i].isFile()&&files[i].exists()) {
-                String fileName = files[i].getName();
-                String[] last = {".html",".htm",".css",".js",".txt",".json"};
-                for (int a=0;a<last.length;a++) {
-                    if (fileName.lastIndexOf(last[i])!=-1) {
-                        List<String> list = new ArrayList<>();
-                        for (int b=0;b<VirtualVisist.filePath.length;b++) {
-                            list.add(VirtualVisist.filePath[b]);
-                        }
-                        list.add(files[i].getAbsolutePath());
-                        VirtualVisist.filePath = list.toArray(new String[list.size()]);
+                        ExecutorService executorService = Executors.newFixedThreadPool(1);
+                        Future<Integer> future = executorService.submit(new Callable<Integer>() {
+                            @Override
+                            public Integer call() throws Exception {
+                                FileReader fileReader = new FileReader(path);
+                                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                                String line;
+                                String addText = "";
 
-                        VirtualVisist.addFileContent();
+                                while ((line = bufferedReader.readLine()) != null)
+                                {
+                                    addText = addText + line;
+                                }
+                                //System.out.println(path);
+                                VirtualVisist.VirtualList.put(path,addText);
+                                bufferedReader.close();
+                                fileReader.close();
+                                //System.out.println(VirtualVisist.VirtualList.get(path));
+                                return 0;
+                            }
+                        });
+                        executorService.shutdown();
+                        continue;
+                    }else {
+                        ExecutorService executorService = Executors.newFixedThreadPool(1);
+                        Future<Integer> future = executorService.submit(new Callable<Integer>() {
+                            @Override
+                            public Integer call() throws Exception {
+
+                                return 0;
+                            }
+                        });
+                        executorService.shutdown();
+                        continue;
                     }
+                }catch (Exception exception){
+                    exception.printStackTrace();
                 }
             }
-            if (files[i].isDirectory()&&files[i].exists()) {
-                VirtualVisist.getDirContent(files[i].getAbsolutePath());
-            }
         }
     }
-    public static void addFileContent() throws Exception {
-        List<String> list = new ArrayList<>();
 
-        List<String> list1 = new ArrayList<>();
-        for (int i =0;i < VirtualVisist.filePath.length;i++) {
-            FileReader fileReader = new FileReader(VirtualVisist.filePath[i]);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line;
-            String tmpLine = "";
-            while ((line=bufferedReader.readLine())!=null) {
-                tmpLine = tmpLine + line;
+    public static boolean isText(File file) {
+        boolean isText = true;
+        try {
+            FileInputStream fin = new FileInputStream(file);
+            long len = file.length();
+            for (int j = 0; j < (int) len; j++) {
+                int t = fin.read();
+                if (t < 32 && t != 9 && t != 10 && t != 13) {
+                    isText = false;
+                    break;
+                }
             }
-            list1.add(tmpLine);
+            fin.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        VirtualVisist.filePath = list.toArray(new String[list.size()]);
-        VirtualVisist.fileContent = list.toArray(new String[list1.size()]);
+        return isText;
     }
 }

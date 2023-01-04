@@ -50,6 +50,31 @@ public class MultiServer {
             executorService.shutdown();
             //get the run result.
             future.get();
+
+            Thread virtualList = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    VirtualVisist.load_Service_Dir(MultiServer.ServerDir);
+                }
+            });
+            virtualList.start();
+
+            Thread Load_All = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true) {
+                        try
+                        {
+                            Thread.sleep(1000 * 60);
+                            VirtualVisist.load_Service_Dir(MultiServer.ServerDir);
+                        }catch (Exception exception) {
+                            exception.printStackTrace();
+                        }
+                    }
+                }
+            });
+            Load_All.start();
+
             //if finish the options then run the server.
 
             Thread lookUpInitValueThread = new Thread(new Runnable() {
