@@ -5,21 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99cb365b-2267-4b3b-b92d-05164d86f100" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/Def_API.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/OpenMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/MultiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/MultiServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/VirtualVisist.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/VirtualVisist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebSafety.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebSafety.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebSafety.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebSafety.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/Multi-Server/serversDefault.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/Multi-Server/serversDefault.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/defaultPage.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/config/defaultPage.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled/untitled.iml" beforeDir="false" afterPath="$PROJECT_DIR$/untitled/untitled.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
