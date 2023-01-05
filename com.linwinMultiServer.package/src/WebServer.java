@@ -195,6 +195,23 @@ public class WebServer {
     private static int EXE_Boot = 0;
 
     public static int Start_Test = 0;
+    private String httpUrl = null;
+    private String httpMethod = "GET";
+    private HttpService httpService = null;
+    private Socket socket = null;
+    public String getHttpUrl() {
+        return this.httpUrl;
+    }
+    public String getHttpMethod() {
+        return this.httpMethod;
+    }
+    public HttpService getHttpService() {
+        return this.httpService;
+    }
+    public Socket getSocket()
+    {
+        return this.socket;
+    }
 
     public static void mainWebServer() throws Exception
     {
