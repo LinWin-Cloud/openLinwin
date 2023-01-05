@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99cb365b-2267-4b3b-b92d-05164d86f100" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/APIService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/APIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/APIService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/openAPI/python/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/openAPI/python/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
