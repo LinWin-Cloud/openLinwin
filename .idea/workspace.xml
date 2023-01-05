@@ -5,60 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99cb365b-2267-4b3b-b92d-05164d86f100" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FastServer/jar/FastServer.jar" beforeDir="false" afterPath="$PROJECT_DIR$/FastServer/jar/FastServer.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JRE/openJDK8.tar.xz" beforeDir="false" afterPath="$PROJECT_DIR$/JRE/openJDK8.tar.xz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sevice/Exit_Server.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Sevice/Exit_Server.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sevice/ServerBoot.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Sevice/ServerBoot.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/MultiProxy/ProxyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/MultiProxy/ProxyService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/multiServer/BootMultiServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/multiServer/BootMultiServer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/multiServer/BootMultiServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/multiServer/BootMultiServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/multiServer/MultiServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/multiServer/MultiServer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/multiServer/MultiServer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/multiServer/MultiServer$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/multiServer/MultiServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/multiServer/MultiServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/multiServer/VirtualVisist.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/multiServer/VirtualVisist.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/multiServer/WebSafety.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/multiServer/WebSafety.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/multiServer/WebServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/multiServer/WebServer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/multiServer/WebServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/multiServer/WebServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/multiServer/init.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/multiServer/init.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.WsAttacker.package/release/com.WSAttacker.package.jar" beforeDir="false" afterPath="$PROJECT_DIR$/com.WsAttacker.package/release/com.WSAttacker.package.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/build.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/release/BootMultiServer.jar" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/release/BootMultiServer.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/release/com.linwinMultiServer.package.jar" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/release/com.linwinMultiServer.package.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/APIService$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/APIService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/APIService.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/APIService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/BootMultiServer$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/BootMultiServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/BootMultiServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/BootMultiServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/Def_API.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/GZIPModule.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/HTTPClientType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/HttpService$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/HttpService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/MultiServer$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/MultiServer$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/MultiServer$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/MultiServer$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/MultiServer$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/MultiServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/OpenMap.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/TextSocketModule$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/TextSocketModule.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/VirtualVisist$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/VirtualVisist$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/VirtualVisist.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebClient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebSafety.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer$1$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.linwinMultiServer.package/src/WebServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.linwinMultiServer.package/src/init.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/com.openProxy.Service/release/boot.jar" beforeDir="false" afterPath="$PROJECT_DIR$/com.openProxy.Service/release/boot.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.openProxy.Service/release/com.openProxy.service.jar" beforeDir="false" afterPath="$PROJECT_DIR$/com.openProxy.Service/release/com.openProxy.service.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/default/page/linwinhttp-index.html" beforeDir="false" afterPath="$PROJECT_DIR$/default/page/linwinhttp-index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/install.py" beforeDir="false" afterPath="$PROJECT_DIR$/install.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moudule.md" beforeDir="false" afterPath="$PROJECT_DIR$/moudule.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/LinWinHttp.jar" beforeDir="false" afterPath="$PROJECT_DIR$/server/LinWinHttp.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sys/BootMultiServerVM.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sys/BootMultiServerVM.sh" afterDir="false" />
     </list>
