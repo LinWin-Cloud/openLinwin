@@ -10,6 +10,20 @@ class HttpService {
 
     private String HttpMethod = "GET";
     private String HttpUrl = "";
+    private HttpService httpService;
+
+    public String getHttpUrl()
+    {
+        return this.HttpUrl;
+    }
+    public String getHttpMethod()
+    {
+        return this.HttpMethod;
+    }
+    public HttpService getHttpService()
+    {
+        return this.httpService;
+    }
 
     public void sendFile(String path,int code,PrintWriter printWriter,Socket socket,OutputStream outputStream) throws Exception {
 
@@ -188,7 +202,6 @@ public class WebServer {
         ServerSocket serverSocket = new ServerSocket(MultiServer.ServerPort);
         serverSocket.setPerformancePreferences(1,5,10);
         serverSocket.setReceiveBufferSize(64 * 1024 * 1024);
-        HttpService httpService = new HttpService();
         for (int i = 0 ; i < 16 ; i++) {
             Thread thread = new Thread(new Runnable() {
                 @Override
@@ -197,10 +210,11 @@ public class WebServer {
                     {
                         try {
                             Socket socket = serverSocket.accept();
-                            socket.setTcpNoDelay(false);
                             socket.setSoTimeout(500);
-                            socket.setTrafficClass(0x08 | 0x10);
+                            APIService apiService = new APIService();
+                            apiService.apiKeyRun();
 
+                            HttpService httpService = new HttpService();
                             WebServer.FutureEXE(httpService, socket);
                         }
                         catch (Exception exception) {
