@@ -78,6 +78,7 @@ class HttpService {
 
             //String Index = VirtualVisist.VirtualList_IndexHTML.get(file.getAbsolutePath().replace("//","/")+"/");
             //System.out.println(file.getAbsolutePath().replace("//","/")+"/");
+            /*
             String Index = null;
             if (Index != null)
             {
@@ -92,6 +93,7 @@ class HttpService {
                 printWriter.flush();
                 socket.close();
             }
+             */
 
             for (int i = 0 ; i < MultiServer.defaultPage_str.length ; i++)
             {
@@ -141,7 +143,6 @@ class HttpService {
             printWriter.println("OpenLinwin/"+MultiServer.Version);
             printWriter.flush();
             printWriter.flush();
-            printWriter.close();
             socket.close();
 
         }catch (Exception exception) {
@@ -264,7 +265,7 @@ public class WebServer {
         ServerSocket serverSocket = new ServerSocket(MultiServer.ServerPort);
         //serverSocket.setPerformancePreferences(1,5,10);
         //serverSocket.setReceiveBufferSize(64 * 1024 * 1024);
-        for (int i = 0 ; i < 16 ; i++) {
+        for (int i = 0 ; i < 12 ; i++) {
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {

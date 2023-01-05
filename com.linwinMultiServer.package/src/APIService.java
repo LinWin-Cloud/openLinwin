@@ -23,6 +23,9 @@ public class APIService {
         this.httpService = httpService;
     }
     private Socket getSocket(){
+        /**
+         * you can get the socket class type
+         */
         return this.socket;
     }
     private OutputStream getOutputStream() {
@@ -37,7 +40,7 @@ public class APIService {
     private HttpService getHttpService() {
         return this.httpService;
     }
-    public void apiKeyRun()
+    public void apiKeyRun() throws Exception
     {
         /**
          * This function is your writing to the Server

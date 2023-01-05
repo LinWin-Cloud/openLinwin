@@ -33,7 +33,7 @@ public class BootMultiServer {
 								}
 							});
 							thread.start();
-							System.out.println("[!] Boot Server: "+thread.getName());
+							System.out.println("[!] Boot Server="+thread.getName()+" ; ID="+thread.getId()+" ; OS="+System.getProperty("os.name"));
 
 						}catch (Exception exception){
 							exception.printStackTrace();
