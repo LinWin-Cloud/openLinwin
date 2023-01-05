@@ -10,6 +10,10 @@ def Install():
         exit()
     else:
         def a():
+            if os.path.exists("/usr/LinWinHttp/") == True:
+                os.mkdir("/usr/LinWinHttp/openlinwin-backup")
+                os.system("mv /usr/LinWinHttp/config/* /usr/openlinwin-backup/config")
+                
             os.system('rm -fr /usr/LinWinHttp')
             os.system('mkdir /usr/LinWinHttp')
             os.system('mkdir /usr/www')
@@ -17,13 +21,18 @@ def Install():
             os.system('cp -rf ./* /usr/LinWinHttp/')
             time.sleep(0.1)
             os.system('chmod +x /usr/LinWinHttp/Sevice/shell/*')
-            os.system('cp /usr/LinWinHttp/default/page/linwinhttp-index.html /usr/www/html') 
+
+            if os.path.exists("/usr/www/html/index.html") == False:
+                os.system('cp /usr/LinWinHttp/default/page/index.html /usr/www/html') 
+
             os.system('chmod 777 /usr/www/html')
             os.system('cp -f Sevice/systemd/linwinhttp.service /etc/systemd/system/')
             os.system('chmod +x /usr/LinWinHttp/* -R')
             os.system('cd /usr/LinWinHttp/JRE && tar -xvf  openJDK8.tar.xz')
             os.system('chmod +x /usr/LinWinHttp/sys/start_linwinhttp')
             #os.system('/usr/LinWinHttp/sys/start_linwinhttp')
+
+            os.system("chmod +x /usr/LinWinHttp/com.linwinMultiServer.package/build.sh")
 
             os.system('cp /usr/LinWinHttp/sys/linwinhttp /bin/')
             os.system('cp /usr/LinWinHttp/sys/linwinboot /bin/')
@@ -74,12 +83,12 @@ def main():
         print('[ERR]Must Be RUn As Root')
         exit()
     os.system("clear")                        
-    print("""                                                    _
-                             _     _               _            | |
+    print("""                                                    _    
+                             _     _               _            | |   
        ___  _ __   ___ _ __ | |   (_)_ ____      _(_)_ __       | |
-      / _ \| '_ \ / _ \ '_ \| |   | | '_ \ \ /\ / / | '_ \      | |
-     | (_) | |_) |  __/ | | | |___| | | | \ V  V /| | | | |     | |
-      \___/| .__/ \___|_| |_|_____|_|_| |_|\_/\_/ |_|_| |_|     |_|
+      / _ \| '_ \ / _ \ '_ \| |   | | '_ \ \ /\ / / | '_ \      | |   
+     | (_) | |_) |  __/ | | | |___| | | | \ V  V /| | | | |     | |   
+      \___/| .__/ \___|_| |_|_____|_|_| |_|\_/\_/ |_|_| |_|     |_|   
            |_|
 
     [*] LinWinCloud Teams,UChat Teams,Yinghuo Teams.      
