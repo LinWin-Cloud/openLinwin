@@ -53,7 +53,7 @@ class HttpService {
         socket.close();
         fileInputStream.close();
     }
-    public void sendDirectory(String path,int code,PrintWriter printWriter,Socket socket,OutputStream outputStream) {
+    public void sendDirectory(String path,int code,PrintWriter printWriter,Socket socket,OutputStream outputStream) throws IOException {
         try
         {
             File file = new File(path);
@@ -76,8 +76,9 @@ class HttpService {
                 printWriter.println("<script>window.location.href=window.location.href+'/';</script>");
             }
 
-            String Index = VirtualVisist.VirtualList_IndexHTML.get(file.getAbsolutePath().replace("//","/")+"/");
+            //String Index = VirtualVisist.VirtualList_IndexHTML.get(file.getAbsolutePath().replace("//","/")+"/");
             //System.out.println(file.getAbsolutePath().replace("//","/")+"/");
+            String Index = null;
             if (Index != null)
             {
                 printWriter.println(MultiServer.httpVersion+" "+code+" OK");
@@ -144,7 +145,7 @@ class HttpService {
             socket.close();
 
         }catch (Exception exception) {
-
+            socket.close();
         }
     }
     public void sendErrorPage(int code,PrintWriter printWriter,Socket socket,OutputStream outputStream) {
@@ -229,6 +230,7 @@ public class WebServer {
     public String httpUrl = null;
     public String httpMethod = "GET";
     public HttpService httpService = null;
+
     public Socket socket = null;
     public OutputStream outputStream = null;
     public String getHttpUrl() {
@@ -248,6 +250,7 @@ public class WebServer {
         return this.outputStream;
     }
 
+
     public void set(Socket socket,OutputStream outputStream,String HttpUrl,String HttpMethod) {
         this.socket = socket;
         this.outputStream = outputStream;
@@ -259,8 +262,8 @@ public class WebServer {
     {
         WebServer.getServerSocket(MultiServer.ServerPort);
         ServerSocket serverSocket = new ServerSocket(MultiServer.ServerPort);
-        serverSocket.setPerformancePreferences(1,5,10);
-        serverSocket.setReceiveBufferSize(64 * 1024 * 1024);
+        //serverSocket.setPerformancePreferences(1,5,10);
+        //serverSocket.setReceiveBufferSize(64 * 1024 * 1024);
         for (int i = 0 ; i < 16 ; i++) {
             Thread thread = new Thread(new Runnable() {
                 @Override
@@ -293,11 +296,12 @@ public class WebServer {
             httpUrl = httpUrl.substring(httpUrl.indexOf(" ")+1,httpUrl.lastIndexOf("HTTP/")-1);
 
             HttpService httpService = new HttpService();
-            WebServer webServer = new WebServer();
-            webServer.set(socket,outputStream,httpUrl,httpMethod);
+            //WebServer webServer = new WebServer();
+            //webServer.set(socket,outputStream,httpUrl,httpMethod);
 
             APIService apiService = new APIService();
-            apiService.apiKeyRun().run();
+            apiService.set(socket,httpUrl,httpMethod,outputStream,httpService);
+            apiService.apiKeyRun();
 
             WebServer.FutureEXE(httpService, socket,printWriter,outputStream,bufferedReader,httpUrl);
         }

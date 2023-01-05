@@ -22,22 +22,28 @@ public class APIService {
         this.outputStream = outputStream;
         this.httpService = httpService;
     }
-    public Runnable apiKeyRun()
+    private Socket getSocket(){
+        return this.socket;
+    }
+    private OutputStream getOutputStream() {
+        return this.outputStream;
+    }
+    private String getHttpUrl() {
+        return this.httpUrl;
+    }
+    private String getHttpmethod() {
+        return this.httpmethod;
+    }
+    private HttpService getHttpService() {
+        return this.httpService;
+    }
+    public void apiKeyRun()
     {
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                try
-                {
-                    WebServer webServer =  MultiServer.webServer;
-                    System.out.println(webServer.getHttpUrl());
-                }
-                catch (Exception exception)
-                {
-                    exception.printStackTrace();
-                }
-            }
-        };
-        return runnable;
+        /**
+         * This function is your writing to the Server
+         * You can deal all the Http Service on this function
+         * openLinwin give some Class and function.
+         * You can use output and socket to deal the client requests.
+         */
     }
 }
