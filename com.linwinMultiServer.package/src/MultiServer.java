@@ -31,6 +31,7 @@ public class MultiServer {
     public static String[] defaultPage_str = new String[0];
     public static String strict_origin_when_cross_origin = "";
     public static String httpVersion = "HTTP/1.1";
+    public static WebServer webServer = new WebServer();
 
     public static void main(String[] args) {
 
@@ -99,7 +100,7 @@ public class MultiServer {
             });
             lookUpInitValueThread.start();
             //the main server software
-            WebServer.mainWebServer();
+            MultiServer.webServer.mainWebServer();
 
         }catch(Exception exception) {
             exception.printStackTrace();

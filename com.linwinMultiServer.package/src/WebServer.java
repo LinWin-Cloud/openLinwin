@@ -27,31 +27,31 @@ class HttpService {
 
     public void sendFile(String path,int code,PrintWriter printWriter,Socket socket,OutputStream outputStream) throws Exception {
 
-                printWriter.println(MultiServer.httpVersion+" "+code+" OK");
-                printWriter.println("Content-Type: "+HTTPClientType.GetType(socket,path));
-                printWriter.println("Server: openLinwin/"+ MultiServer.Version);
-                printWriter.println("Length: "+new File(path).length());
-                printWriter.println();
-                printWriter.flush();
+        printWriter.println(MultiServer.httpVersion+" "+code+" OK");
+        printWriter.println("Content-Type: "+HTTPClientType.GetType(socket,path));
+        printWriter.println("Server: openLinwin/"+ MultiServer.Version);
+        printWriter.println("Length: "+new File(path).length());
+        printWriter.println();
+        printWriter.flush();
 
-                FileInputStream fileInputStream = new FileInputStream(path);
-                // 获取文件相应的channel，channel中会有相关数据
-                FileChannel channel = fileInputStream.getChannel();
-                ByteBuffer buffer = ByteBuffer.allocate(1024);
+        FileInputStream fileInputStream = new FileInputStream(path);
+        // 获取文件相应的channel，channel中会有相关数据
+        FileChannel channel = fileInputStream.getChannel();
+        ByteBuffer buffer = ByteBuffer.allocate(1024);
 
-                int length = 0;
-                while ((length = channel.read(buffer)) != -1)
-                {
-                    byte[] bytes = buffer.array();
-                    buffer.clear();
-                    outputStream.write(bytes);
-                    outputStream.flush();
-                }
+        int length = 0;
+        while ((length = channel.read(buffer)) != -1)
+        {
+            byte[] bytes = buffer.array();
+            buffer.clear();
+            outputStream.write(bytes);
+            outputStream.flush();
+        }
 
-                channel.close();
-                outputStream.close();
-                socket.close();
-                fileInputStream.close();
+        channel.close();
+        outputStream.close();
+        socket.close();
+        fileInputStream.close();
     }
     public void sendDirectory(String path,int code,PrintWriter printWriter,Socket socket,OutputStream outputStream) {
         try
@@ -64,6 +64,17 @@ class HttpService {
              * v2.3 Version Using the HashMap And Virtual Visit to read the Index File and do not
              * Read the disk.
              */
+
+            int last1 = path.length() - 1 ;
+            int end = path.length();
+            String charStr = path.substring(last1,end);
+            if (!charStr.equals("/"))
+            {
+                printWriter.println("HTTP/1.1 200 OK");
+                printWriter.println("Content-Type: text/html");
+                printWriter.println();
+                printWriter.println("<script>window.location.href=window.location.href+'/';</script>");
+            }
 
             String Index = VirtualVisist.VirtualList_IndexHTML.get(file.getAbsolutePath().replace("//","/")+"/");
             //System.out.println(file.getAbsolutePath().replace("//","/")+"/");
@@ -95,6 +106,9 @@ class HttpService {
                     break;
                 }
             }
+            /**
+             * If there do not have the Index file , then openLinwin will List all the files on this Dir
+             */
             File[] ListFiles = file.listFiles();
 
             printWriter.println(MultiServer.httpVersion+" "+code+" OK");
@@ -136,38 +150,55 @@ class HttpService {
     public void sendErrorPage(int code,PrintWriter printWriter,Socket socket,OutputStream outputStream) {
         try
         {
-            this.sendFile(MultiServer.errorPage+"/"+code+".html",code,printWriter,socket,outputStream);
+            /**
+             * Send Error page , as 400,404,405 and so on.
+             * I was using the function: this.snedFile() , but there is a Bug in it.
+             * So must write a New function restart.
+             */
+            printWriter.println("HTTP/1.1 "+code+" OK");
+            printWriter.println("Content-Type: text/html");
+            printWriter.println("Server: openLinwin/"+MultiServer.Version);
+            printWriter.println();
+            printWriter.flush();
+
+            FileInputStream fileInputStream = new FileInputStream(MultiServer.errorPage+"/"+code+".html");
+            int length = 0 ;
+            byte[] bytes = new byte[1024];
+            while ((length = fileInputStream.read(bytes)) != -1)
+            {
+                outputStream.write(bytes,0,length);
+                outputStream.flush();
+            }
+            outputStream.close();
+            printWriter.close();
+            socket.close();
         }
         catch (Exception exception){
-            return;
+            try{
+                socket.close();
+            }
+            catch (Exception exception1)
+            {
+                exception1.printStackTrace();
+            }
         }
     }
-    public void Service(Socket socket) throws Exception {
-
-        OutputStream outputStream = socket.getOutputStream();
-        InputStream inputStream = socket.getInputStream();
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"UTF-8"));
-        PrintWriter printWriter = new PrintWriter(outputStream);
+    public void Service(Socket socket,PrintWriter printWriter,OutputStream outputStream,BufferedReader bufferedReader,String httpUrl) throws Exception {
 
         if (WebSafety.BlackIP(socket.getInetAddress().toString())) {
            sendErrorPage(403,printWriter,socket,outputStream);
            return;
         }
+        WebSafety.XSS_Security(httpUrl,printWriter,outputStream,socket,MultiServer.Version);
+        WebSafety.SQL_Security(httpUrl,printWriter,outputStream,socket,MultiServer.Version);
+        //System.out.println(httpUrl);
+        //String httpMethod = httpUrl.substring(0,httpUrl.indexOf(" "));
+        //httpUrl = httpUrl.substring(httpUrl.indexOf(" ")+1,httpUrl.lastIndexOf("HTTP/")-1);
 
-        String httpUrl = bufferedReader.readLine();
-        httpUrl = java.net.URLDecoder.decode(httpUrl,"UTF-8");
-
-        String httpMethod = httpUrl.substring(0,httpUrl.indexOf(" "));
-        httpUrl = httpUrl.substring(httpUrl.indexOf(" ")+1,httpUrl.lastIndexOf("HTTP/")-1);
-
-        this.HttpMethod = httpMethod;
         this.HttpUrl = httpUrl;
         try
         {
             String Http = httpUrl;
-
-            WebSafety.XSS_Security(Http,printWriter,outputStream,socket,MultiServer.Version);
-            WebSafety.SQL_Security(Http,printWriter,outputStream,socket,MultiServer.Version);
 
             if (Http == null) {
                 socket.close();
@@ -195,10 +226,11 @@ public class WebServer {
     private static int EXE_Boot = 0;
 
     public static int Start_Test = 0;
-    private String httpUrl = null;
-    private String httpMethod = "GET";
-    private HttpService httpService = null;
-    private Socket socket = null;
+    public String httpUrl = null;
+    public String httpMethod = "GET";
+    public HttpService httpService = null;
+    public Socket socket = null;
+    public OutputStream outputStream = null;
     public String getHttpUrl() {
         return this.httpUrl;
     }
@@ -212,8 +244,18 @@ public class WebServer {
     {
         return this.socket;
     }
+    public OutputStream getOutputStream() {
+        return this.outputStream;
+    }
 
-    public static void mainWebServer() throws Exception
+    public void set(Socket socket,OutputStream outputStream,String HttpUrl,String HttpMethod) {
+        this.socket = socket;
+        this.outputStream = outputStream;
+        this.httpUrl = HttpUrl;
+        this.httpMethod = HttpMethod;
+    }
+
+    public void mainWebServer() throws Exception
     {
         WebServer.getServerSocket(MultiServer.ServerPort);
         ServerSocket serverSocket = new ServerSocket(MultiServer.ServerPort);
@@ -225,26 +267,45 @@ public class WebServer {
                 public void run() {
                     while (true)
                     {
-                        try {
-                            Socket socket = serverSocket.accept();
-                            socket.setSoTimeout(500);
-                            APIService apiService = new APIService();
-                            apiService.apiKeyRun();
-
-                            HttpService httpService = new HttpService();
-                            WebServer.FutureEXE(httpService, socket);
-                        }
-                        catch (Exception exception) {
-                        }
+                        WebServer.runEXE(serverSocket);
                     }
                 }
             });
             thread.start();
         }
     }
-    public static void FutureEXE(HttpService httpService,Socket socket) throws Exception {
-        socket.setTcpNoDelay(false);
-        httpService.Service(socket);
+    public static void runEXE(ServerSocket serverSocket) {
+        try {
+            Socket socket = serverSocket.accept();
+
+            OutputStream outputStream = socket.getOutputStream();
+            InputStream inputStream = socket.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"UTF-8"));
+            PrintWriter printWriter = new PrintWriter(outputStream);
+
+            String httpUrl = bufferedReader.readLine();
+            if (httpUrl == null){
+                socket.close();
+            }
+            httpUrl = java.net.URLDecoder.decode(httpUrl,"UTF-8");
+
+            String httpMethod = httpUrl.substring(0,httpUrl.indexOf(" "));
+            httpUrl = httpUrl.substring(httpUrl.indexOf(" ")+1,httpUrl.lastIndexOf("HTTP/")-1);
+
+            HttpService httpService = new HttpService();
+            WebServer webServer = new WebServer();
+            webServer.set(socket,outputStream,httpUrl,httpMethod);
+
+            APIService apiService = new APIService();
+            apiService.apiKeyRun().run();
+
+            WebServer.FutureEXE(httpService, socket,printWriter,outputStream,bufferedReader,httpUrl);
+        }
+        catch (Exception exception) {
+        }
+    }
+    public static void FutureEXE(HttpService httpService,Socket socket,PrintWriter printWriter,OutputStream outputStream,BufferedReader bufferedReader,String httpUrl) throws Exception {
+        httpService.Service(socket,printWriter,outputStream,bufferedReader,httpUrl);
     }
     public static Boolean getServerSocket(int port) {
         try{

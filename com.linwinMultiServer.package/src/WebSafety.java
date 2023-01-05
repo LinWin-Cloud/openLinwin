@@ -29,6 +29,7 @@ public class WebSafety {
                 {
                     HttpService httpService = new HttpService();
                     httpService.sendErrorPage(403,printWriter,socket,outputStream);
+                    socket.close();
                     return;
                 }
             }
@@ -43,7 +44,9 @@ public class WebSafety {
         if (MultiServer.Xss_safe) {
             HttpURL = HttpURL.replace(" ","");
             if (HttpURL.indexOf("<script")!=-1||HttpURL.indexOf("</")!=-1||HttpURL.indexOf("<link")!=-1||HttpURL.indexOf("/>")!=-1||HttpURL.indexOf("%2")!=-1)            {
-                //WebServer.sendErrorPage(405, printWriter, socket, outputStream);
+                HttpService httpService = new HttpService();
+                httpService.sendErrorPage(403, printWriter, socket, outputStream);
+                socket.close();
                 return;
             }
         }
