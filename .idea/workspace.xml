@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="99cb365b-2267-4b3b-b92d-05164d86f100" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Sevice/Exit_Server.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Sevice/Exit_Server.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sevice/ServerBoot.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Sevice/ServerBoot.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.WsAttacker.package/release/com.WSAttacker.package.jar" beforeDir="false" afterPath="$PROJECT_DIR$/com.WsAttacker.package/release/com.WSAttacker.package.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.openProxy.Service/release/boot.jar" beforeDir="false" afterPath="$PROJECT_DIR$/com.openProxy.Service/release/boot.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com.openProxy.Service/release/com.openProxy.service.jar" beforeDir="false" afterPath="$PROJECT_DIR$/com.openProxy.Service/release/com.openProxy.service.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/install.py" beforeDir="false" afterPath="$PROJECT_DIR$/install.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/moudule.md" beforeDir="false" afterPath="$PROJECT_DIR$/moudule.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/LinWinHttp.jar" beforeDir="false" afterPath="$PROJECT_DIR$/server/LinWinHttp.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sys/BootMultiServerVM.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sys/BootMultiServerVM.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled/untitled.iml" beforeDir="false" afterPath="$PROJECT_DIR$/untitled/untitled.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,16 +61,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/ubuntu-linux/openLinwin/openAPI&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/home/ubuntu-linux/openLinwin/com.TransPort.service",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="ReaderModeSettings">
     <option name="showLigatures" value="false" />
   </component>
