@@ -5,6 +5,9 @@
     <content url="file://$MODULE_DIR$/../bin">
       <sourceFolder url="file://$MODULE_DIR$/../bin" type="java-test-resource" />
     </content>
+    <content url="file://$MODULE_DIR$/../com.TransPort.service">
+      <sourceFolder url="file://$MODULE_DIR$/../com.TransPort.service/src" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../com.linwinMultiServer.package">
       <sourceFolder url="file://$MODULE_DIR$/../com.linwinMultiServer.package/src" isTestSource="false" />
     </content>
